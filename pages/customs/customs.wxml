@@ -1,0 +1,165 @@
+<view class="customs-container paper-cut-bg">
+  <!-- 头部 -->
+  <view class="header">
+    <view class="header-title">地域习俗</view>
+    <view class="header-subtitle">了解各地红包文化</view>
+  </view>
+  
+  <!-- 内容区域 -->
+  <view class="content">
+    <view class="card">
+      <view class="card-title">
+        <text class="icon">📚</text>
+        <text>地域习俗介绍</text>
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">选择省份</view>
+        <picker 
+          mode="selector" 
+          range="{{regions}}" 
+          range-key="name"
+          value="{{selectedRegionIndex}}"
+          bindchange="onRegionChange"
+        >
+          <view class="form-input">
+            {{regions[selectedRegionIndex] ? regions[selectedRegionIndex].name : '请选择省份'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 标签切换 -->
+      <view class="tab-list">
+        <view 
+          class="tab-item {{customsTab === 'gift' ? 'active' : ''}}" 
+          bindtap="switchCustomsTab" 
+          data-tab="gift"
+        >
+          🧧 压岁钱习俗
+        </view>
+        <view 
+          class="tab-item {{customsTab === 'giving' ? 'active' : ''}}" 
+          bindtap="switchCustomsTab" 
+          data-tab="giving"
+        >
+          💕 随份子习俗
+        </view>
+      </view>
+
+      <!-- 压岁钱习俗内容 -->
+      <block wx:if="{{customsTab === 'gift'}}">
+        <view class="space-y-4">
+          <view class="bg-red-50 p-3 rounded-lg">
+            <view class="flex items-center justify-between mb-2">
+              <text class="text-sm font-medium text-gray-600">金额区间</text>
+              <text class="text-red-600">📈</text>
+            </view>
+              <view class="text-xl font-bold text-red-600">
+                {{giftMoneyData[selectedRegion] ? giftMoneyData[selectedRegion].giftMoney.amount : '暂无数据'}}
+              </view>
+          </view>
+
+          <view>
+            <view class="form-label">当地习俗</view>
+            <view class="space-y-2">
+              <block wx:for="{{giftMoneyData[selectedRegion] ? giftMoneyData[selectedRegion].giftMoney.customs : []}}" wx:key="*this">
+                <view class="flex items-start">
+                  <text class="text-red-600 mr-2">•</text>
+                  <text class="text-sm text-gray-600">{{item}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+
+          <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+            <view class="form-label text-yellow-800">贴心提示</view>
+              <text class="text-sm text-yellow-700">
+                {{giftMoneyData[selectedRegion] ? giftMoneyData[selectedRegion].giftMoney.tips : '暂无提示'}}
+              </text>
+          </view>
+
+          <!-- 深度解读按钮（暂时隐藏，等待正式版广告ID） -->
+          <!--
+          <view class="mt-4">
+            <button 
+              class="btn btn-secondary w-full" 
+              bindtap="unlockDeepReading"
+            >
+              <text class="btn-icon">🎬</text>
+              <text class="btn-text">
+                <text wx:if="{{!unlockedDeepReadings.includes(selectedRegion)}}">观看视频，解锁深度解读</text>
+                <text wx:if="{{unlockedDeepReadings.includes(selectedRegion)}}">📖 查看深度解读</text>
+              </text>
+            </button>
+          </view>
+          -->
+        </view>
+      </block>
+
+      <!-- 随份子习俗内容 -->
+      <block wx:if="{{customsTab === 'giving'}}">
+        <view class="space-y-4">
+          <view class="grid grid-cols-2 gap-4">
+            <view class="bg-red-50 p-3 rounded-lg">
+              <view class="flex items-center justify-between mb-2">
+                <text class="text-sm font-medium text-gray-600">普通同事</text>
+                <text class="text-red-600">👥</text>
+              </view>
+              <view class="text-lg font-bold text-red-600">
+                {{giftGivingData[selectedRegion] ? giftGivingData[selectedRegion].giving.colleague : '暂无数据'}}
+              </view>
+            </view>
+            
+            <view class="bg-orange-50 p-3 rounded-lg">
+              <view class="flex items-center justify-between mb-2">
+                <text class="text-sm font-medium text-gray-600">好朋友</text>
+                <text class="text-orange-600">💕</text>
+              </view>
+              <view class="text-lg font-bold text-orange-600">
+                {{giftGivingData[selectedRegion] ? giftGivingData[selectedRegion].giving.friend : '暂无数据'}}
+              </view>
+            </view>
+          </view>
+
+          <view>
+            <view class="form-label">当地习俗</view>
+            <view class="space-y-2">
+              <block wx:for="{{giftGivingData[selectedRegion] ? giftGivingData[selectedRegion].giving.customs : []}}" wx:key="*this">
+                <view class="flex items-start">
+                  <text class="text-red-600 mr-2">•</text>
+                  <text class="text-sm text-gray-600">{{item}}</text>
+                </view>
+              </block>
+            </view>
+          </view>
+
+          <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
+            <view class="form-label text-yellow-800">贴心提示</view>
+            <text class="text-sm text-yellow-700">
+              {{giftGivingData[selectedRegion] ? giftGivingData[selectedRegion].giving.tips : '暂无提示'}}
+            </text>
+          </view>
+
+          <!-- 深度解读按钮（暂时隐藏，等待正式版广告ID） -->
+          <!--
+          <view class="mt-4">
+            <button 
+              class="btn btn-secondary w-full" 
+              bindtap="unlockDeepReading"
+            >
+              <text class="btn-icon">🎬</text>
+              <text class="btn-text">
+                <text wx:if="{{!unlockedDeepReadings.includes(selectedRegion)}}">观看视频，解锁深度解读</text>
+                <text wx:if="{{unlockedDeepReadings.includes(selectedRegion)}}">📖 查看深度解读</text>
+              </text>
+            </button>
+          </view>
+          -->
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 用户反馈组件 -->
+  <feedback pageName="customs" />
+</view>

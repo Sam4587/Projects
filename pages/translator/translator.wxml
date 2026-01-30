@@ -1,0 +1,101 @@
+<view class="translator-container paper-cut-bg">
+  <!-- 内容区域 -->
+  <view class="content">
+    <view class="card">
+      <view class="card-title">
+        <text class="icon">📝</text>
+        红包祝福语翻译
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">输入祝福语</view>
+        <textarea 
+          class="form-input"
+          placeholder="请输入传统祝福语，例如：恭喜发财"
+          value="{{inputText}}"
+          bindinput="onInputText"
+          maxlength="50"
+          auto-height
+        />
+      </view>
+      
+      <button 
+        class="btn btn-primary" 
+        bindtap="translateText" 
+        disabled="{{!inputText || inputText.length === 0}}"
+      >
+        开始翻译
+      </button>
+      
+      <view wx:if="{{translation}}" class="result-card">
+        <view class="result-title">翻译结果</view>
+        <view class="form-group">
+          <view class="form-label">传统表达</view>
+          <view class="result-value">{{translation.traditional}}</view>
+        </view>
+        <view class="form-group">
+          <view class="form-label">现代翻译</view>
+          <view class="result-value">{{translation.modern}}</view>
+        </view>
+        <view class="form-group">
+          <view class="form-label">含义解析</view>
+          <view class="result-value">{{translation.meaning}}</view>
+        </view>
+        <view wx:if="{{translation.usage}}" class="form-group">
+          <view class="form-label">适用场景</view>
+          <view class="result-value">{{translation.usage}}</view>
+        </view>
+        
+        <button 
+          class="btn btn-secondary" 
+          bindtap="copyTranslation"
+        >
+          复制完整结果
+        </button>
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">祝福语库</view>
+        <view class="category-grid">
+          <view 
+            wx:for="{{categoryList}}" 
+            wx:key="index"
+            class="category-btn {{selectedCategory === item ? 'active' : ''}}"
+            bindtap="selectCategory" 
+            data-category="{{item}}"
+          >
+            {{item}}
+          </view>
+        </view>
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">推荐祝福语</view>
+        <view wx:if="{{filteredPhrases.length > 0}}">
+          <view 
+            wx:for="{{filteredPhrases}}" 
+            wx:key="id"
+            class="phrase-card"
+            bindtap="selectPhrase"
+            data-phrase="{{item.traditional}}"
+          >
+            <view class="phrase-header">
+              <text class="phrase-text">{{item.traditional}}</text>
+            </view>
+            <view class="phrase-preview">
+              <text class="preview-label">现代版：</text>
+              <text class="preview-text">{{item.modern}}</text>
+            </view>
+          </view>
+        </view>
+        <view wx:if="{{filteredPhrases.length === 0}}" class="empty-state">
+          <text class="empty-text">没有找到匹配的祝福语</text>
+          <text class="empty-tip">请选择其他分类或直接在输入框中输入</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 用户反馈组件 -->
+  <feedback pageName="translator" />
+</view>

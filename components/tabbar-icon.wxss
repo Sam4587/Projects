@@ -1,0 +1,97 @@
+/* 国潮风格导航栏图标组件 */
+.tabbar-icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16rpx 8rpx;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tabbar-icon-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: radial-gradient(circle, rgba(229, 57, 53, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s ease;
+}
+
+.tabbar-icon-container.active {
+  color: var(--primary-color);
+  background: linear-gradient(135deg, rgba(229, 57, 53, 0.1) 0%, rgba(255, 215, 0, 0.05) 100%);
+  text-shadow: 0 1rpx 2rpx rgba(229, 57, 53, 0.2);
+}
+
+.tabbar-icon-container.active::before {
+  width: 120rpx;
+  height: 120rpx;
+}
+
+/* 48x48像素标准尺寸图标 */
+.tabbar-icon {
+  width: 48rpx;
+  height: 48rpx;
+  margin-bottom: 8rpx;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: all 0.3s ease;
+}
+
+.tabbar-icon-container.active .tabbar-icon {
+  transform: scale(1.1);
+  filter: drop-shadow(0 2rpx 4rpx rgba(229, 57, 53, 0.3));
+}
+
+/* 国潮风格图标样式 */
+.tabbar-icon.calculator {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="32" rx="4" fill="%23666666"/><rect x="12" y="12" width="24" height="24" rx="2" fill="%23FFFFFF"/><path d="M16 16H32V20H16V16Z" fill="%23E53935"/><path d="M16 24H32V28H16V24Z" fill="%23E53935"/><path d="M16 32H28V36H16V32Z" fill="%23E53935"/></svg>');
+}
+
+.tabbar-icon-container.active .tabbar-icon.calculator {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="32" rx="4" fill="%23E53935"/><rect x="12" y="12" width="24" height="24" rx="2" fill="%23FFFFFF"/><path d="M16 16H32V20H16V16Z" fill="%23FFD700"/><path d="M16 24H32V28H16V24Z" fill="%23FFD700"/><path d="M16 32H28V36H16V32Z" fill="%23FFD700"/></svg>');
+}
+
+.tabbar-icon.translator {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="%23666666"/><path d="M16 20L24 24L32 20" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 28L24 24L32 28" stroke="%23FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+
+.tabbar-icon-container.active .tabbar-icon.translator {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="20" fill="%23E53935"/><path d="M16 20L24 24L32 20" stroke="%23FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M16 28L24 24L32 28" stroke="%23FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+}
+
+.tabbar-icon.customs {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="32" rx="4" fill="%23666666"/><path d="M16 16L32 16L32 20L16 20L16 16Z" fill="%23FFFFFF"/><path d="M16 24L32 24L32 28L16 28L16 24Z" fill="%23FFFFFF"/><path d="M16 32L32 32L32 36L16 36L16 32Z" fill="%23FFFFFF"/></svg>');
+}
+
+.tabbar-icon-container.active .tabbar-icon.customs {
+  background-image: url('data:image/svg+xml;utf8,<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8" y="8" width="32" height="32" rx="4" fill="%23E53935"/><path d="M16 16L32 16L32 20L16 20L16 16Z" fill="%23FFD700"/><path d="M16 24L32 24L32 28L16 28L16 24Z" fill="%23FFD700"/><path d="M16 32L32 32L32 36L16 36L16 32Z" fill="%23FFD700"/></svg>');
+}
+
+.tabbar-text {
+  font-size: 24rpx;
+  color: #666666;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.tabbar-icon-container.active .tabbar-text {
+  color: var(--primary-color);
+  text-shadow: 0 1rpx 2rpx rgba(229, 57, 53, 0.2);
+}
+
+/* 点击反馈动画 */
+@keyframes tabbarClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.tabbar-icon-container:active {
+  animation: tabbarClick 0.2s ease;
+}

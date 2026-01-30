@@ -1,0 +1,47 @@
+<!--pages/index/index.wxml-->
+<view class="container paper-cut-bg">
+  <view class="header">
+    <view class="header-title">随礼那点事儿</view>
+    <view class="header-subtitle">国潮新春版</view>
+  </view>
+  
+  <view class="tab-container">
+    <view class="tab-list">
+      <view class="tab-item active" bindtap="onTabTap" data-tab="calculator">
+        <text class="tab-icon">🧮</text>
+        <text class="tab-text">随礼计算</text>
+      </view>
+      <view class="tab-item" bindtap="onTabTap" data-tab="translator">
+        <text class="tab-icon">📝</text>
+        <text class="tab-text">红包翻译</text>
+      </view>
+      <view class="tab-item" bindtap="onTabTap" data-tab="customs">
+        <text class="tab-icon">📚</text>
+        <text class="tab-text">地域习俗</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="content">
+    <view class="card">
+      <view class="card-title">
+        <text class="icon">🏮</text>
+        <text>新春祝福</text>
+      </view>
+      <view class="card-content">
+        <text class="card-text">新年快乐，万事如意！</text>
+      </view>
+    </view>
+    
+    <view class="card">
+      <view class="card-title">
+        <text class="icon">💰</text>
+        <text>红包攻略</text>
+      </view>
+      <view class="card-content">
+        <text class="card-text">点击下方按钮，开始计算您的红包金额</text>
+      </view>
+      <button class="primary-button" bindtap="onCalculatorTap">开始计算</button>
+    </view>
+  </view>
+</view>

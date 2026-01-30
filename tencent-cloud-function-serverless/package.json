@@ -1,0 +1,15 @@
+{
+  "name": "tencent-dingtalk-api",
+  "version": "1.0.0",
+  "description": "DingTalk Webhook API for redpacket advisor feedback integration - Tencent Cloud Function",
+  "main": "index.js",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=16.13.0"
+  },
+  "keywords": ["dingtalk", "webhook", "api", "tencent-cloud", "scf"],
+  "author": "redpacket-advisor",
+  "license": "MIT"
+}

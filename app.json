@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/calculator/calculator",
+    "pages/translator/translator",
+    "pages/customs/customs",
+    "pages/stats/stats"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#dc2626",
+    "navigationBarTitleText": "随礼那点事儿",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#666666",
+    "selectedColor": "#E53935",
+    "backgroundColor": "#F5F5F5",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/calculator/calculator",
+        "text": "🧮 随礼计算"
+      },
+      {
+        "pagePath": "pages/translator/translator",
+        "text": "📝 红包翻译"
+      },
+      {
+        "pagePath": "pages/customs/customs",
+        "text": "📚 地域习俗"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents",
+  "version": "1.0.0"
+}

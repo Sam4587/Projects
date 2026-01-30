@@ -1,0 +1,125 @@
+<!-- 用户反馈弹窗组件 -->
+<view class="feedback-modal {{show ? 'show' : ''}}" catch:touchmove="preventTouchMove">
+  <view class="feedback-mask" catch:tap="closeModal"></view>
+  <view class="feedback-content">
+    <!-- 装饰元素 -->
+    <view class="decoration-cloud cloud-left">☁</view>
+    <view class="decoration-cloud cloud-right">☁</view>
+    <view class="decoration-coin coin-1">💰</view>
+    <view class="decoration-coin coin-2">💰</view>
+    
+    <!-- 标题 -->
+    <view class="feedback-header">
+      <view class="header-icon">💌</view>
+      <text class="feedback-title">意见反馈</text>
+      <view class="header-decoration"></view>
+    </view>
+    
+    <!-- 评分 -->
+    <view class="feedback-section">
+      <text class="section-label">您的评价</text>
+      <view class="star-rating">
+        <view 
+          wx:for="{{5}}" 
+          wx:key="index"
+          class="star {{rating > index ? 'active' : ''}}"
+          data-index="{{index + 1}}"
+          catch:tap="onRatingChange"
+        >
+          {{rating > index ? '★' : '☆'}}
+        </view>
+      </view>
+    </view>
+    
+    <!-- 反馈类型 -->
+    <view class="feedback-section">
+      <text class="section-label">反馈类型</text>
+      <view class="type-list">
+        <view 
+          wx:for="{{feedbackTypes}}" 
+          wx:key="value"
+          class="type-tag {{selectedType === item.value ? 'active' : ''}}"
+          data-type="{{item.value}}"
+          catch:tap="onTypeChange"
+        >
+          {{item.label}}
+        </view>
+      </view>
+    </view>
+    
+    <!-- 反馈内容 -->
+    <view class="feedback-section">
+      <text class="section-label">您的建议</text>
+      <textarea 
+        class="feedback-textarea"
+        placeholder="请输入您的宝贵意见，帮助我们做得更好..."
+        value="{{content}}"
+        bind:input="onContentInput"
+        maxlength="500"
+        show-count
+      />
+      <text class="char-count">{{content.length}}/500</text>
+    </view>
+    
+    <!-- 联系方式 -->
+    <view class="feedback-section">
+      <text class="section-label">联系方式（选填）</text>
+      <input 
+        class="feedback-input"
+        placeholder="微信/手机号，方便我们回复您"
+        value="{{contact}}"
+        bind:input="onContactInput"
+      />
+    </view>
+    
+    <!-- 提交状态和错误提示 -->
+    <view wx:if="{{submitStatus === 'error'}}" class="error-section">
+      <view class="error-icon">⚠️</view>
+      <text class="error-message">{{submitError}}</text>
+    </view>
+
+    <!-- 提交按钮 -->
+    <view class="feedback-actions">
+      <view class="btn btn-secondary" catch:tap="closeModal">
+        {{submitStatus === 'error' ? '关闭' : '取消'}}
+      </view>
+      <view wx:if="{{submitStatus !== 'error'}}" 
+            class="btn btn-primary {{submitStatus === 'submitting' ? 'disabled' : ''}}" 
+            catch:tap="submitFeedback">
+        {{submitStatus === 'submitting' ? '提交中...' : '提交反馈'}}
+      </view>
+      <view wx:if="{{submitStatus === 'error'}}" 
+            class="btn btn-primary" 
+            catch:tap="retrySubmit">
+        重试提交
+      </view>
+    </view>
+
+    <!-- 提交进度指示器 -->
+    <view wx:if="{{submitStatus === 'submitting'}}" class="submit-progress">
+      <view class="progress-bar">
+        <view class="progress-fill"></view>
+      </view>
+      <text class="progress-text">正在处理您的反馈...</text>
+    </view>
+    
+    <!-- 关闭按钮 -->
+    <view class="close-btn" catch:tap="closeModal">×</view>
+  </view>
+</view>
+
+<!-- 浮动反馈按钮 -->
+<view 
+  class="feedback-float-btn {{dragging ? 'dragging' : ''}}"
+  style="left: {{btnPosition.x}}px; top: {{btnPosition.y}}px;"
+  bind:touchstart="onTouchStart"
+  bind:touchmove="onTouchMove"
+  bind:touchend="onTouchEnd"
+  bind:tap="openModal"
+>
+  <view class="btn-inner">
+    <text class="btn-icon">💬</text>
+    <text class="btn-text">反馈</text>
+  </view>
+  <view class="btn-glow"></view>
+</view>

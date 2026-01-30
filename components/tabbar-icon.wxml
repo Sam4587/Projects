@@ -1,0 +1,4 @@
+<view class="tabbar-icon-container {{active ? 'active' : ''}}">
+  <view class="tabbar-icon {{iconType}}"></view>
+  <text class="tabbar-text">{{text}}</text>
+</view>

@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/send.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/send",
+      "dest": "/api/send.js"
+    }
+  ],
+  "env": {
+    "DINGTALK_TOKEN": "88eba63bc98bce33a59169fcd33e64093062f0beea5a65d3830e83dfedeaac7a",
+    "DINGTALK_SECRET": "SEC243a3635982cb428719783a0ac2e8359acea9ced01231fede326bd5b281820fc"
+  }
+}

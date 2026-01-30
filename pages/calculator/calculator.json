@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "随礼计算器",
+  "navigationBarBackgroundColor": "#dc2626",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "feedback": "/components/feedback/feedback"
+  }
+}

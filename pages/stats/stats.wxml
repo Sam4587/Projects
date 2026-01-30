@@ -1,0 +1,148 @@
+<!-- pages/stats/stats.wxml -->
+<view class="container">
+  <!-- 头部 -->
+  <view class="header">
+    <text class="header-icon">📊</text>
+    <text class="header-title">数据统计</text>
+    <text class="header-subtitle">应用使用数据分析</text>
+  </view>
+
+  <!-- 标签切换 -->
+  <view class="tab-bar">
+    <view 
+      wx:for="{{tabs}}" 
+      wx:key="key"
+      class="tab-item {{activeTab === item.key ? 'active' : ''}}"
+      data-tab="{{item.key}}"
+      bindtap="switchTab"
+    >
+      {{item.label}}
+    </view>
+  </view>
+
+  <!-- 概览 Tab -->
+  <view wx:if="{{activeTab === 'overview'}}" class="tab-content">
+    <view class="stat-card">
+      <view class="card-title">📈 总体概况</view>
+      <view class="stat-grid">
+        <view class="stat-item">
+          <text class="stat-value">{{report.overview.totalPageViews}}</text>
+          <text class="stat-label">页面访问</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{report.overview.totalEvents}}</text>
+          <text class="stat-label">事件触发</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{report.overview.totalErrors}}</text>
+          <text class="stat-label">错误次数</text>
+        </view>
+        <view class="stat-item">
+          <text class="stat-value">{{report.overview.totalFeedback}}</text>
+          <text class="stat-label">用户反馈</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="stat-card" wx:if="{{report.topPages.length > 0}}">
+      <view class="card-title">🔥 热门页面</view>
+      <view class="list">
+        <view wx:for="{{report.topPages}}" wx:key="page" class="list-item">
+          <text class="item-name">{{item.page}}</text>
+          <text class="item-value">{{item.count}}次</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="stat-card" wx:if="{{report.topEvents.length > 0}}">
+      <view class="card-title">⚡ 热门事件</view>
+      <view class="list">
+        <view wx:for="{{report.topEvents}}" wx:key="event" class="list-item">
+          <text class="item-name">{{item.event}}</text>
+          <text class="item-value">{{item.count}}次</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 反馈 Tab -->
+  <view wx:if="{{activeTab === 'feedback'}}" class="tab-content">
+    <view class="stat-card" wx:if="{{feedbackList.length > 0}}">
+      <view class="card-title">💬 用户反馈 ({{feedbackList.length}}条)</view>
+      <view class="feedback-list">
+        <view 
+          wx:for="{{feedbackList}}" 
+          wx:key="id" 
+          class="feedback-item"
+          data-index="{{index}}"
+          bindtap="viewFeedbackDetail"
+        >
+          <view class="feedback-header">
+            <text class="feedback-type">{{item.type}}</text>
+            <text class="feedback-rating">{{item.rating}}⭐</text>
+          </view>
+          <text class="feedback-content">{{item.content}}</text>
+          <text class="feedback-time">{{formatDate(item.createTime)}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">📝</text>
+      <text class="empty-text">暂无用户反馈</text>
+    </view>
+  </view>
+
+  <!-- 事件 Tab -->
+  <view wx:if="{{activeTab === 'events'}}" class="tab-content">
+    <view class="stat-card" wx:if="{{todayEvents.length > 0}}">
+      <view class="card-title">📅 今日事件 ({{todayEvents.length}}条)</view>
+      <view class="event-list">
+        <view wx:for="{{todayEvents}}" wx:key="timestamp" class="event-item">
+          <view class="event-dot {{item.type}}"></view>
+          <view class="event-info">
+            <text class="event-type">{{item.type}}</text>
+            <text class="event-detail" wx:if="{{item.event}}">{{item.event}}</text>
+            <text class="event-detail" wx:if="{{item.page}}">{{item.page}}</text>
+          </view>
+          <text class="event-time">{{formatDate(item.timestamp)}}</text>
+        </view>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">📭</text>
+      <text class="empty-text">今日暂无事件记录</text>
+    </view>
+  </view>
+
+  <!-- 性能 Tab -->
+  <view wx:if="{{activeTab === 'performance'}}" class="tab-content">
+    <view class="stat-card" wx:if="{{report.performance && Object.keys(report.performance).length > 0}}">
+      <view class="card-title">⚡ 性能指标</view>
+      <view class="performance-list">
+        <view 
+          wx:for="{{report.performance}}" 
+          wx:for-item="data" 
+          wx:for-index="metric"
+          wx:key="metric"
+          class="performance-item"
+        >
+          <text class="metric-name">{{metric}}</text>
+          <view class="metric-stats">
+            <text class="metric-avg">平均: {{data.avg}}ms</text>
+            <text class="metric-range">范围: {{data.min}}-{{data.max}}ms</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="empty-state" wx:else>
+      <text class="empty-icon">📊</text>
+      <text class="empty-text">暂无性能数据</text>
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-bar">
+    <button class="btn btn-secondary" bindtap="exportStats">📋 导出报告</button>
+    <button class="btn btn-danger" bindtap="clearStats">🗑️ 清空数据</button>
+  </view>
+</view>

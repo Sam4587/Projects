@@ -1,0 +1,52 @@
+{
+  "miniprogramRoot": "./",
+  "cloudfunctionRoot": "cloudbase-functions/",
+  "projectname": "随礼那点事儿",
+  "setting": {
+    "libVersion": "3.14.1",
+    "nodeModules": false,
+    "es6": true,
+    "enhance": true,
+    "compileHotReLoad": true,
+    "urlCheck": false,
+    "useIsolateContext": true,
+    "postcss": true,
+    "minifyJS": true,
+    "minifyWXML": true,
+    "minifyWXSS": true,
+    "compileWorklet": false,
+    "minified": true,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "simulatorPluginLibVersion": {},
+  "testRoot": "minitest/",
+  "include": [],
+  "ignore": [
+    {
+      "type": "folder",
+      "value": "/minitest"
+    }
+  ],
+  "appid": "wx2c117f0c70759a1e",
+  "libVersion": "3.14.1",
+  "compileType": "miniprogram",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {}
+}

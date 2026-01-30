@@ -1,0 +1,389 @@
+/* 计算器页面样式 */
+.container {
+  background: linear-gradient(135deg, #fef7f7 0%, #fffaf0 50%, #fef7f7 100%);
+  min-height: 100vh;
+  padding: 0;
+}
+
+/* 头部样式 */
+.header {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  padding: 40rpx 32rpx;
+  color: #fffaf0;
+  text-align: center;
+}
+
+.header-title {
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 8rpx;
+}
+
+.header-subtitle {
+  font-size: 28rpx;
+  opacity: 0.9;
+}
+
+/* 内容区域 */
+.content {
+  padding: 24rpx;
+}
+
+.card {
+  background: white;
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.card-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.icon {
+  font-size: 32rpx;
+}
+
+/* 表单组 */
+.form-group {
+  padding: 0 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.form-label {
+  font-size: 30rpx;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  color: #1f2937;
+}
+
+/* 分类网格 */
+.category-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}
+
+.category-btn {
+  padding: 20rpx 16rpx;
+  text-align: center;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  background: #fafafa;
+  transition: all 0.3s ease;
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border-color: #dc2626;
+}
+
+/* 按钮样式 */
+.btn {
+  width: calc(100% - 64rpx);
+  margin: 0 32rpx 32rpx;
+  height: 88rpx;
+  border-radius: 12rpx;
+  border: none;
+  font-size: 32rpx;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+}
+
+.btn-primary:disabled {
+  background: #d1d5db;
+  color: #6b7280;
+}
+
+/* 结果卡片 */
+.result-card {
+  padding: 32rpx;
+}
+
+.result-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.result-amount {
+  font-size: 48rpx;
+  font-weight: bold;
+  color: #dc2626;
+  text-align: center;
+  margin-bottom: 16rpx;
+}
+
+.result-message {
+  font-size: 28rpx;
+  color: #6b7280;
+  text-align: center;
+  margin-bottom: 32rpx;
+}
+
+/* 伪反馈区域样式 */
+.feedback-section {
+  background: linear-gradient(135deg, #fffbf0 0%, #fff8e6 100%);
+  border: 2rpx solid #fbbf24;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 32rpx;
+  position: relative;
+}
+
+.feedback-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4rpx;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b, #fbbf24);
+}
+
+.feedback-header {
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.feedback-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #92400e;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.feedback-desc {
+  font-size: 26rpx;
+  color: #a16207;
+  opacity: 0.8;
+}
+
+.feedback-content {
+  text-align: center;
+}
+
+.feedback-input-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  margin-bottom: 24rpx;
+}
+
+.feedback-label {
+  font-size: 28rpx;
+  color: #78350f;
+  font-weight: 500;
+}
+
+.amount-input-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 8rpx;
+  padding: 0 16rpx;
+  height: 64rpx;
+}
+
+.amount-symbol {
+  font-size: 28rpx;
+  color: #6b7280;
+  margin-right: 8rpx;
+}
+
+.amount-input {
+  font-size: 28rpx;
+  width: 120rpx;
+  text-align: center;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.amount-unit {
+  font-size: 28rpx;
+  color: #6b7280;
+  margin-left: 8rpx;
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  color: #78350f;
+  border: none;
+  margin-bottom: 16rpx;
+}
+
+.btn-secondary:disabled {
+  background: #d1d5db;
+  color: #6b7280;
+  opacity: 0.6;
+}
+
+.feedback-tip {
+  text-align: center;
+}
+
+.tip-text {
+  font-size: 24rpx;
+  color: #a16207;
+  opacity: 0.7;
+  line-height: 1.4;
+}
+
+/* 免责声明 */
+.disclaimer-box {
+  background: #fef2f2;
+  border: 1rpx solid #fecaca;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.disclaimer-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #dc2626;
+  margin-bottom: 8rpx;
+}
+
+.disclaimer-text {
+  font-size: 24rpx;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+/* 吉利数字区域 */
+.lucky-section {
+  background: #f0fdf4;
+  border: 1rpx solid #bbf7d0;
+  border-radius: 12rpx;
+  padding: 24rpx;
+}
+
+.lucky-header {
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.lucky-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #065f46;
+  display: block;
+  margin-bottom: 4rpx;
+}
+
+.lucky-desc {
+  font-size: 24rpx;
+  color: #059669;
+  opacity: 0.8;
+}
+
+.lucky-numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.lucky-number-card {
+  text-align: center;
+}
+
+.number-circle {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8rpx;
+}
+
+.lucky-number {
+  font-size: 24rpx;
+  font-weight: bold;
+  color: white;
+}
+
+.unit-text {
+  font-size: 20rpx;
+  color: #6b7280;
+}
+
+.lucky-tips {
+  text-align: center;
+}
+
+.tips-text {
+  font-size: 22rpx;
+  color: #059669;
+  font-style: italic;
+}
+
+/* Banner广告区域样式 */
+.ad-section {
+  margin: 20rpx 0;
+  border-radius: 16rpx;
+  overflow: hidden;
+}
+
+.banner-ad-container {
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  height: 180rpx; /* 20:7 比例的近似值 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2rpx dashed #d1d5db;
+}
+
+.ad-placeholder {
+  text-align: center;
+  color: #9ca3af;
+}
+
+.ad-text {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.ad-loading {
+  animation: pulse 2s infinite;
+}
+
+.loading-text {
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}

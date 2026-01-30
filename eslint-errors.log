@@ -1,0 +1,1761 @@
+
+d:\Projects\redpacket-advisor\src\App.jsx
+   1:25  error  Strings must use singlequote             quotes
+   2:33  error  Strings must use singlequote             quotes
+   3:50  error  Strings must use singlequote             quotes
+   4:43  error  Strings must use singlequote             quotes
+   5:26  error  Strings must use singlequote             quotes
+   6:27  error  Strings must use singlequote             quotes
+  11:3   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  12:5   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  13:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  14:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  15:9   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  16:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  18:15  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+d:\Projects\redpacket-advisor\src\components\ErrorBoundary.jsx
+  18:15  error  Parsing error: Unexpected token =
+
+d:\Projects\redpacket-advisor\src\components\LoadingStates.jsx
+    2:10  error  'Wifi' is defined but never used. Allowed unused vars must match /^_/u               no-unused-vars
+    5:33  error  'children' is missing in props validation                                            react/prop-types
+    6:10  error  'isOnline' is assigned a value but never used. Allowed unused vars must match /^_/u  no-unused-vars
+   37:26  error  'onRetry' is missing in props validation                                             react/prop-types
+   56:32  error  'className' is missing in props validation                                           react/prop-types
+   70:34  error  'size' is missing in props validation                                                react/prop-types
+   70:47  error  'text' is missing in props validation                                                react/prop-types
+   87:3   error  'loading' is missing in props validation                                             react/prop-types
+   88:3   error  'error' is missing in props validation                                               react/prop-types
+   89:3   error  'onRetry' is missing in props validation                                             react/prop-types
+   90:3   error  'children' is missing in props validation                                            react/prop-types
+   91:3   error  'loadingComponent' is missing in props validation                                    react/prop-types
+   92:3   error  'errorMessage' is missing in props validation                                        react/prop-types
+  119:3   error  'icon' is missing in props validation                                                react/prop-types
+  120:3   error  'title' is missing in props validation                                               react/prop-types
+  121:3   error  'description' is missing in props validation                                         react/prop-types
+  122:3   error  'action' is missing in props validation                                              react/prop-types
+
+d:\Projects\redpacket-advisor\src\components\RedPacketTranslator.jsx
+    1:63  error  'History' is defined but never used. Allowed unused vars must match /^_/u  no-unused-vars
+   36:5   error  Duplicate key '福'                                                          no-dupe-keys
+   37:25  error  Duplicate key '風'                                                          no-dupe-keys
+   37:35  error  Duplicate key '俗'                                                          no-dupe-keys
+   38:15  error  Duplicate key '金'                                                          no-dupe-keys
+   38:35  error  Duplicate key '關'                                                          no-dupe-keys
+   40:15  error  Duplicate key '金'                                                          no-dupe-keys
+   40:25  error  Duplicate key '額'                                                          no-dupe-keys
+   40:35  error  Duplicate key '區'                                                          no-dupe-keys
+   41:5   error  Duplicate key '吉'                                                          no-dupe-keys
+   41:35  error  Duplicate key '字'                                                          no-dupe-keys
+   44:5   error  Duplicate key '照'                                                          no-dupe-keys
+   44:15  error  Duplicate key '關'                                                          no-dupe-keys
+   44:25  error  Duplicate key '係'                                                          no-dupe-keys
+   45:5   error  Duplicate key '生'                                                          no-dupe-keys
+   45:15  error  Duplicate key '成'                                                          no-dupe-keys
+   45:35  error  Duplicate key '體'                                                          no-dupe-keys
+   46:15  error  Duplicate key '祝'                                                          no-dupe-keys
+   46:25  error  Duplicate key '福'                                                          no-dupe-keys
+   46:35  error  Duplicate key '語'                                                          no-dupe-keys
+   49:15  error  Duplicate key '喜'                                                          no-dupe-keys
+   49:25  error  Duplicate key '發'                                                          no-dupe-keys
+   49:35  error  Duplicate key '財'                                                          no-dupe-keys
+   50:5   error  Duplicate key '年'                                                          no-dupe-keys
+   50:25  error  Duplicate key '餘'                                                          no-dupe-keys
+   51:15  error  Duplicate key '成'                                                          no-dupe-keys
+   51:25  error  Duplicate key '萬'                                                          no-dupe-keys
+   51:35  error  Duplicate key '事'                                                          no-dupe-keys
+   52:5   error  Duplicate key '意'                                                          no-dupe-keys
+   52:25  error  Duplicate key '體'                                                          no-dupe-keys
+   53:5   error  Duplicate key '平'                                                          no-dupe-keys
+   53:15  error  Duplicate key '安'                                                          no-dupe-keys
+   53:25  error  Duplicate key '學'                                                          no-dupe-keys
+   53:35  error  Duplicate key '業'                                                          no-dupe-keys
+   53:45  error  Duplicate key '進'                                                          no-dupe-keys
+   54:5   error  Duplicate key '步'                                                          no-dupe-keys
+   54:15  error  Duplicate key '金'                                                          no-dupe-keys
+   55:5   error  Duplicate key '學'                                                          no-dupe-keys
+   55:15  error  Duplicate key '有'                                                          no-dupe-keys
+   55:35  error  Duplicate key '成'                                                          no-dupe-keys
+   56:15  error  Duplicate key '順'                                                          no-dupe-keys
+   56:25  error  Duplicate key '利'                                                          no-dupe-keys
+   56:35  error  Duplicate key '事'                                                          no-dupe-keys
+   56:45  error  Duplicate key '業'                                                          no-dupe-keys
+   57:5   error  Duplicate key '有'                                                          no-dupe-keys
+   57:15  error  Duplicate key '成'                                                          no-dupe-keys
+   57:25  error  Duplicate key '步'                                                          no-dupe-keys
+   57:35  error  Duplicate key '步'                                                          no-dupe-keys
+   57:45  error  Duplicate key '高'                                                          no-dupe-keys
+   58:5   error  Duplicate key '升'                                                          no-dupe-keys
+   58:15  error  Duplicate key '龍'                                                          no-dupe-keys
+   58:25  error  Duplicate key '馬'                                                          no-dupe-keys
+   59:5   error  Duplicate key '馬'                                                          no-dupe-keys
+   59:25  error  Duplicate key '成'                                                          no-dupe-keys
+   63:15  error  Duplicate key '地'                                                          no-dupe-keys
+   67:5   error  Duplicate key '國'                                                          no-dupe-keys
+   68:25  error  Duplicate key '發'                                                          no-dupe-keys
+   68:45  error  Duplicate key '進'                                                          no-dupe-keys
+   69:5   error  Duplicate key '步'                                                          no-dupe-keys
+   69:15  error  Duplicate key '文'                                                          no-dupe-keys
+   70:45  error  Duplicate key '和'                                                          no-dupe-keys
+   71:5   error  Duplicate key '平'                                                          no-dupe-keys
+   71:15  error  Duplicate key '共'                                                          no-dupe-keys
+  384:45  error  'index' is defined but never used                                          no-unused-vars
+
+d:\Projects\redpacket-advisor\src\components\UserFeedback.jsx
+  16:15  error  Strings must use singlequote                                                         quotes
+  17:15  error  Strings must use singlequote                                                         quotes
+  18:15  error  Strings must use singlequote                                                         quotes
+  21:15  error  Strings must use singlequote                                                         quotes
+  23:15  error  Strings must use singlequote                                                         quotes
+  26:15  error  Strings must use singlequote                                                         quotes
+  27:15  error  Strings must use singlequote                                                         quotes
+  35:13  error  'response' is assigned a value but never used. Allowed unused vars must match /^_/u  no-unused-vars
+
+d:\Projects\redpacket-advisor\src\components\ui\accordion.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:37  error  Strings must use singlequote                quotes
+   2:64  error  Missing semicolon                           semi
+   3:29  error  Strings must use singlequote                quotes
+   3:43  error  Missing semicolon                           semi
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   7:42  error  Missing semicolon                           semi
+   9:43  error  'className' is missing in props validation  react/prop-types
+  10:52  error  Strings must use singlequote                quotes
+  11:3   error  Missing semicolon                           semi
+  12:29  error  Strings must use singlequote                quotes
+  12:44  error  Missing semicolon                           semi
+  14:46  error  'className' is missing in props validation  react/prop-types
+  14:57  error  'children' is missing in props validation   react/prop-types
+  19:9   error  Strings must use singlequote                quotes
+  27:3   error  Missing semicolon                           semi
+  28:70  error  Missing semicolon                           semi
+  30:46  error  'className' is missing in props validation  react/prop-types
+  30:57  error  'children' is missing in props validation   react/prop-types
+  35:24  error  Strings must use singlequote                quotes
+  37:3   error  Missing semicolon                           semi
+  39:70  error  Missing semicolon                           semi
+  41:72  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\alert-dialog.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:39  error  Strings must use singlequote                quotes
+   2:69  error  Missing semicolon                           semi
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   5:32  error  Strings must use singlequote                quotes
+   5:56  error  Missing semicolon                           semi
+   7:46  error  Missing semicolon                           semi
+   9:56  error  Missing semicolon                           semi
+  11:54  error  Missing semicolon                           semi
+  13:48  error  'className' is missing in props validation  react/prop-types
+  16:7   error  Strings must use singlequote                quotes
+  21:3   error  Missing semicolon                           semi
+  22:74  error  Missing semicolon                           semi
+  24:48  error  'className' is missing in props validation  react/prop-types
+  30:9   error  Strings must use singlequote                quotes
+  35:3   error  Missing semicolon                           semi
+  36:74  error  Missing semicolon                           semi
+  39:3   error  'className' is missing in props validation  react/prop-types
+  43:19  error  Strings must use singlequote                quotes
+  45:2   error  Missing semicolon                           semi
+  46:33  error  Strings must use singlequote                quotes
+  46:52  error  Missing semicolon                           semi
+  49:3   error  'className' is missing in props validation  react/prop-types
+  53:19  error  Strings must use singlequote                quotes
+  55:2   error  Missing semicolon                           semi
+  56:33  error  Strings must use singlequote                quotes
+  56:52  error  Missing semicolon                           semi
+  58:46  error  'className' is missing in props validation  react/prop-types
+  59:55  error  Strings must use singlequote                quotes
+  60:3   error  Missing semicolon                           semi
+  61:70  error  Missing semicolon                           semi
+  63:52  error  'className' is missing in props validation  react/prop-types
+  66:19  error  Strings must use singlequote                quotes
+  68:3   error  Missing semicolon                           semi
+  70:47  error  Missing semicolon                           semi
+  72:47  error  'className' is missing in props validation  react/prop-types
+  74:3   error  Missing semicolon                           semi
+  75:72  error  Missing semicolon                           semi
+  77:47  error  'className' is missing in props validation  react/prop-types
+  80:45  error  Strings must use singlequote                quotes
+  80:59  error  Strings must use singlequote                quotes
+  82:3   error  Missing semicolon                           semi
+  83:72  error  Missing semicolon                           semi
+  97:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\alert.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:21  error  Strings must use singlequote                quotes
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   7:3   error  Strings must use singlequote                quotes
+  11:18  error  Strings must use singlequote                quotes
+  13:11  error  Strings must use singlequote                quotes
+  17:16  error  Strings must use singlequote                quotes
+  20:2   error  Missing semicolon                           semi
+  22:35  error  'className' is missing in props validation  react/prop-types
+  22:46  error  'variant' is missing in props validation    react/prop-types
+  28:3   error  Missing semicolon                           semi
+  29:21  error  Strings must use singlequote                quotes
+  29:28  error  Missing semicolon                           semi
+  31:40  error  'className' is missing in props validation  react/prop-types
+  34:19  error  Strings must use singlequote                quotes
+  36:3   error  Missing semicolon                           semi
+  37:26  error  Strings must use singlequote                quotes
+  37:38  error  Missing semicolon                           semi
+  39:46  error  'className' is missing in props validation  react/prop-types
+  42:19  error  Strings must use singlequote                quotes
+  44:3   error  Missing semicolon                           semi
+  45:32  error  Strings must use singlequote                quotes
+  45:50  error  Missing semicolon                           semi
+  47:47  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\aspect-ratio.jsx
+  1:39  error  Strings must use singlequote  quotes
+  1:69  error  Missing semicolon             semi
+  3:46  error  Missing semicolon             semi
+  5:23  error  Missing semicolon             semi
+
+d:\Projects\redpacket-advisor\src\components\ui\avatar.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:34  error  Strings must use singlequote                quotes
+   2:58  error  Missing semicolon                           semi
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   6:36  error  'className' is missing in props validation  react/prop-types
+   9:19  error  Strings must use singlequote                quotes
+  11:3   error  Missing semicolon                           semi
+  12:54  error  Missing semicolon                           semi
+  14:41  error  'className' is missing in props validation  react/prop-types
+  17:19  error  Strings must use singlequote                quotes
+  19:3   error  Missing semicolon                           semi
+  20:60  error  Missing semicolon                           semi
+  22:44  error  'className' is missing in props validation  react/prop-types
+  26:7   error  Strings must use singlequote                quotes
+  30:3   error  Missing semicolon                           semi
+  31:66  error  Missing semicolon                           semi
+  33:47  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\badge.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:21  error  Strings must use singlequote                quotes
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   7:3   error  Strings must use singlequote                quotes
+  12:11  error  Strings must use singlequote                quotes
+  14:11  error  Strings must use singlequote                quotes
+  16:11  error  Strings must use singlequote                quotes
+  17:18  error  Strings must use singlequote                quotes
+  21:16  error  Strings must use singlequote                quotes
+  24:2   error  Missing semicolon                           semi
+  27:3   error  'className' is missing in props validation  react/prop-types
+  28:3   error  'variant' is missing in props validation    react/prop-types
+  34:32  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\breadcrumb.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:22  error  Strings must use singlequote                quotes
+   2:44  error  Missing semicolon                           semi
+   3:46  error  Strings must use singlequote                quotes
+   3:60  error  Missing semicolon                           semi
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   9:2   error  Missing semicolon                           semi
+  10:26  error  Strings must use singlequote                quotes
+  10:38  error  Missing semicolon                           semi
+  12:44  error  'className' is missing in props validation  react/prop-types
+  16:7   error  Strings must use singlequote                quotes
+  20:3   error  Missing semicolon                           semi
+  21:30  error  Strings must use singlequote                quotes
+  21:46  error  Missing semicolon                           semi
+  23:44  error  'className' is missing in props validation  react/prop-types
+  26:19  error  Strings must use singlequote                quotes
+  28:3   error  Missing semicolon                           semi
+  29:30  error  Strings must use singlequote                quotes
+  29:46  error  Missing semicolon                           semi
+  31:44  error  'asChild' is missing in props validation    react/prop-types
+  31:53  error  'className' is missing in props validation  react/prop-types
+  32:33  error  Strings must use singlequote                quotes
+  32:36  error  Missing semicolon                           semi
+  37:21  error  Strings must use singlequote                quotes
+  40:3   error  Missing semicolon                           semi
+  41:30  error  Strings must use singlequote                quotes
+  41:46  error  Missing semicolon                           semi
+  43:44  error  'className' is missing in props validation  react/prop-types
+  49:19  error  Strings must use singlequote                quotes
+  51:3   error  Missing semicolon                           semi
+  52:30  error  Strings must use singlequote                quotes
+  52:46  error  Missing semicolon                           semi
+  55:3   error  'children' is missing in props validation   react/prop-types
+  56:3   error  'className' is missing in props validation  react/prop-types
+  62:19  error  Strings must use singlequote                quotes
+  66:2   error  Missing semicolon                           semi
+  67:35  error  Strings must use singlequote                quotes
+  67:56  error  Missing semicolon                           semi
+  70:3   error  'className' is missing in props validation  react/prop-types
+  76:19  error  Strings must use singlequote                quotes
+  81:2   error  Missing semicolon                           semi
+  82:34  error  Strings must use singlequote                quotes
+  82:54  error  Missing semicolon                           semi
+  92:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\button.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:22  error  Strings must use singlequote                quotes
+   2:44  error  Missing semicolon                           semi
+   3:21  error  Strings must use singlequote                quotes
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   8:3   error  Strings must use singlequote                quotes
+  12:18  error  Strings must use singlequote                quotes
+  14:11  error  Strings must use singlequote                quotes
+  16:11  error  Strings must use singlequote                quotes
+  18:11  error  Strings must use singlequote                quotes
+  19:16  error  Strings must use singlequote                quotes
+  20:15  error  Strings must use singlequote                quotes
+  23:18  error  Strings must use singlequote                quotes
+  24:13  error  Strings must use singlequote                quotes
+  25:13  error  Strings must use singlequote                quotes
+  26:15  error  Strings must use singlequote                quotes
+  30:16  error  Strings must use singlequote                quotes
+  31:13  error  Strings must use singlequote                quotes
+  34:2   error  Missing semicolon                           semi
+  36:36  error  'className' is missing in props validation  react/prop-types
+  36:47  error  'variant' is missing in props validation    react/prop-types
+  36:56  error  'size' is missing in props validation       react/prop-types
+  36:62  error  'asChild' is missing in props validation    react/prop-types
+  37:33  error  Strings must use singlequote                quotes
+  37:41  error  Missing semicolon                           semi
+  44:3   error  Missing semicolon                           semi
+  45:22  error  Strings must use singlequote                quotes
+  45:30  error  Missing semicolon                           semi
+  47:34  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\calendar.jsx
+   1:24  error  Strings must use singlequote                      quotes
+   1:31  error  Missing semicolon                                 semi
+   2:43  error  Strings must use singlequote                      quotes
+   2:57  error  Missing semicolon                                 semi
+   3:27  error  Strings must use singlequote                      quotes
+   3:45  error  Missing semicolon                                 semi
+   5:20  error  Strings must use singlequote                      quotes
+   5:33  error  Missing semicolon                                 semi
+   6:32  error  Strings must use singlequote                      quotes
+   6:56  error  Missing semicolon                                 semi
+   9:3   error  'className' is missing in props validation        react/prop-types
+  10:3   error  'classNames' is missing in props validation       react/prop-types
+  11:3   error  'showOutsideDays' is missing in props validation  react/prop-types
+  17:21  error  Strings must use singlequote                      quotes
+  19:17  error  Strings must use singlequote                      quotes
+  20:16  error  Strings must use singlequote                      quotes
+  21:18  error  Strings must use singlequote                      quotes
+  22:24  error  Strings must use singlequote                      quotes
+  23:14  error  Strings must use singlequote                      quotes
+  25:37  error  Strings must use singlequote                      quotes
+  26:11  error  Strings must use singlequote                      quotes
+  28:30  error  Strings must use singlequote                      quotes
+  29:26  error  Strings must use singlequote                      quotes
+  30:16  error  Strings must use singlequote                      quotes
+  31:19  error  Strings must use singlequote                      quotes
+  33:11  error  Strings must use singlequote                      quotes
+  34:14  error  Strings must use singlequote                      quotes
+  35:15  error  Strings must use singlequote                      quotes
+  37:37  error  Strings must use singlequote                      quotes
+  38:11  error  Strings must use singlequote                      quotes
+  40:24  error  Strings must use singlequote                      quotes
+  42:11  error  Strings must use singlequote                      quotes
+  43:20  error  Strings must use singlequote                      quotes
+  45:11  error  Strings must use singlequote                      quotes
+  46:23  error  Strings must use singlequote                      quotes
+  48:11  error  Strings must use singlequote                      quotes
+  49:21  error  Strings must use singlequote                      quotes
+  53:25  error  'props' is defined but never used                 no-unused-vars
+  54:26  error  'props' is defined but never used                 no-unused-vars
+  59:24  error  Strings must use singlequote                      quotes
+  59:34  error  Missing semicolon                                 semi
+  61:20  error  Missing semicolon                                 semi
+
+d:\Projects\redpacket-advisor\src\components\ui\card.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   3:20  error  Strings must use singlequote                quotes
+   3:33  error  Missing semicolon                           semi
+   5:34  error  'className' is missing in props validation  react/prop-types
+   8:19  error  Strings must use singlequote                quotes
+  10:3   error  Missing semicolon                           semi
+  11:20  error  Strings must use singlequote                quotes
+  11:26  error  Missing semicolon                           semi
+  13:40  error  'className' is missing in props validation  react/prop-types
+  16:19  error  Strings must use singlequote                quotes
+  18:3   error  Missing semicolon                           semi
+  19:26  error  Strings must use singlequote                quotes
+  19:38  error  Missing semicolon                           semi
+  21:39  error  'className' is missing in props validation  react/prop-types
+  24:19  error  Strings must use singlequote                quotes
+  26:3   error  Missing semicolon                           semi
+  27:25  error  Strings must use singlequote                quotes
+  27:36  error  Missing semicolon                           semi
+  29:45  error  'className' is missing in props validation  react/prop-types
+  32:19  error  Strings must use singlequote                quotes
+  34:3   error  Missing semicolon                           semi
+  35:31  error  Strings must use singlequote                quotes
+  35:48  error  Missing semicolon                           semi
+  37:41  error  'className' is missing in props validation  react/prop-types
+  38:32  error  Strings must use singlequote                quotes
+  39:3   error  Missing semicolon                           semi
+  40:27  error  Strings must use singlequote                quotes
+  40:40  error  Missing semicolon                           semi
+  42:40  error  'className' is missing in props validation  react/prop-types
+  45:19  error  Strings must use singlequote                quotes
+  47:3   error  Missing semicolon                           semi
+  48:26  error  Strings must use singlequote                quotes
+  48:38  error  Missing semicolon                           semi
+  50:81  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\carousel.jsx
+    1:24  error  Strings must use singlequote                  quotes
+    1:31  error  Missing semicolon                             semi
+    2:30  error  Strings must use singlequote                  quotes
+    3:39  error  Strings must use singlequote                  quotes
+    3:53  error  Missing semicolon                             semi
+    5:20  error  Strings must use singlequote                  quotes
+    5:33  error  Missing semicolon                             semi
+    6:24  error  Strings must use singlequote                  quotes
+    6:48  error  Missing semicolon                             semi
+    8:50  error  Missing semicolon                             semi
+   11:52  error  Missing semicolon                             semi
+   14:21  error  Strings must use singlequote                  quotes
+   14:70  error  Missing semicolon                             semi
+   17:17  error  Missing semicolon                             semi
+   22:5   error  'orientation' is missing in props validation  react/prop-types
+   22:19  error  Strings must use singlequote                  quotes
+   23:5   error  'opts' is missing in props validation         react/prop-types
+   24:5   error  'setApi' is missing in props validation       react/prop-types
+   25:5   error  'plugins' is missing in props validation      react/prop-types
+   26:5   error  'className' is missing in props validation    react/prop-types
+   27:5   error  'children' is missing in props validation     react/prop-types
+   34:27  error  Strings must use singlequote                  quotes
+   34:42  error  Strings must use singlequote                  quotes
+   34:48  error  Strings must use singlequote                  quotes
+   35:14  error  Missing semicolon                             semi
+   36:66  error  Missing semicolon                             semi
+   37:66  error  Missing semicolon                             semi
+   41:13  error  Missing semicolon                             semi
+   44:42  error  Missing semicolon                             semi
+   45:42  error  Missing semicolon                             semi
+   46:9   error  Missing semicolon                             semi
+   49:22  error  Missing semicolon                             semi
+   50:12  error  Missing semicolon                             semi
+   53:22  error  Missing semicolon                             semi
+   54:12  error  Missing semicolon                             semi
+   57:23  error  Strings must use singlequote                  quotes
+   58:29  error  Missing semicolon                             semi
+   59:19  error  Missing semicolon                             semi
+   60:30  error  Strings must use singlequote                  quotes
+   61:29  error  Missing semicolon                             semi
+   62:19  error  Missing semicolon                             semi
+   64:31  error  Missing semicolon                             semi
+   68:13  error  Missing semicolon                             semi
+   71:16  error  Missing semicolon                             semi
+   72:20  error  Missing semicolon                             semi
+   76:13  error  Missing semicolon                             semi
+   79:18  error  Missing semicolon                             semi
+   80:12  error  Strings must use singlequote                  quotes
+   80:31  error  Missing semicolon                             semi
+   81:12  error  Strings must use singlequote                  quotes
+   81:31  error  Missing semicolon                             semi
+   84:16  error  Strings must use singlequote                  quotes
+   84:35  error  Missing semicolon                             semi
+   86:22  error  Missing semicolon                             semi
+   95:33  error  'opts.axis' is missing in props validation    react/prop-types
+   95:42  error  Strings must use singlequote                  quotes
+   95:48  error  Strings must use singlequote                  quotes
+   95:61  error  Strings must use singlequote                  quotes
+  104:23  error  Strings must use singlequote                  quotes
+  112:3   error  Missing semicolon                             semi
+  113:24  error  Strings must use singlequote                  quotes
+  113:34  error  Missing semicolon                             semi
+  115:45  error  'className' is missing in props validation    react/prop-types
+  116:53  error  Missing semicolon                             semi
+  123:11  error  Strings must use singlequote                  quotes
+  124:27  error  Strings must use singlequote                  quotes
+  124:42  error  Strings must use singlequote                  quotes
+  124:52  error  Strings must use singlequote                  quotes
+  130:3   error  Missing semicolon                             semi
+  131:31  error  Strings must use singlequote                  quotes
+  131:48  error  Missing semicolon                             semi
+  133:42  error  'className' is missing in props validation    react/prop-types
+  134:40  error  Missing semicolon                             semi
+  142:9   error  Strings must use singlequote                  quotes
+  143:25  error  Strings must use singlequote                  quotes
+  143:40  error  Strings must use singlequote                  quotes
+  143:49  error  Strings must use singlequote                  quotes
+  148:3   error  Missing semicolon                             semi
+  149:28  error  Strings must use singlequote                  quotes
+  149:42  error  Missing semicolon                             semi
+  151:46  error  'className' is missing in props validation    react/prop-types
+  151:57  error  'variant' is missing in props validation      react/prop-types
+  151:67  error  Strings must use singlequote                  quotes
+  151:78  error  'size' is missing in props validation         react/prop-types
+  151:85  error  Strings must use singlequote                  quotes
+  152:67  error  Missing semicolon                             semi
+  159:21  error  Strings must use singlequote                  quotes
+  159:71  error  Strings must use singlequote                  quotes
+  160:11  error  Strings must use singlequote                  quotes
+  161:11  error  Strings must use singlequote                  quotes
+  169:3   error  Missing semicolon                             semi
+  170:32  error  Strings must use singlequote                  quotes
+  170:50  error  Missing semicolon                             semi
+  172:42  error  'className' is missing in props validation    react/prop-types
+  172:53  error  'variant' is missing in props validation      react/prop-types
+  172:63  error  Strings must use singlequote                  quotes
+  172:74  error  'size' is missing in props validation         react/prop-types
+  172:81  error  Strings must use singlequote                  quotes
+  173:67  error  Missing semicolon                             semi
+  180:21  error  Strings must use singlequote                  quotes
+  180:70  error  Strings must use singlequote                  quotes
+  181:11  error  Strings must use singlequote                  quotes
+  182:11  error  Strings must use singlequote                  quotes
+  190:3   error  Missing semicolon                             semi
+  191:28  error  Strings must use singlequote                  quotes
+  191:42  error  Missing semicolon                             semi
+
+d:\Projects\redpacket-advisor\src\components\ui\checkbox.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:36  error  Strings must use singlequote                quotes
+   2:62  error  Missing semicolon                           semi
+   3:23  error  Strings must use singlequote                quotes
+   3:37  error  Missing semicolon                           semi
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   7:38  error  'className' is missing in props validation  react/prop-types
+  11:7   error  Strings must use singlequote                quotes
+  15:48  error  Strings must use singlequote                quotes
+  19:3   error  Missing semicolon                           semi
+  20:58  error  Missing semicolon                           semi
+  22:20  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\collapsible.jsx
+  1:39  error  Strings must use singlequote  quotes
+  1:68  error  Missing semicolon             semi
+  3:46  error  Missing semicolon             semi
+  5:67  error  Missing semicolon             semi
+  7:67  error  Missing semicolon             semi
+  9:63  error  Missing semicolon             semi
+
+d:\Projects\redpacket-advisor\src\components\ui\command.jsx
+    1:24  error  Strings must use singlequote                 quotes
+    1:31  error  Missing semicolon                            semi
+    2:45  error  Strings must use singlequote                 quotes
+    2:51  error  Missing semicolon                            semi
+    3:24  error  Strings must use singlequote                 quotes
+    3:38  error  Missing semicolon                            semi
+    5:20  error  Strings must use singlequote                 quotes
+    5:33  error  Missing semicolon                            semi
+    6:39  error  Strings must use singlequote                 quotes
+    6:63  error  Missing semicolon                            semi
+    8:37  error  'className' is missing in props validation   react/prop-types
+   12:7   error  Strings must use singlequote                 quotes
+   16:3   error  Missing semicolon                            semi
+   17:51  error  Missing semicolon                            semi
+   20:3   error  'children' is missing in props validation    react/prop-types
+   33:2   error  Missing semicolon                            semi
+   35:42  error  'className' is missing in props validation   react/prop-types
+   36:52  error  Unknown property 'cmdk-input-wrapper' found  react/no-unknown-property
+   41:9   error  Strings must use singlequote                 quotes
+   46:3   error  Missing semicolon                            semi
+   48:62  error  Missing semicolon                            semi
+   50:41  error  'className' is missing in props validation   react/prop-types
+   53:19  error  Strings must use singlequote                 quotes
+   55:3   error  Missing semicolon                            semi
+   57:60  error  Missing semicolon                            semi
+   61:3   error  Missing semicolon                            semi
+   63:62  error  Missing semicolon                            semi
+   65:42  error  'className' is missing in props validation   react/prop-types
+   69:7   error  Strings must use singlequote                 quotes
+   73:3   error  Missing semicolon                            semi
+   75:62  error  Missing semicolon                            semi
+   77:46  error  'className' is missing in props validation   react/prop-types
+   78:55  error  Strings must use singlequote                 quotes
+   79:3   error  Missing semicolon                            semi
+   80:70  error  Missing semicolon                            semi
+   82:41  error  'className' is missing in props validation   react/prop-types
+   86:7   error  Strings must use singlequote                 quotes
+   90:3   error  Missing semicolon                            semi
+   92:60  error  Missing semicolon                            semi
+   95:3   error  'className' is missing in props validation   react/prop-types
+  100:21  error  Strings must use singlequote                 quotes
+  103:2   error  Missing semicolon                            semi
+  104:31  error  Strings must use singlequote                 quotes
+  104:48  error  Missing semicolon                            semi
+  116:2   error  Missing semicolon                            semi
+
+d:\Projects\redpacket-advisor\src\components\ui\context-menu.jsx
+    1:24  error  Strings must use singlequote                quotes
+    1:31  error  Missing semicolon                           semi
+    2:39  error  Strings must use singlequote                quotes
+    2:69  error  Missing semicolon                           semi
+    3:45  error  Strings must use singlequote                quotes
+    3:59  error  Missing semicolon                           semi
+    5:20  error  Strings must use singlequote                quotes
+    5:33  error  Missing semicolon                           semi
+    7:46  error  Missing semicolon                           semi
+    9:56  error  Missing semicolon                           semi
+   11:52  error  Missing semicolon                           semi
+   13:54  error  Missing semicolon                           semi
+   15:48  error  Missing semicolon                           semi
+   17:62  error  Missing semicolon                           semi
+   19:51  error  'className' is missing in props validation  react/prop-types
+   19:62  error  'inset' is missing in props validation      react/prop-types
+   19:69  error  'children' is missing in props validation   react/prop-types
+   23:7   error  Strings must use singlequote                quotes
+   24:16  error  Strings must use singlequote                quotes
+   31:3   error  Missing semicolon                           semi
+   32:80  error  Missing semicolon                           semi
+   34:51  error  'className' is missing in props validation  react/prop-types
+   38:7   error  Strings must use singlequote                quotes
+   42:3   error  Missing semicolon                           semi
+   43:80  error  Missing semicolon                           semi
+   45:48  error  'className' is missing in props validation  react/prop-types
+   50:9   error  Strings must use singlequote                quotes
+   55:3   error  Missing semicolon                           semi
+   56:74  error  Missing semicolon                           semi
+   58:45  error  'className' is missing in props validation  react/prop-types
+   58:56  error  'inset' is missing in props validation      react/prop-types
+   62:7   error  Strings must use singlequote                quotes
+   63:16  error  Strings must use singlequote                quotes
+   67:3   error  Missing semicolon                           semi
+   68:68  error  Missing semicolon                           semi
+   70:53  error  'className' is missing in props validation  react/prop-types
+   70:64  error  'children' is missing in props validation   react/prop-types
+   70:74  error  'checked' is missing in props validation    react/prop-types
+   74:7   error  Strings must use singlequote                quotes
+   86:3   error  Missing semicolon                           semi
+   88:48  error  Missing semicolon                           semi
+   90:50  error  'className' is missing in props validation  react/prop-types
+   90:61  error  'children' is missing in props validation   react/prop-types
+   94:7   error  Strings must use singlequote                quotes
+  105:3   error  Missing semicolon                           semi
+  106:78  error  Missing semicolon                           semi
+  108:46  error  'className' is missing in props validation  react/prop-types
+  108:57  error  'inset' is missing in props validation      react/prop-types
+  112:7   error  Strings must use singlequote                quotes
+  113:16  error  Strings must use singlequote                quotes
+  117:3   error  Missing semicolon                           semi
+  118:70  error  Missing semicolon                           semi
+  120:50  error  'className' is missing in props validation  react/prop-types
+  123:19  error  Strings must use singlequote                quotes
+  125:3   error  Missing semicolon                           semi
+  126:78  error  Missing semicolon                           semi
+  129:3   error  'className' is missing in props validation  react/prop-types
+  134:21  error  Strings must use singlequote                quotes
+  137:2   error  Missing semicolon                           semi
+  138:35  error  Strings must use singlequote                quotes
+  138:56  error  Missing semicolon                           semi
+  156:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\date-picker.jsx
+   1:24  error  Strings must use singlequote                   quotes
+   2:42  error  Strings must use singlequote                   quotes
+   4:20  error  Strings must use singlequote                   quotes
+   5:24  error  Strings must use singlequote                   quotes
+   6:26  error  Strings must use singlequote                   quotes
+  11:8   error  Strings must use singlequote                   quotes
+  13:30  error  'date' is missing in props validation          react/prop-types
+  13:36  error  'onDateChange' is missing in props validation  react/prop-types
+  13:50  error  'className' is missing in props validation     react/prop-types
+  15:5   error  'React' must be in scope when using JSX        react/react-in-jsx-scope
+  16:7   error  'React' must be in scope when using JSX        react/react-in-jsx-scope
+  17:9   error  'React' must be in scope when using JSX        react/react-in-jsx-scope
+  20:13  error  Strings must use singlequote                   quotes
+  21:22  error  Strings must use singlequote                   quotes
+  25:11  error  'React' must be in scope when using JSX        react/react-in-jsx-scope
+  26:32  error  Strings must use singlequote                   quotes
+  26:41  error  'React' must be in scope when using JSX        react/react-in-jsx-scope
+  29:7   error  'React' must be in scope when using JSX        react/react-in-jsx-scope
+  30:9   error  'React' must be in scope when using JSX        react/react-in-jsx-scope
+
+d:\Projects\redpacket-advisor\src\components\ui\dialog.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:34  error  Strings must use singlequote                quotes
+   2:58  error  Missing semicolon                           semi
+   3:19  error  Strings must use singlequote                quotes
+   3:33  error  Missing semicolon                           semi
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   7:36  error  Missing semicolon                           semi
+   9:46  error  Missing semicolon                           semi
+  11:44  error  Missing semicolon                           semi
+  13:42  error  Missing semicolon                           semi
+  15:43  error  'className' is missing in props validation  react/prop-types
+  19:7   error  Strings must use singlequote                quotes
+  23:3   error  Missing semicolon                           semi
+  24:64  error  Missing semicolon                           semi
+  26:43  error  'className' is missing in props validation  react/prop-types
+  26:54  error  'children' is missing in props validation   react/prop-types
+  32:9   error  Strings must use singlequote                quotes
+  44:3   error  Missing semicolon                           semi
+  45:64  error  Missing semicolon                           semi
+  48:3   error  'className' is missing in props validation  react/prop-types
+  52:19  error  Strings must use singlequote                quotes
+  54:2   error  Missing semicolon                           semi
+  55:28  error  Strings must use singlequote                quotes
+  55:42  error  Missing semicolon                           semi
+  58:3   error  'className' is missing in props validation  react/prop-types
+  62:19  error  Strings must use singlequote                quotes
+  64:2   error  Missing semicolon                           semi
+  65:28  error  Strings must use singlequote                quotes
+  65:42  error  Missing semicolon                           semi
+  67:41  error  'className' is missing in props validation  react/prop-types
+  70:19  error  Strings must use singlequote                quotes
+  72:3   error  Missing semicolon                           semi
+  73:60  error  Missing semicolon                           semi
+  75:47  error  'className' is missing in props validation  react/prop-types
+  78:19  error  Strings must use singlequote                quotes
+  80:3   error  Missing semicolon                           semi
+  81:72  error  Missing semicolon                           semi
+  94:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\drawer.jsx
+   1:24  error  Strings must use singlequote                            quotes
+   1:31  error  Missing semicolon                                       semi
+   2:43  error  Strings must use singlequote                            quotes
+   2:49  error  Missing semicolon                                       semi
+   4:20  error  Strings must use singlequote                            quotes
+   4:33  error  Missing semicolon                                       semi
+   7:3   error  'shouldScaleBackground' is missing in props validation  react/prop-types
+  11:2   error  Missing semicolon                                       semi
+  12:22  error  Strings must use singlequote                            quotes
+  12:30  error  Missing semicolon                                       semi
+  14:46  error  Missing semicolon                                       semi
+  16:44  error  Missing semicolon                                       semi
+  18:42  error  Missing semicolon                                       semi
+  20:43  error  'className' is missing in props validation              react/prop-types
+  23:19  error  Strings must use singlequote                            quotes
+  25:3   error  Missing semicolon                                       semi
+  26:64  error  Missing semicolon                                       semi
+  28:43  error  'className' is missing in props validation              react/prop-types
+  28:54  error  'children' is missing in props validation               react/prop-types
+  34:9   error  Strings must use singlequote                            quotes
+  42:3   error  Missing semicolon                                       semi
+  43:29  error  Strings must use singlequote                            quotes
+  43:44  error  Missing semicolon                                       semi
+  46:3   error  'className' is missing in props validation              react/prop-types
+  50:19  error  Strings must use singlequote                            quotes
+  52:2   error  Missing semicolon                                       semi
+  53:28  error  Strings must use singlequote                            quotes
+  53:42  error  Missing semicolon                                       semi
+  56:3   error  'className' is missing in props validation              react/prop-types
+  59:22  error  Strings must use singlequote                            quotes
+  60:2   error  Missing semicolon                                       semi
+  61:28  error  Strings must use singlequote                            quotes
+  61:42  error  Missing semicolon                                       semi
+  63:41  error  'className' is missing in props validation              react/prop-types
+  66:19  error  Strings must use singlequote                            quotes
+  68:3   error  Missing semicolon                                       semi
+  69:60  error  Missing semicolon                                       semi
+  71:47  error  'className' is missing in props validation              react/prop-types
+  74:19  error  Strings must use singlequote                            quotes
+  76:3   error  Missing semicolon                                       semi
+  77:72  error  Missing semicolon                                       semi
+  90:2   error  Missing semicolon                                       semi
+
+d:\Projects\redpacket-advisor\src\components\ui\dropdown-menu.jsx
+    1:24  error  Strings must use singlequote                 quotes
+    1:31  error  Missing semicolon                            semi
+    2:40  error  Strings must use singlequote                 quotes
+    2:71  error  Missing semicolon                            semi
+    3:45  error  Strings must use singlequote                 quotes
+    3:59  error  Missing semicolon                            semi
+    5:20  error  Strings must use singlequote                 quotes
+    5:33  error  Missing semicolon                            semi
+    7:48  error  Missing semicolon                            semi
+    9:58  error  Missing semicolon                            semi
+   11:54  error  Missing semicolon                            semi
+   13:56  error  Missing semicolon                            semi
+   15:50  error  Missing semicolon                            semi
+   17:64  error  Missing semicolon                            semi
+   19:52  error  'className' is missing in props validation   react/prop-types
+   19:63  error  'inset' is missing in props validation       react/prop-types
+   19:70  error  'children' is missing in props validation    react/prop-types
+   23:7   error  Strings must use singlequote                 quotes
+   24:16  error  Strings must use singlequote                 quotes
+   31:3   error  Missing semicolon                            semi
+   33:47  error  Missing semicolon                            semi
+   35:52  error  'className' is missing in props validation   react/prop-types
+   39:7   error  Strings must use singlequote                 quotes
+   43:3   error  Missing semicolon                            semi
+   45:47  error  Missing semicolon                            semi
+   47:49  error  'className' is missing in props validation   react/prop-types
+   47:60  error  'sideOffset' is missing in props validation  react/prop-types
+   53:9   error  Strings must use singlequote                 quotes
+   58:3   error  Missing semicolon                            semi
+   59:76  error  Missing semicolon                            semi
+   61:46  error  'className' is missing in props validation   react/prop-types
+   61:57  error  'inset' is missing in props validation       react/prop-types
+   65:7   error  Strings must use singlequote                 quotes
+   66:16  error  Strings must use singlequote                 quotes
+   70:3   error  Missing semicolon                            semi
+   71:70  error  Missing semicolon                            semi
+   73:54  error  'className' is missing in props validation   react/prop-types
+   73:65  error  'children' is missing in props validation    react/prop-types
+   73:75  error  'checked' is missing in props validation     react/prop-types
+   77:7   error  Strings must use singlequote                 quotes
+   89:3   error  Missing semicolon                            semi
+   91:49  error  Missing semicolon                            semi
+   93:51  error  'className' is missing in props validation   react/prop-types
+   93:62  error  'children' is missing in props validation    react/prop-types
+   97:7   error  Strings must use singlequote                 quotes
+  108:3   error  Missing semicolon                            semi
+  109:80  error  Missing semicolon                            semi
+  111:47  error  'className' is missing in props validation   react/prop-types
+  111:58  error  'inset' is missing in props validation       react/prop-types
+  114:19  error  Strings must use singlequote                 quotes
+  114:65  error  Strings must use singlequote                 quotes
+  116:3   error  Missing semicolon                            semi
+  117:72  error  Missing semicolon                            semi
+  119:51  error  'className' is missing in props validation   react/prop-types
+  122:19  error  Strings must use singlequote                 quotes
+  124:3   error  Missing semicolon                            semi
+  125:80  error  Missing semicolon                            semi
+  128:3   error  'className' is missing in props validation   react/prop-types
+  133:21  error  Strings must use singlequote                 quotes
+  136:2   error  Missing semicolon                            semi
+  137:36  error  Strings must use singlequote                 quotes
+  137:58  error  Missing semicolon                            semi
+  155:2   error  Missing semicolon                            semi
+
+d:\Projects\redpacket-advisor\src\components\ui\form.jsx
+    1:24  error  Strings must use singlequote                quotes
+    1:31  error  Missing semicolon                           semi
+    2:22  error  Strings must use singlequote                quotes
+    2:44  error  Missing semicolon                           semi
+    3:58  error  Strings must use singlequote                quotes
+    5:20  error  Strings must use singlequote                quotes
+    5:33  error  Missing semicolon                           semi
+    6:23  error  Strings must use singlequote                quotes
+    6:46  error  Missing semicolon                           semi
+    8:26  error  Missing semicolon                           semi
+   10:49  error  Missing semicolon                           semi
+   18:54  error  'name' is missing in props validation       react/prop-types
+   22:2   error  Missing semicolon                           semi
+   25:58  error  Missing semicolon                           semi
+   26:56  error  Missing semicolon                           semi
+   27:56  error  Missing semicolon                           semi
+   29:65  error  Missing semicolon                           semi
+   32:21  error  Strings must use singlequote                quotes
+   32:70  error  Missing semicolon                           semi
+   35:29  error  Missing semicolon                           semi
+   44:4   error  Missing semicolon                           semi
+   45:2   error  Missing semicolon                           semi
+   47:48  error  Missing semicolon                           semi
+   49:38  error  'className' is missing in props validation  react/prop-types
+   50:27  error  Missing semicolon                           semi
+   54:36  error  Strings must use singlequote                quotes
+   57:3   error  Missing semicolon                           semi
+   58:24  error  Strings must use singlequote                quotes
+   58:34  error  Missing semicolon                           semi
+   60:39  error  'className' is missing in props validation  react/prop-types
+   61:47  error  Missing semicolon                           semi
+   66:30  error  Strings must use singlequote                quotes
+   70:3   error  Missing semicolon                           semi
+   71:25  error  Strings must use singlequote                quotes
+   71:36  error  Missing semicolon                           semi
+   74:81  error  Missing semicolon                           semi
+   88:3   error  Missing semicolon                           semi
+   89:27  error  Strings must use singlequote                quotes
+   89:40  error  Missing semicolon                           semi
+   91:45  error  'className' is missing in props validation  react/prop-types
+   92:47  error  Missing semicolon                           semi
+   98:21  error  Strings must use singlequote                quotes
+  101:3   error  Missing semicolon                           semi
+  102:31  error  Strings must use singlequote                quotes
+  102:48  error  Missing semicolon                           semi
+  104:41  error  'className' is missing in props validation  react/prop-types
+  104:52  error  'children' is missing in props validation   react/prop-types
+  105:50  error  Missing semicolon                           semi
+  106:57  error  Missing semicolon                           semi
+  109:16  error  Missing semicolon                           semi
+  116:21  error  Strings must use singlequote                quotes
+  121:3   error  Missing semicolon                           semi
+  122:27  error  Strings must use singlequote                quotes
+  122:40  error  Missing semicolon                           semi
+  133:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\hover-card.jsx
+   1:24  error  Strings must use singlequote                 quotes
+   1:31  error  Missing semicolon                            semi
+   2:37  error  Strings must use singlequote                 quotes
+   2:65  error  Missing semicolon                            semi
+   4:20  error  Strings must use singlequote                 quotes
+   4:33  error  Missing semicolon                            semi
+   6:42  error  Missing semicolon                            semi
+   8:52  error  Missing semicolon                            semi
+  10:46  error  'className' is missing in props validation   react/prop-types
+  10:57  error  'align' is missing in props validation       react/prop-types
+  10:65  error  Strings must use singlequote                 quotes
+  10:75  error  'sideOffset' is missing in props validation  react/prop-types
+  16:7   error  Strings must use singlequote                 quotes
+  20:3   error  Missing semicolon                            semi
+  21:70  error  Missing semicolon                            semi
+  23:57  error  Missing semicolon                            semi
+
+d:\Projects\redpacket-advisor\src\components\ui\input-otp.jsx
+   1:24  error  Strings must use singlequote                         quotes
+   1:31  error  Missing semicolon                                    semi
+   2:43  error  Strings must use singlequote                         quotes
+   2:54  error  Missing semicolon                                    semi
+   3:21  error  Strings must use singlequote                         quotes
+   3:35  error  Missing semicolon                                    semi
+   5:20  error  Strings must use singlequote                         quotes
+   5:33  error  Missing semicolon                                    semi
+   7:38  error  'className' is missing in props validation           react/prop-types
+   7:49  error  'containerClassName' is missing in props validation  react/prop-types
+  10:28  error  Strings must use singlequote                         quotes
+  11:19  error  Strings must use singlequote                         quotes
+  13:3   error  Missing semicolon                                    semi
+  14:24  error  Strings must use singlequote                         quotes
+  14:34  error  Missing semicolon                                    semi
+  16:43  error  'className' is missing in props validation           react/prop-types
+  17:32  error  Strings must use singlequote                         quotes
+  18:3   error  Missing semicolon                                    semi
+  19:29  error  Strings must use singlequote                         quotes
+  19:44  error  Missing semicolon                                    semi
+  21:42  error  'index' is missing in props validation               react/prop-types
+  21:49  error  'className' is missing in props validation           react/prop-types
+  22:60  error  Missing semicolon                                    semi
+  23:72  error  Missing semicolon                                    semi
+  29:9   error  Strings must use singlequote                         quotes
+  30:21  error  Strings must use singlequote                         quotes
+  43:3   error  Missing semicolon                                    semi
+  44:28  error  Strings must use singlequote                         quotes
+  44:42  error  Missing semicolon                                    semi
+  50:3   error  Missing semicolon                                    semi
+  51:33  error  Strings must use singlequote                         quotes
+  51:52  error  Missing semicolon                                    semi
+  53:68  error  Missing semicolon                                    semi
+
+d:\Projects\redpacket-advisor\src\components\ui\input.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   3:20  error  Strings must use singlequote                quotes
+   3:33  error  Missing semicolon                           semi
+   5:35  error  'className' is missing in props validation  react/prop-types
+   5:46  error  'type' is missing in props validation       react/prop-types
+  10:9   error  Strings must use singlequote                quotes
+  16:3   error  Missing semicolon                           semi
+  17:21  error  Strings must use singlequote                quotes
+  17:28  error  Missing semicolon                           semi
+  19:17  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\label.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:33  error  Strings must use singlequote                quotes
+   2:56  error  Missing semicolon                           semi
+   3:21  error  Strings must use singlequote                quotes
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   8:3   error  Strings must use singlequote                quotes
+   9:2   error  Missing semicolon                           semi
+  11:35  error  'className' is missing in props validation  react/prop-types
+  13:3   error  Missing semicolon                           semi
+  14:52  error  Missing semicolon                           semi
+  16:17  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\menubar.jsx
+    1:24  error  Strings must use singlequote                  quotes
+    1:31  error  Missing semicolon                             semi
+    2:35  error  Strings must use singlequote                  quotes
+    2:60  error  Missing semicolon                             semi
+    3:45  error  Strings must use singlequote                  quotes
+    3:59  error  Missing semicolon                             semi
+    5:20  error  Strings must use singlequote                  quotes
+    5:33  error  Missing semicolon                             semi
+    7:42  error  Missing semicolon                             semi
+    9:44  error  Missing semicolon                             semi
+   11:46  error  Missing semicolon                             semi
+   13:40  error  Missing semicolon                             semi
+   15:54  error  Missing semicolon                             semi
+   17:37  error  'className' is missing in props validation    react/prop-types
+   21:7   error  Strings must use singlequote                  quotes
+   25:3   error  Missing semicolon                             semi
+   26:56  error  Missing semicolon                             semi
+   28:44  error  'className' is missing in props validation    react/prop-types
+   32:7   error  Strings must use singlequote                  quotes
+   36:3   error  Missing semicolon                             semi
+   37:66  error  Missing semicolon                             semi
+   39:47  error  'className' is missing in props validation    react/prop-types
+   39:58  error  'inset' is missing in props validation        react/prop-types
+   39:65  error  'children' is missing in props validation     react/prop-types
+   43:7   error  Strings must use singlequote                  quotes
+   44:16  error  Strings must use singlequote                  quotes
+   51:3   error  Missing semicolon                             semi
+   52:72  error  Missing semicolon                             semi
+   54:47  error  'className' is missing in props validation    react/prop-types
+   58:7   error  Strings must use singlequote                  quotes
+   62:3   error  Missing semicolon                             semi
+   63:72  error  Missing semicolon                             semi
+   66:5   error  'className' is missing in props validation    react/prop-types
+   66:16  error  'align' is missing in props validation        react/prop-types
+   66:24  error  Strings must use singlequote                  quotes
+   66:33  error  'alignOffset' is missing in props validation  react/prop-types
+   66:51  error  'sideOffset' is missing in props validation   react/prop-types
+   76:9   error  Strings must use singlequote                  quotes
+   81:3   error  Missing semicolon                             semi
+   82:66  error  Missing semicolon                             semi
+   84:41  error  'className' is missing in props validation    react/prop-types
+   84:52  error  'inset' is missing in props validation        react/prop-types
+   88:7   error  Strings must use singlequote                  quotes
+   89:16  error  Strings must use singlequote                  quotes
+   93:3   error  Missing semicolon                             semi
+   94:60  error  Missing semicolon                             semi
+   96:49  error  'className' is missing in props validation    react/prop-types
+   96:60  error  'children' is missing in props validation     react/prop-types
+   96:70  error  'checked' is missing in props validation      react/prop-types
+  100:7   error  Strings must use singlequote                  quotes
+  112:3   error  Missing semicolon                             semi
+  113:76  error  Missing semicolon                             semi
+  115:46  error  'className' is missing in props validation    react/prop-types
+  115:57  error  'children' is missing in props validation     react/prop-types
+  119:7   error  Strings must use singlequote                  quotes
+  130:3   error  Missing semicolon                             semi
+  131:70  error  Missing semicolon                             semi
+  133:42  error  'className' is missing in props validation    react/prop-types
+  133:53  error  'inset' is missing in props validation        react/prop-types
+  136:19  error  Strings must use singlequote                  quotes
+  136:65  error  Strings must use singlequote                  quotes
+  138:3   error  Missing semicolon                             semi
+  139:62  error  Missing semicolon                             semi
+  141:46  error  'className' is missing in props validation    react/prop-types
+  144:19  error  Strings must use singlequote                  quotes
+  146:3   error  Missing semicolon                             semi
+  147:70  error  Missing semicolon                             semi
+  150:3   error  'className' is missing in props validation    react/prop-types
+  155:21  error  Strings must use singlequote                  quotes
+  158:2   error  Missing semicolon                             semi
+  159:31  error  Strings must use singlequote                  quotes
+  159:48  error  Missing semicolon                             semi
+  178:2   error  Missing semicolon                             semi
+
+d:\Projects\redpacket-advisor\src\components\ui\navigation-menu.jsx
+    1:24  error  Strings must use singlequote                quotes
+    1:31  error  Missing semicolon                           semi
+    2:42  error  Strings must use singlequote                quotes
+    2:75  error  Missing semicolon                           semi
+    3:21  error  Strings must use singlequote                quotes
+    3:47  error  Missing semicolon                           semi
+    4:29  error  Strings must use singlequote                quotes
+    4:43  error  Missing semicolon                           semi
+    6:20  error  Strings must use singlequote                quotes
+    6:33  error  Missing semicolon                           semi
+    8:44  error  'className' is missing in props validation  react/prop-types
+    8:55  error  'children' is missing in props validation   react/prop-types
+   12:7   error  Strings must use singlequote                quotes
+   19:3   error  Missing semicolon                           semi
+   20:70  error  Missing semicolon                           semi
+   22:48  error  'className' is missing in props validation  react/prop-types
+   26:7   error  Strings must use singlequote                quotes
+   30:3   error  Missing semicolon                           semi
+   31:74  error  Missing semicolon                           semi
+   33:56  error  Missing semicolon                           semi
+   36:3   error  Strings must use singlequote                quotes
+   37:2   error  Missing semicolon                           semi
+   39:51  error  'className' is missing in props validation  react/prop-types
+   39:62  error  'children' is missing in props validation   react/prop-types
+   42:49  error  Strings must use singlequote                quotes
+   44:16  error  Strings must use singlequote                quotes
+   49:3   error  Missing semicolon                           semi
+   50:80  error  Missing semicolon                           semi
+   52:51  error  'className' is missing in props validation  react/prop-types
+   56:7   error  Strings must use singlequote                quotes
+   60:3   error  Missing semicolon                           semi
+   61:80  error  Missing semicolon                           semi
+   63:56  error  Missing semicolon                           semi
+   65:52  error  'className' is missing in props validation  react/prop-types
+   66:22  error  Strings must use singlequote                quotes
+   69:9   error  Strings must use singlequote                quotes
+   75:3   error  Missing semicolon                           semi
+   77:47  error  Missing semicolon                           semi
+   79:53  error  'className' is missing in props validation  react/prop-types
+   83:7   error  Strings must use singlequote                quotes
+   90:3   error  Missing semicolon                           semi
+   92:48  error  Missing semicolon                           semi
+  104:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\pagination.jsx
+    1:24  error  Strings must use singlequote                quotes
+    1:31  error  Missing semicolon                           semi
+    2:59  error  Strings must use singlequote                quotes
+    2:73  error  Missing semicolon                           semi
+    4:20  error  Strings must use singlequote                quotes
+    4:33  error  Missing semicolon                           semi
+    5:32  error  Strings must use singlequote                quotes
+    8:3   error  'className' is missing in props validation  react/prop-types
+   14:19  error  Strings must use singlequote                quotes
+   16:2   error  Missing semicolon                           semi
+   17:26  error  Strings must use singlequote                quotes
+   17:38  error  Missing semicolon                           semi
+   19:47  error  'className' is missing in props validation  react/prop-types
+   22:19  error  Strings must use singlequote                quotes
+   24:3   error  Missing semicolon                           semi
+   25:33  error  Strings must use singlequote                quotes
+   25:52  error  Missing semicolon                           semi
+   27:44  error  'className' is missing in props validation  react/prop-types
+   28:31  error  Strings must use singlequote                quotes
+   29:3   error  Missing semicolon                           semi
+   30:30  error  Strings must use singlequote                quotes
+   30:46  error  Missing semicolon                           semi
+   33:3   error  'className' is missing in props validation  react/prop-types
+   34:3   error  'isActive' is missing in props validation   react/prop-types
+   35:3   error  'size' is missing in props validation       react/prop-types
+   35:10  error  Strings must use singlequote                quotes
+   39:30  error  Strings must use singlequote                quotes
+   41:27  error  Strings must use singlequote                quotes
+   41:39  error  Strings must use singlequote                quotes
+   45:2   error  Missing semicolon                           semi
+   46:30  error  Strings must use singlequote                quotes
+   46:46  error  Missing semicolon                           semi
+   49:3   error  'className' is missing in props validation  react/prop-types
+   55:19  error  Strings must use singlequote                quotes
+   60:2   error  Missing semicolon                           semi
+   61:34  error  Strings must use singlequote                quotes
+   61:54  error  Missing semicolon                           semi
+   64:3   error  'className' is missing in props validation  react/prop-types
+   70:19  error  Strings must use singlequote                quotes
+   75:2   error  Missing semicolon                           semi
+   76:30  error  Strings must use singlequote                quotes
+   76:46  error  Missing semicolon                           semi
+   79:3   error  'className' is missing in props validation  react/prop-types
+   84:19  error  Strings must use singlequote                quotes
+   89:2   error  Missing semicolon                           semi
+   90:34  error  Strings must use singlequote                quotes
+   90:54  error  Missing semicolon                           semi
+  100:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\popover.jsx
+   1:24  error  Strings must use singlequote                 quotes
+   1:31  error  Missing semicolon                            semi
+   2:35  error  Strings must use singlequote                 quotes
+   2:60  error  Missing semicolon                            semi
+   4:20  error  Strings must use singlequote                 quotes
+   4:33  error  Missing semicolon                            semi
+   6:38  error  Missing semicolon                            semi
+   8:48  error  Missing semicolon                            semi
+  10:44  error  'className' is missing in props validation   react/prop-types
+  10:55  error  'align' is missing in props validation       react/prop-types
+  10:63  error  Strings must use singlequote                 quotes
+  10:73  error  'sideOffset' is missing in props validation  react/prop-types
+  17:9   error  Strings must use singlequote                 quotes
+  22:3   error  Missing semicolon                            semi
+  23:66  error  Missing semicolon                            semi
+  25:51  error  Missing semicolon                            semi
+
+d:\Projects\redpacket-advisor\src\components\ui\progress.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:36  error  Strings must use singlequote                quotes
+   2:62  error  Missing semicolon                           semi
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   6:38  error  'className' is missing in props validation  react/prop-types
+   6:49  error  'value' is missing in props validation      react/prop-types
+   9:19  error  Strings must use singlequote                quotes
+  15:3   error  Missing semicolon                           semi
+  16:58  error  Missing semicolon                           semi
+  18:20  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\radio-group.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:38  error  Strings must use singlequote                quotes
+   2:67  error  Missing semicolon                           semi
+   3:24  error  Strings must use singlequote                quotes
+   3:38  error  Missing semicolon                           semi
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   7:40  error  'className' is missing in props validation  react/prop-types
+   8:51  error  Strings must use singlequote                quotes
+   9:3   error  Missing semicolon                           semi
+  10:62  error  Missing semicolon                           semi
+  12:44  error  'className' is missing in props validation  react/prop-types
+  17:9   error  Strings must use singlequote                quotes
+  26:3   error  Missing semicolon                           semi
+  27:66  error  Missing semicolon                           semi
+  29:38  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\resizable.jsx
+   1:30  error  Strings must use singlequote                 quotes
+   1:44  error  Missing semicolon                            semi
+   2:37  error  Strings must use singlequote                 quotes
+   2:61  error  Missing semicolon                            semi
+   4:20  error  Strings must use singlequote                 quotes
+   4:33  error  Missing semicolon                            semi
+   7:3   error  'className' is missing in props validation   react/prop-types
+  10:3   error  'React' must be in scope when using JSX      react/react-in-jsx-scope
+  12:7   error  Strings must use singlequote                 quotes
+  16:2   error  Missing semicolon                            semi
+  18:48  error  Missing semicolon                            semi
+  21:3   error  'withHandle' is missing in props validation  react/prop-types
+  22:3   error  'className' is missing in props validation   react/prop-types
+  25:3   error  'React' must be in scope when using JSX      react/react-in-jsx-scope
+  27:7   error  Strings must use singlequote                 quotes
+  32:7   error  'React' must be in scope when using JSX      react/react-in-jsx-scope
+  34:9   error  'React' must be in scope when using JSX      react/react-in-jsx-scope
+  38:2   error  Missing semicolon                            semi
+  40:64  error  Missing semicolon                            semi
+
+d:\Projects\redpacket-advisor\src\components\ui\scroll-area.jsx
+   1:24  error  Strings must use singlequote                  quotes
+   1:31  error  Missing semicolon                             semi
+   2:38  error  Strings must use singlequote                  quotes
+   2:67  error  Missing semicolon                             semi
+   4:20  error  Strings must use singlequote                  quotes
+   4:33  error  Missing semicolon                             semi
+   6:40  error  'className' is missing in props validation    react/prop-types
+   6:51  error  'children' is missing in props validation     react/prop-types
+   9:19  error  Strings must use singlequote                  quotes
+  17:3   error  Missing semicolon                             semi
+  18:62  error  Missing semicolon                             semi
+  20:39  error  'className' is missing in props validation    react/prop-types
+  20:50  error  'orientation' is missing in props validation  react/prop-types
+  20:64  error  Strings must use singlequote                  quotes
+  25:7   error  Strings must use singlequote                  quotes
+  26:23  error  Strings must use singlequote                  quotes
+  27:9   error  Strings must use singlequote                  quotes
+  28:23  error  Strings must use singlequote                  quotes
+  29:9   error  Strings must use singlequote                  quotes
+  35:3   error  Missing semicolon                             semi
+  36:76  error  Missing semicolon                             semi
+  38:33  error  Missing semicolon                             semi
+
+d:\Projects\redpacket-advisor\src\components\ui\select.jsx
+    1:24  error  Strings must use singlequote                quotes
+    1:31  error  Missing semicolon                           semi
+    2:34  error  Strings must use singlequote                quotes
+    2:58  error  Missing semicolon                           semi
+    3:47  error  Strings must use singlequote                quotes
+    3:61  error  Missing semicolon                           semi
+    5:20  error  Strings must use singlequote                quotes
+    5:33  error  Missing semicolon                           semi
+    7:36  error  Missing semicolon                           semi
+    9:42  error  Missing semicolon                           semi
+   11:42  error  Missing semicolon                           semi
+   13:43  error  'className' is missing in props validation  react/prop-types
+   13:54  error  'children' is missing in props validation   react/prop-types
+   17:7   error  Strings must use singlequote                quotes
+   26:3   error  Missing semicolon                           semi
+   27:64  error  Missing semicolon                           semi
+   29:50  error  'className' is missing in props validation  react/prop-types
+   32:19  error  Strings must use singlequote                quotes
+   36:3   error  Missing semicolon                           semi
+   37:78  error  Missing semicolon                           semi
+   39:52  error  'className' is missing in props validation  react/prop-types
+   42:19  error  Strings must use singlequote                quotes
+   46:3   error  Missing semicolon                           semi
+   48:47  error  Missing semicolon                           semi
+   50:43  error  'className' is missing in props validation  react/prop-types
+   50:54  error  'children' is missing in props validation   react/prop-types
+   50:64  error  'position' is missing in props validation   react/prop-types
+   50:75  error  Strings must use singlequote                quotes
+   55:9   error  Strings must use singlequote                quotes
+   56:22  error  Strings must use singlequote                quotes
+   57:11  error  Strings must use singlequote                quotes
+   64:23  error  Strings must use singlequote                quotes
+   64:43  error  Strings must use singlequote                quotes
+   65:11  error  Strings must use singlequote                quotes
+   71:3   error  Missing semicolon                           semi
+   72:64  error  Missing semicolon                           semi
+   74:41  error  'className' is missing in props validation  react/prop-types
+   77:19  error  Strings must use singlequote                quotes
+   79:3   error  Missing semicolon                           semi
+   80:60  error  Missing semicolon                           semi
+   82:40  error  'className' is missing in props validation  react/prop-types
+   82:51  error  'children' is missing in props validation   react/prop-types
+   86:7   error  Strings must use singlequote                quotes
+   98:3   error  Missing semicolon                           semi
+   99:58  error  Missing semicolon                           semi
+  101:45  error  'className' is missing in props validation  react/prop-types
+  104:19  error  Strings must use singlequote                quotes
+  106:3   error  Missing semicolon                           semi
+  107:68  error  Missing semicolon                           semi
+  120:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\separator.jsx
+   1:24  error  Strings must use singlequote                  quotes
+   1:31  error  Missing semicolon                             semi
+   2:37  error  Strings must use singlequote                  quotes
+   2:64  error  Missing semicolon                             semi
+   4:20  error  Strings must use singlequote                  quotes
+   4:33  error  Missing semicolon                             semi
+   7:5   error  'className' is missing in props validation    react/prop-types
+   7:16  error  'orientation' is missing in props validation  react/prop-types
+   7:30  error  Strings must use singlequote                  quotes
+   7:44  error  'decorative' is missing in props validation   react/prop-types
+  15:7   error  Strings must use singlequote                  quotes
+  16:23  error  Strings must use singlequote                  quotes
+  16:38  error  Strings must use singlequote                  quotes
+  16:57  error  Strings must use singlequote                  quotes
+  20:3   error  Missing semicolon                             semi
+  21:60  error  Missing semicolon                             semi
+  23:21  error  Missing semicolon                             semi
+
+d:\Projects\redpacket-advisor\src\components\ui\sheet.jsx
+    1:24  error  Strings must use singlequote                quotes
+    1:31  error  Missing semicolon                           semi
+    2:33  error  Strings must use singlequote                quotes
+    2:57  error  Missing semicolon                           semi
+    3:21  error  Strings must use singlequote                quotes
+    4:19  error  Strings must use singlequote                quotes
+    4:33  error  Missing semicolon                           semi
+    6:20  error  Strings must use singlequote                quotes
+    6:33  error  Missing semicolon                           semi
+    8:34  error  Missing semicolon                           semi
+   10:44  error  Missing semicolon                           semi
+   12:40  error  Missing semicolon                           semi
+   14:42  error  Missing semicolon                           semi
+   16:42  error  'className' is missing in props validation  react/prop-types
+   19:7   error  Strings must use singlequote                quotes
+   24:3   error  Missing semicolon                           semi
+   25:62  error  Missing semicolon                           semi
+   28:3   error  Strings must use singlequote                quotes
+   32:14  error  Strings must use singlequote                quotes
+   34:11  error  Strings must use singlequote                quotes
+   35:15  error  Strings must use singlequote                quotes
+   37:11  error  Strings must use singlequote                quotes
+   41:13  error  Strings must use singlequote                quotes
+   44:2   error  Missing semicolon                           semi
+   46:42  error  'side' is missing in props validation       react/prop-types
+   46:49  error  Strings must use singlequote                quotes
+   46:58  error  'className' is missing in props validation  react/prop-types
+   46:69  error  'children' is missing in props validation   react/prop-types
+   58:3   error  Missing semicolon                           semi
+   59:62  error  Missing semicolon                           semi
+   62:3   error  'className' is missing in props validation  react/prop-types
+   66:19  error  Strings must use singlequote                quotes
+   68:2   error  Missing semicolon                           semi
+   69:27  error  Strings must use singlequote                quotes
+   69:40  error  Missing semicolon                           semi
+   72:3   error  'className' is missing in props validation  react/prop-types
+   76:19  error  Strings must use singlequote                quotes
+   78:2   error  Missing semicolon                           semi
+   79:27  error  Strings must use singlequote                quotes
+   79:40  error  Missing semicolon                           semi
+   81:40  error  'className' is missing in props validation  react/prop-types
+   84:19  error  Strings must use singlequote                quotes
+   86:3   error  Missing semicolon                           semi
+   87:58  error  Missing semicolon                           semi
+   89:46  error  'className' is missing in props validation  react/prop-types
+   92:19  error  Strings must use singlequote                quotes
+   94:3   error  Missing semicolon                           semi
+   95:70  error  Missing semicolon                           semi
+  108:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\skeleton.jsx
+   1:20  error  Strings must use singlequote                quotes
+   1:33  error  Missing semicolon                           semi
+   4:3   error  'className' is missing in props validation  react/prop-types
+   7:11  error  'React' must be in scope when using JSX     react/react-in-jsx-scope
+   7:30  error  Strings must use singlequote                quotes
+  10:20  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\slider.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:34  error  Strings must use singlequote                quotes
+   2:58  error  Missing semicolon                           semi
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   6:36  error  'className' is missing in props validation  react/prop-types
+   9:19  error  Strings must use singlequote                quotes
+  18:3   error  Missing semicolon                           semi
+  19:54  error  Missing semicolon                           semi
+  21:18  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\sonner.jsx
+   1:26  error  Strings must use singlequote             quotes
+   1:39  error  Missing semicolon                        semi
+   2:35  error  Strings must use singlequote             quotes
+   2:43  error  Missing semicolon                        semi
+   7:19  error  Strings must use singlequote             quotes
+   7:42  error  Missing semicolon                        semi
+  10:6   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  16:13  error  Strings must use singlequote             quotes
+  17:24  error  Strings must use singlequote             quotes
+  19:13  error  Strings must use singlequote             quotes
+  21:13  error  Strings must use singlequote             quotes
+  26:2   error  Missing semicolon                        semi
+  28:19  error  Missing semicolon                        semi
+
+d:\Projects\redpacket-advisor\src\components\ui\switch.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:35  error  Strings must use singlequote                quotes
+   2:59  error  Missing semicolon                           semi
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   6:36  error  'className' is missing in props validation  react/prop-types
+   9:7   error  Strings must use singlequote                quotes
+  16:9   error  Strings must use singlequote                quotes
+  19:3   error  Missing semicolon                           semi
+  20:55  error  Missing semicolon                           semi
+  22:18  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\table.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   3:20  error  Strings must use singlequote                quotes
+   3:33  error  Missing semicolon                           semi
+   5:35  error  'className' is missing in props validation  react/prop-types
+   9:21  error  Strings must use singlequote                quotes
+  12:3   error  Missing semicolon                           semi
+  13:21  error  Strings must use singlequote                quotes
+  13:28  error  Missing semicolon                           semi
+  15:41  error  'className' is missing in props validation  react/prop-types
+  16:34  error  Strings must use singlequote                quotes
+  17:3   error  Missing semicolon                           semi
+  18:27  error  Strings must use singlequote                quotes
+  18:40  error  Missing semicolon                           semi
+  20:39  error  'className' is missing in props validation  react/prop-types
+  23:19  error  Strings must use singlequote                quotes
+  25:3   error  Missing semicolon                           semi
+  26:25  error  Strings must use singlequote                quotes
+  26:36  error  Missing semicolon                           semi
+  28:41  error  'className' is missing in props validation  react/prop-types
+  31:19  error  Strings must use singlequote                quotes
+  33:3   error  Missing semicolon                           semi
+  34:27  error  Strings must use singlequote                quotes
+  34:40  error  Missing semicolon                           semi
+  36:38  error  'className' is missing in props validation  react/prop-types
+  40:7   error  Strings must use singlequote                quotes
+  44:3   error  Missing semicolon                           semi
+  45:24  error  Strings must use singlequote                quotes
+  45:34  error  Missing semicolon                           semi
+  47:39  error  'className' is missing in props validation  react/prop-types
+  51:7   error  Strings must use singlequote                quotes
+  55:3   error  Missing semicolon                           semi
+  56:25  error  Strings must use singlequote                quotes
+  56:36  error  Missing semicolon                           semi
+  58:39  error  'className' is missing in props validation  react/prop-types
+  61:19  error  Strings must use singlequote                quotes
+  63:3   error  Missing semicolon                           semi
+  64:25  error  Strings must use singlequote                quotes
+  64:36  error  Missing semicolon                           semi
+  66:42  error  'className' is missing in props validation  react/prop-types
+  69:19  error  Strings must use singlequote                quotes
+  71:3   error  Missing semicolon                           semi
+  72:28  error  Strings must use singlequote                quotes
+  72:42  error  Missing semicolon                           semi
+  83:2   error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\tabs.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:32  error  Strings must use singlequote                quotes
+   2:54  error  Missing semicolon                           semi
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   6:32  error  Missing semicolon                           semi
+   8:38  error  'className' is missing in props validation  react/prop-types
+  12:7   error  Strings must use singlequote                quotes
+  16:3   error  Missing semicolon                           semi
+  17:54  error  Missing semicolon                           semi
+  19:41  error  'className' is missing in props validation  react/prop-types
+  23:7   error  Strings must use singlequote                quotes
+  27:3   error  Missing semicolon                           semi
+  28:60  error  Missing semicolon                           semi
+  30:41  error  'className' is missing in props validation  react/prop-types
+  34:7   error  Strings must use singlequote                quotes
+  38:3   error  Missing semicolon                           semi
+  39:60  error  Missing semicolon                           semi
+  41:52  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\textarea.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   3:20  error  Strings must use singlequote                quotes
+   3:33  error  Missing semicolon                           semi
+   5:38  error  'className' is missing in props validation  react/prop-types
+   9:9   error  Strings must use singlequote                quotes
+  15:3   error  Missing semicolon                           semi
+  16:24  error  Strings must use singlequote                quotes
+  16:34  error  Missing semicolon                           semi
+  18:20  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\toast.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:34  error  Strings must use singlequote                quotes
+   2:57  error  Missing semicolon                           semi
+   3:21  error  Strings must use singlequote                quotes
+   4:19  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   6:20  error  Strings must use singlequote                quotes
+   6:33  error  Missing semicolon                           semi
+   8:47  error  Missing semicolon                           semi
+  10:43  error  'className' is missing in props validation  react/prop-types
+  14:7   error  Strings must use singlequote                quotes
+  18:3   error  Missing semicolon                           semi
+  19:65  error  Missing semicolon                           semi
+  22:3   error  Strings must use singlequote                quotes
+  26:18  error  Strings must use singlequote                quotes
+  28:11  error  Strings must use singlequote                quotes
+  32:16  error  Strings must use singlequote                quotes
+  35:2   error  Missing semicolon                           semi
+  37:35  error  'className' is missing in props validation  react/prop-types
+  37:46  error  'variant' is missing in props validation    react/prop-types
+  44:3   error  Missing semicolon                           semi
+  45:53  error  Missing semicolon                           semi
+  47:41  error  'className' is missing in props validation  react/prop-types
+  51:7   error  Strings must use singlequote                quotes
+  55:3   error  Missing semicolon                           semi
+  56:61  error  Missing semicolon                           semi
+  58:40  error  'className' is missing in props validation  react/prop-types
+  62:7   error  Strings must use singlequote                quotes
+  69:3   error  Missing semicolon                           semi
+  70:59  error  Missing semicolon                           semi
+  72:40  error  'className' is missing in props validation  react/prop-types
+  73:50  error  Strings must use singlequote                quotes
+  74:3   error  Missing semicolon                           semi
+  75:59  error  Missing semicolon                           semi
+  77:46  error  'className' is missing in props validation  react/prop-types
+  78:56  error  Strings must use singlequote                quotes
+  79:3   error  Missing semicolon                           semi
+  80:71  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\toaster.jsx
+   8:8   error  Strings must use singlequote             quotes
+   8:31  error  Missing semicolon                        semi
+   9:26  error  Strings must use singlequote             quotes
+   9:53  error  Missing semicolon                        semi
+  12:32  error  Missing semicolon                        semi
+  15:6   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  18:12  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  19:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  20:25  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  22:17  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  26:13  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  30:7   error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+d:\Projects\redpacket-advisor\src\components\ui\toggle-group.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:39  error  Strings must use singlequote                quotes
+   2:69  error  Missing semicolon                           semi
+   4:20  error  Strings must use singlequote                quotes
+   4:33  error  Missing semicolon                           semi
+   5:32  error  Strings must use singlequote                quotes
+   5:56  error  Missing semicolon                           semi
+   8:9   error  Strings must use singlequote                quotes
+   9:12  error  Strings must use singlequote                quotes
+  10:3   error  Missing semicolon                           semi
+  12:41  error  'className' is missing in props validation  react/prop-types
+  12:52  error  'variant' is missing in props validation    react/prop-types
+  12:61  error  'size' is missing in props validation       react/prop-types
+  12:67  error  'children' is missing in props validation   react/prop-types
+  15:19  error  Strings must use singlequote                quotes
+  21:3   error  Missing semicolon                           semi
+  23:64  error  Missing semicolon                           semi
+  25:45  error  'className' is missing in props validation  react/prop-types
+  25:56  error  'children' is missing in props validation   react/prop-types
+  25:66  error  'variant' is missing in props validation    react/prop-types
+  25:75  error  'size' is missing in props validation       react/prop-types
+  26:55  error  Missing semicolon                           semi
+  39:3   error  Missing semicolon                           semi
+  41:68  error  Missing semicolon                           semi
+  43:40  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\toggle.jsx
+   1:24  error  Strings must use singlequote                quotes
+   1:31  error  Missing semicolon                           semi
+   2:34  error  Strings must use singlequote                quotes
+   2:58  error  Missing semicolon                           semi
+   3:21  error  Strings must use singlequote                quotes
+   5:20  error  Strings must use singlequote                quotes
+   5:33  error  Missing semicolon                           semi
+   8:3   error  Strings must use singlequote                quotes
+  12:18  error  Strings must use singlequote                quotes
+  14:11  error  Strings must use singlequote                quotes
+  17:18  error  Strings must use singlequote                quotes
+  18:13  error  Strings must use singlequote                quotes
+  19:13  error  Strings must use singlequote                quotes
+  23:16  error  Strings must use singlequote                quotes
+  24:13  error  Strings must use singlequote                quotes
+  27:2   error  Missing semicolon                           semi
+  29:36  error  'className' is missing in props validation  react/prop-types
+  29:47  error  'variant' is missing in props validation    react/prop-types
+  29:56  error  'size' is missing in props validation       react/prop-types
+  34:3   error  Missing semicolon                           semi
+  36:54  error  Missing semicolon                           semi
+  38:34  error  Missing semicolon                           semi
+
+d:\Projects\redpacket-advisor\src\components\ui\tooltip.jsx
+   1:24  error  Strings must use singlequote                 quotes
+   1:31  error  Missing semicolon                            semi
+   2:35  error  Strings must use singlequote                 quotes
+   2:60  error  Missing semicolon                            semi
+   4:20  error  Strings must use singlequote                 quotes
+   4:33  error  Missing semicolon                            semi
+   6:50  error  Missing semicolon                            semi
+   8:38  error  Missing semicolon                            semi
+  10:48  error  Missing semicolon                            semi
+  12:44  error  'className' is missing in props validation   react/prop-types
+  12:55  error  'sideOffset' is missing in props validation  react/prop-types
+  17:7   error  Strings must use singlequote                 quotes
+  21:3   error  Missing semicolon                            semi
+  22:66  error  Missing semicolon                            semi
+  24:68  error  Missing semicolon                            semi
+
+d:\Projects\redpacket-advisor\src\components\ui\use-toast.js
+    2:24  error  Strings must use singlequote                    quotes
+    2:31  error  Missing semicolon                               semi
+    4:22  error  Missing semicolon                               semi
+    5:35  error  Missing semicolon                               semi
+    7:14  error  Missing semicolon                               semi
+   10:48  error  Missing semicolon                               semi
+   14:32  error  Missing semicolon                               semi
+   18:11  error  Missing semicolon                               semi
+   22:34  error  Missing semicolon                               semi
+   24:13  error  Strings must use singlequote                    quotes
+   26:7   error  Missing semicolon                               semi
+   27:25  error  Missing semicolon                               semi
+   29:38  error  Missing semicolon                               semi
+   30:2   error  Missing semicolon                               semi
+   34:1   error  Expected indentation of 2 spaces but found 4    indent
+   34:10  error  Strings must use singlequote                    quotes
+   35:1   error  Expected indentation of 4 spaces but found 6    indent
+   36:1   error  Expected indentation of 6 spaces but found 8    indent
+   37:1   error  Expected indentation of 6 spaces but found 8    indent
+   38:1   error  Expected indentation of 4 spaces but found 6    indent
+   40:1   error  Expected indentation of 2 spaces but found 4    indent
+   40:10  error  Strings must use singlequote                    quotes
+   41:1   error  Expected indentation of 4 spaces but found 6    indent
+   42:1   error  Expected indentation of 6 spaces but found 8    indent
+   43:1   error  Expected indentation of 6 spaces but found 8    indent
+   44:1   error  Expected indentation of 8 spaces but found 10   indent
+   45:1   error  Expected indentation of 4 spaces but found 6    indent
+   47:1   error  Expected indentation of 2 spaces but found 4    indent
+   47:10  error  Strings must use singlequote                    quotes
+   48:1   error  Expected indentation of 4 spaces but found 6    indent
+   48:33  error  Missing semicolon                               semi
+   50:1   error  Expected indentation of 4 spaces but found 6    indent
+   51:1   error  Expected indentation of 4 spaces but found 6    indent
+   52:1   error  Expected indentation of 4 spaces but found 6    indent
+   53:1   error  Expected indentation of 6 spaces but found 8    indent
+   53:34  error  Missing semicolon                               semi
+   54:1   error  Expected indentation of 4 spaces but found 6    indent
+   55:1   error  Expected indentation of 6 spaces but found 8    indent
+   56:1   error  Expected indentation of 8 spaces but found 10   indent
+   56:37  error  Missing semicolon                               semi
+   57:1   error  Expected indentation of 6 spaces but found 8    indent
+   57:11  error  Missing semicolon                               semi
+   58:1   error  Expected indentation of 4 spaces but found 6    indent
+   60:1   error  Expected indentation of 4 spaces but found 6    indent
+   61:1   error  Expected indentation of 6 spaces but found 8    indent
+   62:1   error  Expected indentation of 6 spaces but found 8    indent
+   63:1   error  Expected indentation of 8 spaces but found 10   indent
+   64:1   error  Expected indentation of 10 spaces but found 12  indent
+   65:1   error  Expected indentation of 12 spaces but found 16  indent
+   66:1   error  Expected indentation of 12 spaces but found 16  indent
+   67:1   error  Expected indentation of 10 spaces but found 14  indent
+   68:1   error  Expected indentation of 10 spaces but found 12  indent
+   69:1   error  Expected indentation of 4 spaces but found 6    indent
+   70:1   error  Expected indentation of 2 spaces but found 4    indent
+   71:1   error  Expected indentation of 2 spaces but found 4    indent
+   71:10  error  Strings must use singlequote                    quotes
+   72:1   error  Expected indentation of 4 spaces but found 6    indent
+   73:1   error  Expected indentation of 6 spaces but found 8    indent
+   74:1   error  Expected indentation of 8 spaces but found 10   indent
+   75:1   error  Expected indentation of 8 spaces but found 10   indent
+   76:1   error  Expected indentation of 6 spaces but found 8    indent
+   76:10  error  Missing semicolon                               semi
+   77:1   error  Expected indentation of 4 spaces but found 6    indent
+   78:1   error  Expected indentation of 4 spaces but found 6    indent
+   79:1   error  Expected indentation of 6 spaces but found 8    indent
+   80:1   error  Expected indentation of 6 spaces but found 8    indent
+   81:1   error  Expected indentation of 4 spaces but found 6    indent
+   83:2   error  Missing semicolon                               semi
+   85:21  error  Missing semicolon                               semi
+   87:33  error  Missing semicolon                               semi
+   90:45  error  Missing semicolon                               semi
+   92:26  error  Missing semicolon                               semi
+   93:5   error  Missing semicolon                               semi
+   99:21  error  Missing semicolon                               semi
+  103:13  error  Strings must use singlequote                    quotes
+  105:7   error  Missing semicolon                               semi
+  106:42  error  Strings must use singlequote                    quotes
+  106:73  error  Missing semicolon                               semi
+  109:11  error  Strings must use singlequote                    quotes
+  115:29  error  Missing semicolon                               semi
+  118:5   error  Missing semicolon                               semi
+  124:4   error  Missing semicolon                               semi
+  128:56  error  Missing semicolon                               semi
+  131:29  error  Missing semicolon                               semi
+  133:48  error  Missing semicolon                               semi
+  135:35  error  Missing semicolon                               semi
+  138:14  error  Missing semicolon                               semi
+  143:44  error  Strings must use singlequote                    quotes
+  147:27  error  Missing semicolon                               semi
+
+d:\Projects\redpacket-advisor\src\lib\ad-config.js
+   35:10  error  '__DEV__' is not defined  no-undef
+   92:31  error  'wx' is not defined       no-undef
+   94:23  error  'wx' is not defined       no-undef
+  130:21  error  'wx' is not defined       no-undef
+  173:29  error  'wx' is not defined       no-undef
+  233:25  error  'wx' is not defined       no-undef
+  259:11  error  'wx' is not defined       no-undef
+  287:9   error  'wx' is not defined       no-undef
+  299:11  error  'wx' is not defined       no-undef
+  303:11  error  'wx' is not defined       no-undef
+  322:24  error  'wx' is not defined       no-undef
+  328:9   error  'wx' is not defined       no-undef
+  349:7   error  'wx' is not defined       no-undef
+  356:27  error  'wx' is not defined       no-undef
+  357:7   error  'wx' is not defined       no-undef
+  373:30  error  'wx' is not defined       no-undef
+  374:28  error  'wx' is not defined       no-undef
+  384:7   error  'wx' is not defined       no-undef
+  390:9   error  'wx' is not defined       no-undef
+
+d:\Projects\redpacket-advisor\src\lib\analytics.js
+   23:21  error  'getCurrentPages' is not defined  no-undef
+  288:15  error  Empty block statement             no-empty
+  299:24  error  'app' is defined but never used   no-unused-vars
+
+d:\Projects\redpacket-advisor\src\lib\utils.js
+  1:22  error  Strings must use singlequote  quotes
+  1:28  error  Missing semicolon             semi
+  2:25  error  Strings must use singlequote  quotes
+  2:41  error  Missing semicolon             semi
+  5:31  error  Missing semicolon             semi
+
+d:\Projects\redpacket-advisor\src\main.jsx
+  1:22  error  Strings must use singlequote                  quotes
+  2:17  error  Strings must use singlequote                  quotes
+  3:8   error  Strings must use singlequote                  quotes
+  5:45  error  Strings must use singlequote                  quotes
+  6:1   error  Expected indentation of 2 spaces but found 4  indent
+  6:5   error  'React' must be in scope when using JSX       react/react-in-jsx-scope
+
+d:\Projects\redpacket-advisor\src\nav-items.jsx
+   1:26  error  Strings must use singlequote             quotes
+   2:19  error  Strings must use singlequote             quotes
+   9:12  error  Strings must use singlequote             quotes
+  10:9   error  Strings must use singlequote             quotes
+  11:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+  12:11  error  'React' must be in scope when using JSX  react/react-in-jsx-scope
+
+✖ 1642 problems (1642 errors, 0 warnings)
+  1260 errors and 0 warnings potentially fixable with the `--fix` option.

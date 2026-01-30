@@ -1,0 +1,180 @@
+<view class="calculator-container paper-cut-bg">
+  <!-- 其他内容 -->
+  <view class="content">
+    <view class="card">
+      <view class="card-title">
+        <text class="icon">🧮</text>
+        随礼金额计算器
+      </view>
+      
+      <view class="form-group">
+        <view class="form-label">选择关系类型</view>
+        <view class="category-grid">
+          <view 
+            class="category-btn {{relationship === 'family' ? 'active' : ''}}" 
+            bindtap="selectRelationship" 
+            data-rel="family"
+          >
+            ❤️ 家人亲戚
+          </view>
+          <view 
+            class="category-btn {{relationship === 'friend' ? 'active' : ''}}" 
+            bindtap="selectRelationship" 
+            data-rel="friend"
+          >
+            👥 朋友同学
+          </view>
+          <view 
+            class="category-btn {{relationship === 'colleague' ? 'active' : ''}}" 
+            bindtap="selectRelationship" 
+            data-rel="colleague"
+          >
+            💼 同事领导
+          </view>
+          <view 
+            class="category-btn {{relationship === 'boss' ? 'active' : ''}}" 
+            bindtap="selectRelationship" 
+            data-rel="boss"
+          >
+            👑 老板客户
+          </view>
+        </view>
+      </view>
+
+      <view class="form-group">
+        <view class="form-label">选择亲疏程度</view>
+        <view class="category-grid">
+          <view 
+            class="category-btn {{closeness === 'acquaintance' ? 'active' : ''}}" 
+            bindtap="selectCloseness" 
+            data-close="acquaintance"
+          >
+            点头之交
+          </view>
+          <view 
+            class="category-btn {{closeness === 'normal' ? 'active' : ''}}" 
+            bindtap="selectCloseness" 
+            data-close="normal"
+          >
+            普通关系
+          </view>
+          <view 
+            class="category-btn {{closeness === 'close' ? 'active' : ''}}" 
+            bindtap="selectCloseness" 
+            data-close="close"
+          >
+            关系密切
+          </view>
+          <view 
+            class="category-btn {{closeness === 'very-close' ? 'active' : ''}}" 
+            bindtap="selectCloseness" 
+            data-close="very-close"
+          >
+            非常要好
+          </view>
+        </view>
+      </view>
+
+      <button 
+        class="btn btn-primary" 
+        bindtap="calculateAmount" 
+        disabled="{{!relationship || !closeness}}"
+      >
+        计算推荐金额
+      </button>
+
+      <view wx:if="{{result}}" class="result-card">
+        <view class="result-title">推荐金额</view>
+        <view class="result-amount">¥{{result.low}} - ¥{{result.high}}</view>
+        <view class="result-message">{{result.message}}</view>
+        
+        <!-- Banner广告区域 - 临时隐藏，过审后将恢复 -->
+        <!--
+        <view class="ad-section" id="calculator-feedback-section">
+          <view wx:if="{{!showBannerAd}}" class="feedback-section">
+            <view class="feedback-header">
+              <text class="feedback-title">💡 反馈优化</text>
+              <text class="feedback-desc">帮助我们改进推荐算法</text>
+            </view>
+            
+            <view class="feedback-content">
+              <view class="feedback-input-row">
+                <text class="feedback-label">我实际给了：</text>
+                <view class="amount-input-container">
+                  <text class="amount-symbol">¥</text>
+                  <input 
+                    class="amount-input" 
+                    type="number"
+                    placeholder="请输入实际金额"
+                    value="{{actualAmount}}"
+                    bindinput="onInputActualAmount"
+                    maxlength="6"
+                  />
+                  <text class="amount-unit">元</text>
+                </view>
+              </view>
+              
+              <button 
+                class="btn btn-secondary feedback-btn" 
+                bindtap="submitPseudoFeedback"
+                disabled="{{!actualAmount}}"
+              >
+                提交反馈
+              </button>
+              
+              <view class="feedback-tip">
+                <text class="tip-text">🌟 您的反馈将帮助我们优化推荐算法，让计算结果更准确</text>
+              </view>
+            </view>
+          </view>
+          
+          <view wx:if="{{showBannerAd}}" class="banner-ad-container">
+            <view class="ad-placeholder">
+              <text class="ad-text">广告位</text>
+              <view class="ad-loading">
+                <text class="loading-text">正在加载广告...</text>
+              </view>
+            </view>
+          </view>
+        </view>
+        -->
+
+        <!-- 免责声明 -->
+        <view class="disclaimer-box">
+          <view class="disclaimer-title">⚠️ 免责声明</view>
+          <view class="disclaimer-text">
+            本计算结果仅供参考，不构成任何建议。
+            实际随礼金额请结合当地风俗、个人经济状况和双方关系综合判断。
+            开发者不承担由此产生的任何法律责任。
+          </view>
+        </view>
+        
+        <!-- 吉利数字建议 -->
+        <view class="lucky-section">
+          <view class="lucky-header">
+            <text class="lucky-title">🧧 吉利数字建议</text>
+            <text class="lucky-desc">中国人最喜欢的吉祥数字</text>
+          </view>
+          
+          <view class="lucky-numbers-grid">
+            <block wx:for="{{luckyNumbers}}" wx:key="*this">
+              <view class="lucky-number-card">
+                <view class="number-circle">
+                  <text class="lucky-number">{{item}}</text>
+                </view>
+                <text class="unit-text">元</text>
+              </view>
+            </block>
+          </view>
+          
+          <view class="lucky-tips">
+            <text class="tips-text">🌟 数字寓意：6(顺利) 8(发财) 9(长久)</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 用户反馈组件 -->
+  <feedback pageName="calculator" />
+</view>

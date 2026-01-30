@@ -1,0 +1,456 @@
+/* components/feedback/feedback.wxss */
+/* 反馈弹窗样式 */
+.feedback-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  touch-action: none;
+}
+
+/* 反馈按钮样式 */
+.feedback-btn {
+  position: fixed;
+  z-index: 9998;
+  cursor: move;
+  touch-action: none;
+}
+
+.feedback-modal.show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.feedback-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10rpx);
+}
+
+.feedback-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  width: 95%;
+  max-width: 550rpx;
+  background: white;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.1);
+  border: 1rpx solid #f0f0f0;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+/* 装饰元素样式 */
+.decoration-cloud {
+  position: absolute;
+  font-size: 24rpx;
+  color: #f0f0f0;
+  opacity: 0.6;
+  animation: float 6s ease-in-out infinite;
+}
+
+.cloud-left {
+  top: 12rpx;
+  left: 16rpx;
+}
+
+.cloud-right {
+  top: 12rpx;
+  right: 16rpx;
+  animation-delay: 2s;
+}
+
+.decoration-coin {
+  position: absolute;
+  font-size: 20rpx;
+  color: #FFD700;
+  opacity: 0.8;
+  animation: float 4s ease-in-out infinite;
+}
+
+.coin-1 {
+  bottom: 12rpx;
+  left: 24rpx;
+  animation-delay: 1s;
+}
+
+.coin-2 {
+  bottom: 12rpx;
+  right: 24rpx;
+  animation-delay: 3s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8rpx) rotate(5deg);
+  }
+}
+
+.feedback-modal.show .feedback-content {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* 头部 */
+.feedback-header {
+  text-align: center;
+  margin-bottom: 16rpx;
+  position: relative;
+}
+
+.header-icon {
+  font-size: 36rpx;
+  margin-bottom: 4rpx;
+}
+
+.feedback-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1f2937;
+  display: block;
+}
+
+.header-decoration {
+  width: 40rpx;
+  height: 2rpx;
+  background: linear-gradient(90deg, #E53935, #FFD700);
+  margin: 8rpx auto 0;
+  border-radius: 2rpx;
+}
+
+/* 表单区块 */
+.feedback-section {
+  margin-bottom: 12rpx;
+}
+
+.section-label {
+  display: block;
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 6rpx;
+}
+
+/* 评分 */
+.star-rating {
+  display: flex;
+  gap: 10rpx;
+  justify-content: center;
+}
+
+.star {
+  font-size: 36rpx;
+  color: #d1d5db;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.star.active {
+  color: #FFD700;
+  text-shadow: 
+    0 0 16rpx rgba(255, 215, 0, 0.5),
+    0 2rpx 6rpx rgba(139, 69, 19, 0.3);
+  transform: scale(1.15);
+}
+
+/* 反馈类型 */
+.type-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  justify-content: space-between;
+}
+
+.type-tag {
+  flex: 0 0 calc(50% - 6rpx);
+  padding: 10rpx 12rpx;
+  background: #fafafa;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+  color: #4b5563;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5rpx;
+  height: 60rpx;
+  box-sizing: border-box;
+  word-break: keep-all;
+}
+
+.type-tag.active {
+  background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);
+  border-color: #E53935;
+  color: white;
+  box-shadow: 0 4rpx 16rpx rgba(229, 57, 53, 0.2);
+}
+
+/* 输入框 */
+.feedback-textarea {
+  width: 100%;
+  min-height: 100rpx;
+  padding: 14rpx;
+  background: #fafafa;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color: #1f2937;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+
+.feedback-textarea:focus {
+  outline: none;
+  border-color: #E53935;
+  box-shadow: 0 0 0 4rpx rgba(229, 57, 53, 0.1);
+}
+
+.feedback-input {
+  width: 100%;
+  padding: 16rpx 14rpx;
+  background: #fafafa;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+  color: #1f2937;
+  box-sizing: border-box;
+  min-height: 60rpx;
+}
+
+.feedback-input:focus {
+  outline: none;
+  border-color: #E53935;
+  box-shadow: 0 0 0 4rpx rgba(229, 57, 53, 0.1);
+}
+
+.char-count {
+  display: block;
+  text-align: right;
+  font-size: 20rpx;
+  color: #6b7280;
+  margin-top: 4rpx;
+}
+
+/* 按钮组 */
+.feedback-actions {
+  display: flex;
+  gap: 12rpx;
+  margin-top: 20rpx;
+}
+
+.btn {
+  flex: 1;
+  padding: 18rpx 0;
+  border-radius: 10rpx;
+  font-size: 26rpx;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: white;
+  color: #E53935;
+  border: 2rpx solid #E53935;
+}
+
+.btn-secondary:active {
+  background: rgba(229, 57, 53, 0.1);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);
+  color: white;
+  box-shadow: 0 8rpx 32rpx rgba(229, 57, 53, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(-2rpx);
+  box-shadow: 0 12rpx 40rpx rgba(229, 57, 53, 0.4);
+}
+
+.btn-primary.disabled {
+  background: linear-gradient(135deg, #d1d5db 0%, #9ca3af 100%);
+  box-shadow: none;
+  opacity: 0.6;
+}
+
+/* 关闭按钮 */
+.close-btn {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  width: 44rpx;
+  height: 44rpx;
+  line-height: 40rpx;
+  text-align: center;
+  font-size: 32rpx;
+  color: #6b7280;
+  background: #fafafa;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.close-btn:active {
+  background: rgba(229, 57, 53, 0.1);
+  color: #E53935;
+  transform: rotate(90deg);
+}
+
+/* 错误提示样式 */
+.error-section {
+  display: flex;
+  align-items: center;
+  padding: 16rpx;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1rpx solid rgba(239, 68, 68, 0.3);
+  border-radius: 12rpx;
+  margin-bottom: 20rpx;
+  animation: fadeIn 0.3s ease;
+}
+
+.error-icon {
+  font-size: 28rpx;
+  margin-right: 14rpx;
+  color: #E53935;
+}
+
+.error-message {
+  font-size: 24rpx;
+  color: #E53935;
+  line-height: 1.4;
+  flex: 1;
+}
+
+/* 提交进度指示器 */
+.submit-progress {
+  margin-top: 20rpx;
+  text-align: center;
+  animation: fadeIn 0.3s ease;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6rpx;
+  background: #e5e7eb;
+  border-radius: 4rpx;
+  overflow: hidden;
+  margin-bottom: 14rpx;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #E53935, #FFD700);
+  border-radius: 4rpx;
+  animation: loading 2s ease-in-out infinite;
+  width: 60%;
+}
+
+.progress-text {
+  font-size: 22rpx;
+  color: #6b7280;
+  opacity: 0.8;
+}
+
+/* 动画 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes loading {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(200%); }
+}
+
+/* 浮动反馈按钮 */
+.feedback-float-btn {
+  position: fixed;
+  width: 100rpx;
+  height: 100rpx;
+  z-index: 9998;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 
+    0 6rpx 24rpx rgba(229, 57, 53, 0.4),
+    inset 0 1rpx 0 rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  /* 确保按钮始终可见 */
+  pointer-events: auto;
+  /* 阻止浏览器默认触摸行为 */
+  touch-action: none;
+  /* 阻止文本选择 */
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.feedback-float-btn.dragging {
+  transition: none;
+  transform: scale(1.1);
+}
+
+.btn-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.btn-icon {
+  font-size: 28rpx;
+  margin-bottom: 3rpx;
+}
+
+.btn-text {
+  font-size: 18rpx;
+  font-weight: bold;
+}
+
+.btn-glow {
+  position: absolute;
+  top: -8rpx;
+  left: -8rpx;
+  right: -8rpx;
+  bottom: -8rpx;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(229, 57, 53, 0.2) 0%, transparent 70%);
+  animation: glow 2s ease-in-out infinite;
+}
+
+@keyframes glow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+/* 浮动反馈按钮默认样式 */
+.feedback-float-btn {
+  background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);
+  color: white;
+}

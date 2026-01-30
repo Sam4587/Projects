@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "红包翻译",
+  "navigationBarBackgroundColor": "#dc2626",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "feedback": "/components/feedback/feedback"
+  }
+}
