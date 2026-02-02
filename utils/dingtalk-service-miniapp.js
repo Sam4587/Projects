@@ -223,53 +223,26 @@ class DingTalkMiniAppService {
   }
 
   /**
-   * 保存反馈到本地存储
+   * 🔴 审核修改：移除本地反馈存储功能
    */
   saveFeedbackToLocal(feedbackData) {
-    try {
-      // 获取现有反馈数据
-      let feedbacks = wx.getStorageSync('local_feedbacks') || [];
-      
-      // 添加新反馈
-      feedbacks.push({
-        ...feedbackData,
-        id: Date.now().toString()
-      });
-      
-      // 保存（最多保留100条）
-      if (feedbacks.length > 100) {
-        feedbacks = feedbacks.slice(-100);
-      }
-      
-      wx.setStorageSync('local_feedbacks', feedbacks);
-      console.log('反馈已保存到本地');
-    } catch (error) {
-      console.warn('保存反馈到本地失败:', error);
-    }
+    // 本地保存已移除，避免收集用户信息
+    console.log('反馈本地保存已移除，仅通过钉钉提交');
   }
 
   /**
-   * 获取本地存储的反馈数据
+   * 获取本地存储的反馈数据 - 已返回空数组
    */
   getLocalFeedbacks() {
-    try {
-      return wx.getStorageSync('local_feedbacks') || [];
-    } catch (error) {
-      console.warn('获取本地反馈失败:', error);
-      return [];
-    }
+    console.log('反馈数据存储已移除，返回空数组');
+    return [];
   }
 
   /**
-   * 清空本地反馈数据
+   * 清空本地反馈数据 - 不需要清理
    */
   clearLocalFeedbacks() {
-    try {
-      wx.removeStorageSync('local_feedbacks');
-      console.log('本地反馈数据已清空');
-    } catch (error) {
-      console.warn('清空本地反馈失败:', error);
-    }
+    console.log('反馈本地存储已移除，无需清理');
   }
 
   /**

@@ -1,7 +1,134 @@
 // pages/customs/customs.js
 const app = getApp();
-const { regionsData, loadCustomsData } = require('../../config/version-1-initial-data-compressed');
-import { adManager } from '../../utils/ad-config';
+const { adManager } = require('../../utils/ad-config');
+
+// 静态加载所有省份数据模块
+const beijingData = require('../../config/customs/beijing.js');
+const anhuiData = require('../../config/customs/anhui.js');
+const chongqingData = require('../../config/customs/chongqing.js');
+const fujianData = require('../../config/customs/fujian.js');
+const gansuData = require('../../config/customs/gansu.js');
+const guangdongData = require('../../config/customs/guangdong.js');
+const guangxiData = require('../../config/customs/guangxi.js');
+const guizhouData = require('../../config/customs/guizhou.js');
+const hainanData = require('../../config/customs/hainan.js');
+const hebeiData = require('../../config/customs/hebei.js');
+const heilongjiangData = require('../../config/customs/heilongjiang.js');
+const henanData = require('../../config/customs/henan.js');
+const hongkongData = require('../../config/customs/hongkong.js');
+const hubeiData = require('../../config/customs/hubei.js');
+const hunanData = require('../../config/customs/hunan.js');
+const jiangsuData = require('../../config/customs/jiangsu.js');
+const jiangxiData = require('../../config/customs/jiangxi.js');
+const jilinData = require('../../config/customs/jilin.js');
+const liaoningData = require('../../config/customs/liaoning.js');
+const macauData = require('../../config/customs/macau.js');
+const neimengguData = require('../../config/customs/neimenggu.js');
+const ningxiaData = require('../../config/customs/ningxia.js');
+const qinghaiData = require('../../config/customs/qinghai.js');
+const shaanxiData = require('../../config/customs/shaanxi.js');
+const shandongData = require('../../config/customs/shandong.js');
+const shanghaiData = require('../../config/customs/shanghai.js');
+const shanxiData = require('../../config/customs/shanxi.js');
+const sichuanData = require('../../config/customs/sichuan.js');
+const taiwanData = require('../../config/customs/taiwan.js');
+const tianjinData = require('../../config/customs/tianjin.js');
+const xinjiangData = require('../../config/customs/xinjiang.js');
+const xizangData = require('../../config/customs/xizang.js');
+const yunnanData = require('../../config/customs/yunnan.js');
+const zhejiangData = require('../../config/customs/zhejiang.js');
+
+// 省份数据映射 - 按照行政区划代码排序
+const regionsData = [
+  { id: 'beijing', name: '北京' },
+  { id: 'tianjin', name: '天津' },
+  { id: 'hebei', name: '河北' },
+  { id: 'shanxi', name: '山西' },
+  { id: 'neimenggu', name: '内蒙古' },
+  { id: 'liaoning', name: '辽宁' },
+  { id: 'jilin', name: '吉林' },
+  { id: 'heilongjiang', name: '黑龙江' },
+  { id: 'shanghai', name: '上海' },
+  { id: 'jiangsu', name: '江苏' },
+  { id: 'zhejiang', name: '浙江' },
+  { id: 'anhui', name: '安徽' },
+  { id: 'fujian', name: '福建' },
+  { id: 'jiangxi', name: '江西' },
+  { id: 'shandong', name: '山东' },
+  { id: 'henan', name: '河南' },
+  { id: 'hubei', name: '湖北' },
+  { id: 'hunan', name: '湖南' },
+  { id: 'guangdong', name: '广东' },
+  { id: 'guangxi', name: '广西' },
+  { id: 'hainan', name: '海南' },
+  { id: 'chongqing', name: '重庆' },
+  { id: 'sichuan', name: '四川' },
+  { id: 'guizhou', name: '贵州' },
+  { id: 'yunnan', name: '云南' },
+  { id: 'xizang', name: '西藏' },
+  { id: 'shaanxi', name: '陕西' },
+  { id: 'gansu', name: '甘肃' },
+  { id: 'qinghai', name: '青海' },
+  { id: 'ningxia', name: '宁夏' },
+  { id: 'xinjiang', name: '新疆' },
+  { id: 'hongkong', name: '香港' },
+  { id: 'macau', name: '澳门' },
+  { id: 'taiwan', name: '台湾' }
+];
+
+// 省份数据映射表
+const regionDataMap = {
+  beijing: beijingData,
+  anhui: anhuiData,
+  chongqing: chongqingData,
+  fujian: fujianData,
+  gansu: gansuData,
+  guangdong: guangdongData,
+  guangxi: guangxiData,
+  guizhou: guizhouData,
+  hainan: hainanData,
+  hebei: hebeiData,
+  heilongjiang: heilongjiangData,
+  henan: henanData,
+  hongkong: hongkongData,
+  hubei: hubeiData,
+  hunan: hunanData,
+  jiangsu: jiangsuData,
+  jiangxi: jiangxiData,
+  jilin: jilinData,
+  liaoning: liaoningData,
+  macau: macauData,
+  neimenggu: neimengguData,
+  ningxia: ningxiaData,
+  qinghai: qinghaiData,
+  shaanxi: shaanxiData,
+  shandong: shandongData,
+  shanghai: shanghaiData,
+  shanxi: shanxiData,
+  sichuan: sichuanData,
+  taiwan: taiwanData,
+  tianjin: tianjinData,
+  xinjiang: xinjiangData,
+  xizang: xizangData,
+  yunnan: yunnanData,
+  zhejiang: zhejiangData
+};
+
+// 加载地域习俗数据
+const loadCustomsData = async (regionId) => {
+  try {
+    // 从映射表中获取对应的省份数据
+    const regionData = regionDataMap[regionId];
+    if (regionData) {
+      return regionData;
+    } else {
+      throw new Error(`未找到${regionId}的数据`);
+    }
+  } catch (error) {
+    console.error(`加载${regionId}数据失败:`, error);
+    throw error;
+  }
+};
 Page({
   data: {
     selectedRegion: 'beijing',

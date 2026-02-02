@@ -293,20 +293,8 @@ Component({
           // 伪反馈 - 延迟1秒后直接返回成功
           await new Promise(resolve => setTimeout(resolve, 1000));
           
-          // 伪保存到本地存储（极简版本）
-          try {
-            const existingData = wx.getStorageSync('user_feedback_list') || [];
-            const list = Array.isArray(existingData) ? existingData : [];
-            feedbackData.id = Date.now().toString();
-            list.unshift(feedbackData);
-            if (list.length > 30) {
-              list.splice(30);
-            }
-            wx.setStorageSync('user_feedback_list', list);
-            console.log('✅ 伪反馈已保存到本地');
-          } catch (saveError) {
-            console.warn('伪保存失败，但不影响主流程:', saveError);
-          }
+      // 🔴 审核修改：移除伪本地存储，避免收集用户信息
+      // 伪本地存储功能已移除，保护用户隐私
           
           const result = { success: true, fallback: false };
           
@@ -419,34 +407,11 @@ Component({
       this.submitFeedback();
     },
 
-    // 保存反馈到本地
+    // 🔴 审核修改：移除保存反馈到本地功能
     saveFeedback(feedbackData) {
-      try {
-        const key = 'user_feedback_list';
-        let list = this.safeGetFeedbackList();
-        
-        // 添加到开头
-        list.unshift(feedbackData);
-        
-        // 限制数量，避免占用过多存储
-        if (list.length > 100) {
-          list = list.slice(0, 100);
-        }
-        
-        // 安全保存
-        const saveResult = this.safeSetFeedbackList(list);
-        
-        if (saveResult) {
-          console.log('反馈已保存:', feedbackData.id);
-          return { success: true, message: '反馈已保存到本地' };
-        } else {
-          console.error('保存反馈到存储失败');
-          throw new Error('保存到本地失败');
-        }
-      } catch (e) {
-        console.error('保存反馈失败:', e);
-        throw e;
-      }
+      // 本地保存功能已移除，避免收集用户信息
+      console.log('反馈本地保存已移除，仅通过钉钉提交');
+      return { success: true, message: '反馈已提交（本地保存已移除）' };
     },
 
     // 安全保存反馈列表到本地
@@ -821,12 +786,13 @@ Component({
 
     // 获取所有反馈数据（供外部调用）
     getAllFeedback() {
-      return wx.getStorageSync('user_feedback_list') || [];
+      console.log('反馈数据获取已禁用，返回空数组');
+      return [];
     },
 
     // 清空反馈数据（供外部调用）
     clearAllFeedback() {
-      wx.removeStorageSync('user_feedback_list');
+      console.log('反馈本地存储已移除，无需清理');
       this.setData({
         'stats.totalFeedback': 0,
         'stats.avgRating': 0

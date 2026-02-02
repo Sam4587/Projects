@@ -1,33 +1,44 @@
 const app = getApp();
-import { adManager } from '../../utils/ad-config';
+const { adManager } = require('../../utils/ad-config');
 
-// 按需加载的数据加载器
+// 静态加载所有祝福数据模块
+const generalData = require('../../config/blessings/general.js');
+const healthData = require('../../config/blessings/health.js');
+const studyData = require('../../config/blessings/study.js');
+const careerData = require('../../config/blessings/career.js');
+const horseData = require('../../config/blessings/horse.js');
+const northData = require('../../config/blessings/north.js');
+const southData = require('../../config/blessings/south.js');
+const cantoneseData = require('../../config/blessings/cantonese.js');
+const coastalData = require('../../config/blessings/coastal.js');
+const southwestData = require('../../config/blessings/southwest.js');
+const weddingData = require('../../config/blessings/wedding.js');
+const birthdayData = require('../../config/blessings/birthday.js');
+const openingData = require('../../config/blessings/opening.js');
+
+// 数据加载器
 const loadBlessingData = async (category = '全部') => {
   try {
     // 使用对象映射替代冗长的if-else链，提高代码可维护性
     const categoryMap = {
-      '全部': 'general',
-      '通用祝福': 'general',
-      '健康祝福': 'health',
-      '学业祝福': 'study',
-      '事业祝福': 'career',
-      '马年专属': 'horse',
-      '北方豪爽': 'north',
-      '江南婉约': 'south',
-      '粤语商题': 'cantonese',
-      '沿海渔家': 'coastal',
-      '西南安逸': 'southwest',
-      '婚礼祝福': 'wedding',
-      '生日祝福': 'birthday',
-      '开业祝福': 'opening'
+      '全部': generalData,
+      '通用祝福': generalData,
+      '健康祝福': healthData,
+      '学业祝福': studyData,
+      '事业祝福': careerData,
+      '马年专属': horseData,
+      '北方豪爽': northData,
+      '江南婉约': southData,
+      '粤语商题': cantoneseData,
+      '沿海渔家': coastalData,
+      '西南安逸': southwestData,
+      '婚礼祝福': weddingData,
+      '生日祝福': birthdayData,
+      '开业祝福': openingData
     };
     
-    // 获取对应的模块名称
-    const moduleName = categoryMap[category] || 'general';
-    const modulePath = `../../config/blessings/${moduleName}.js`;
-    
-    // 加载对应的祝福数据
-    const data = require(modulePath);
+    // 获取对应的模块数据
+    const data = categoryMap[category] || generalData;
     return data;
   } catch (error) {
     console.error('加载祝福语数据失败:', error);

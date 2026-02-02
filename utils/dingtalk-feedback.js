@@ -165,23 +165,15 @@ ${feedbackData.contact || '未留'}
   }
 
   /**
-   * 保存到本地
+   * 🔴 审核修改：本地保存功能已移除
    */
   saveToLocal(feedbackData) {
-    try {
-      const storageKey = 'dingtalk_feedback_local';
-      const existing = wx.getStorageSync(storageKey) || [];
-      existing.push(feedbackData);
-      wx.setStorageSync(storageKey, existing);
-
-      return {
-        success: true,
-        message: '反馈已保存到本地',
-        data: { length: existing.length }
-      };
-    } catch (error) {
-      return { success: false, error: '本地保存失败: ' + error.message };
-    }
+    // 本地保存功能已移除，避免收集用户信息
+    console.log('反馈本地保存已移除，仅通过钉钉提交');
+    return {
+      success: true,
+      message: '反馈已提交（本地保存已移除）'
+    };
   }
 
   /**

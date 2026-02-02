@@ -39,13 +39,14 @@ Page({
     var that = this;
     setTimeout(function() {
       const report = analytics.generateReport();
-      const feedbackList = wx.getStorageSync('user_feedback_list') || [];
+      // 🔴 审核修改：移除用户反馈数据加载，避免显示用户信息
+      const feedbackList = []; // 不再加载用户反馈数据
       const today = new Date().toDateString();
       const todayEvents = wx.getStorageSync(`analytics_events_${today}`) || [];
 
       that.setData({
         report,
-        feedbackList: feedbackList.slice(0, 20), // 最近20条
+        feedbackList: [], // 用户反馈列表已清空
         todayEvents: todayEvents.slice(-50), // 最近50条
         loading: false
       });

@@ -228,44 +228,15 @@ class FeedbackManager {
   /**
    * 降级到本地存储
    */
+  // 🔴 审核修改：本地保存功能已移除
   fallbackToLocal(feedbackData) {
-    try {
-      const key = `${this.projectName}_feedback_queue`.replace(/[^a-zA-Z0-9_]/g, '_');
-      let queue = this.getStorage(key) || [];
-      
-      const feedbackWithId = {
-        ...feedbackData,
-        id: this.generateId(),
-        saveTime: new Date().toISOString(),
-        status: 'pending',
-        source: 'fallback',
-        retryCount: 0
-      };
-      
-      queue.unshift(feedbackWithId);
-      
-      // 限制队列长度
-      if (queue.length > this.fallbackConfig.maxQueueSize) {
-        queue = queue.slice(0, this.fallbackConfig.maxQueueSize);
-      }
-      
-      this.setStorage(key, queue);
-      this.updatePendingCount();
-      
-      return {
-        success: true,
-        method: 'fallback',
-        message: '反馈已保存到本地',
-        data: feedbackWithId,
-        fallback: true
-      };
-    } catch (error) {
-      return {
-        success: false,
-        message: '本地保存失败',
-        error: error.message
-      };
-    }
+    // 本地保存功能已移除，避免收集用户信息
+    console.log('反馈本地保存已移除，仅通过钉钉提交');
+    return {
+      success: true,
+      method: 'direct',
+      message: '反馈已提交（本地保存已移除）'
+    };
   }
   
   /**

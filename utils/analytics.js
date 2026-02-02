@@ -367,8 +367,8 @@ class Analytics {
       'stats_duration',
       'stats_events',
       'stats_performance',
-      'stats_errors',
-      'user_feedback_list'
+      'stats_errors'
+      // 🔴 审核修改：移除 'user_feedback_list'，不再清理用户反馈数据
     ];
     
     // 清除今日事件

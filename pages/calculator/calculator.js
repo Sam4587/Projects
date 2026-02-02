@@ -235,33 +235,8 @@ Page({
       'very-close': '非常要好'
     };
 
-    // 存储到本地
-    const feedback = wx.getStorageSync('pseudo_feedback') || [];
-    feedback.push({
-      relationship: relationshipMap[relationship] || relationship,
-      closeness: closenessMap[closeness] || closeness,
-      suggested: `${result.low}-${result.high}`,
-      actual: parseInt(actualAmount),
-      timestamp: Date.now(),
-      date: new Date().toLocaleString()
-    });
-    
-    // 最多保存100条记录
-    if (feedback.length > 100) {
-      feedback.splice(0, feedback.length - 100);
-    }
-    
-    // 🔴 中优先级修复：添加本地存储错误处理
-    try {
-      wx.setStorageSync('pseudo_feedback', feedback);
-    } catch (storageError) {
-      console.warn('本地存储失败:', storageError);
-      wx.showToast({
-        title: '反馈记录失败，但已提交',
-        icon: 'none',
-        duration: 2000
-      });
-    }
+    // 🔴 审核修改：移除本地存储功能，避免收集用户信息
+    // 本地存储功能已移除，仅显示成功提示
 
     // 显示成功提示
     wx.showModal({
@@ -288,6 +263,6 @@ Page({
       });
     }
 
-    console.log('伪反馈已保存:', feedback.length, '条记录');
+    console.log('伪反馈已提交（本地存储已移除）');
   }
 });
