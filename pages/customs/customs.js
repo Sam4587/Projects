@@ -120,6 +120,11 @@ const loadCustomsData = async (regionId) => {
     // 从映射表中获取对应的省份数据
     const regionData = regionDataMap[regionId];
     if (regionData) {
+      // 数据格式可能是 {regionId: {...}} 或直接 {...}
+      // 兼容两种格式
+      if (regionData[regionId]) {
+        return regionData[regionId];
+      }
       return regionData;
     } else {
       throw new Error(`未找到${regionId}的数据`);
@@ -136,6 +141,13 @@ Page({
     customsTab: 'gift',
     loading: false,  // 🔴 P0: 加载状态
     loadingText: '',  // 🔴 P0: 加载文本
+    // P0: 添加特殊场合tab支持
+    occasionTabs: ['gift', 'giving', 'special'],
+    // P0: 地区对比功能
+    showCompare: false,
+    compareRegion1Index: 0,
+    compareRegion2Index: 1,
+    compareData: null,
     // unlockedDeepReadings: [],  // 已解锁的深度解读地区（暂时隐藏）
   },
 
@@ -311,7 +323,92 @@ Page({
         tone: '朴实厚重，注重传统',
         luckyNumbers: [66, 88, 168],
         colors: ['#FF0000', '#FFD700']
-      }
+      },
+      // 补充特殊场合习俗数据
+      specialOccasions: {
+        wedding: {
+          amount: '500-2000元',
+          customs: ['婚礼当天送红包', '新婚夫妇回礼'],
+          tips: '婚礼红包要根据关系远近和当地习俗来确定'
+        },
+        birthday: {
+          amount: '200-800元',
+          customs: ['寿宴送礼', '整岁生日重视'],
+          tips: '老人过寿要更加重视'
+        },
+        funeral: {
+          amount: '500-1000元',
+          customs: ['白事随礼', '素色封包'],
+          tips: '葬礼红包要体现哀悼之情'
+        }
+      },
+      // 补充禁忌信息
+      taboo: ['避免使用与"死"谐音的数字', '红包金额要避开"4"'],
+      // 补充文化故事
+      story: `${regionName}的红包文化历史悠久，体现了当地人民对传统文化的重视和对亲友的美好祝愿。`
     };
+  },
+
+  // P0: 打开地区对比弹窗
+  openCompare() {
+    this.setData({ showCompare: true });
+    // 自动加载对比数据
+    this.loadCompareData();
+  },
+
+  // P0: 关闭地区对比弹窗
+  closeCompare() {
+    this.setData({ showCompare: false });
+  },
+
+  // P0: 地区1选择变化
+  onCompareRegion1Change(e) {
+    this.setData({ compareRegion1Index: e.detail.value });
+    this.loadCompareData();
+  },
+
+  // P0: 地区2选择变化
+  onCompareRegion2Change(e) {
+    this.setData({ compareRegion2Index: e.detail.value });
+    this.loadCompareData();
+  },
+
+  // P0: 加载对比数据
+  async loadCompareData() {
+    const page = this;
+    const region1Index = page.data.compareRegion1Index;
+    const region2Index = page.data.compareRegion2Index;
+    const regions = page.data.regions;
+
+    if (!regions || region1Index === region2Index) {
+      return;
+    }
+
+    const region1Id = regions[region1Index]?.id;
+    const region2Id = regions[region2Index]?.id;
+
+    if (!region1Id || !region2Id) {
+      return;
+    }
+
+    try {
+      const [data1, data2] = await Promise.all([
+        loadCustomsData(region1Id),
+        loadCustomsData(region2Id)
+      ]);
+
+      // 处理数据格式兼容
+      const region1Data = data1[region1Id] || data1 || page.createDefaultRegionData(regions[region1Index].name);
+      const region2Data = data2[region2Id] || data2 || page.createDefaultRegionData(regions[region2Index].name);
+
+      page.setData({
+        compareData: {
+          region1: region1Data,
+          region2: region2Data
+        }
+      });
+    } catch (error) {
+      console.error('加载对比数据失败:', error);
+    }
   }
 });

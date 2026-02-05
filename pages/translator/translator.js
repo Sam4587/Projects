@@ -60,7 +60,14 @@ Page({
     phrases: [],
     // 🔴 P0: 祝福语搜索索引,加速查找
     phraseIndex: new Map(),
-    searchDebounceTimer: null
+    searchDebounceTimer: null,
+    // P0: 翻译历史记录
+    translationHistory: [],
+    showHistory: false,
+    // P0: 收藏功能
+    favorites: [],
+    showFavorites: false,
+    favoriteIds: new Set(),
   },
 
   onLoad: function(options) {
@@ -71,6 +78,10 @@ Page({
 
     // 初始化插屏广告
     adManager.createInterstitialAd();
+
+    // 加载翻译历史记录和收藏数据
+    this.loadTranslationHistory();
+    this.loadFavorites();
 
     // 🔴 P0: 移除人为延迟,立即加载数据
     var that = this;
@@ -105,6 +116,226 @@ Page({
         });
       }
     })();
+  },
+
+  // 加载翻译历史记录
+  loadTranslationHistory() {
+    try {
+      const history = wx.getStorageSync('translation_history') || [];
+      // 为每条记录添加时间文本
+      const historyWithTime = history.map(item => ({
+        ...item,
+        timeText: this.formatTime(item.timestamp)
+      }));
+      this.setData({ translationHistory: historyWithTime });
+    } catch (error) {
+      console.error('加载历史记录失败:', error);
+    }
+  },
+
+  // 格式化时间
+  formatTime(timestamp) {
+    const now = Date.now();
+    const diff = now - timestamp;
+
+    if (diff < 60000) {
+      return '刚刚';
+    } else if (diff < 3600000) {
+      return `${Math.floor(diff / 60000)}分钟前`;
+    } else if (diff < 86400000) {
+      return `${Math.floor(diff / 3600000)}小时前`;
+    } else if (diff < 604800000) {
+      return `${Math.floor(diff / 86400000)}天前`;
+    } else {
+      const date = new Date(timestamp);
+      return `${date.getMonth() + 1}月${date.getDate()}日`;
+    }
+  },
+
+  // 保存翻译历史记录
+  saveTranslationHistory(phrase, result) {
+    try {
+      const history = wx.getStorageSync('translation_history') || [];
+      const record = {
+        id: Date.now().toString(),
+        phrase: phrase.traditional,
+        result: result,
+        timestamp: Date.now()
+      };
+
+      // 添加到开头
+      history.unshift(record);
+
+      // 限制最多100条
+      if (history.length > 100) {
+        history = history.slice(0, 100);
+      }
+
+      wx.setStorageSync('translation_history', history);
+    } catch (error) {
+      console.error('保存历史记录失败:', error);
+    }
+  },
+
+  // 加载收藏数据
+  loadFavorites() {
+    try {
+      const favorites = wx.getStorageSync('favorite_phrases') || [];
+      this.setData({
+        favorites: favorites,
+        favoriteIds: new Set(favorites.map(f => f.id || f.traditional))
+      });
+    } catch (error) {
+      console.error('加载收藏失败:', error);
+    }
+  },
+
+  // 添加收藏
+  addToFavorites(phrase) {
+    try {
+      const favorites = this.data.favorites || [];
+      const exists = favorites.some(f =>
+        (phrase.traditional && f.traditional === phrase.traditional) ||
+        (phrase.id && phrase.id === phrase.id)
+      );
+
+      if (!exists && favorites.length < 50) {
+        favorites.unshift({
+          id: phrase.id || phrase.traditional,
+          traditional: phrase.traditional,
+          modern: phrase.modern,
+          meaning: phrase.meaning,
+          usage: phrase.usage,
+          category: phrase.category,
+          timestamp: Date.now()
+        });
+
+        wx.setStorageSync('favorite_phrases', favorites);
+        this.setData({ favorites });
+        wx.showToast({
+          title: '已收藏',
+          icon: 'success'
+        });
+      } else if (exists) {
+        wx.showToast({
+          title: '已收藏',
+          icon: 'none'
+        });
+      } else {
+        wx.showToast({
+          title: '收藏已满（最多50条）',
+          icon: 'none'
+        });
+      }
+    } catch (error) {
+      console.error('收藏失败:', error);
+    }
+  },
+
+  // 移除收藏
+  removeFavorite(id) {
+    try {
+      let favorites = this.data.favorites || [];
+      favorites = favorites.filter(f => (f.id !== id && f.traditional !== id));
+      wx.setStorageSync('favorite_phrases', favorites);
+      this.setData({ favorites });
+      wx.showToast({
+        title: '已取消收藏',
+        icon: 'success'
+      });
+    } catch (error) {
+      console.error('取消收藏失败:', error);
+    }
+  },
+
+  // 显示历史记录
+  showHistory() {
+    this.setData({ showHistory: true });
+  },
+
+  // 隐藏历史记录
+  hideHistory() {
+    this.setData({ showHistory: false });
+  },
+
+  // 清空历史记录
+  clearHistory() {
+    wx.showModal({
+      title: '确认清空',
+      content: '确定要清空所有历史记录吗？',
+      success: (res) => {
+        if (res.confirm) {
+          wx.setStorageSync('translation_history', []);
+          this.setData({ translationHistory: [] });
+          wx.showToast({
+            title: '已清空',
+            icon: 'success'
+          });
+        }
+      }
+    });
+  },
+
+  // 选择历史记录项
+  selectHistoryItem(e) {
+    const phraseText = e.currentTarget.dataset.phrase;
+    this.setData({ inputText: phraseText });
+    this.hideHistory();
+    // 自动触发翻译
+    this.translateText();
+  },
+
+  // 切换收藏状态
+  toggleFavorite() {
+    const translation = this.data.translation;
+    if (!translation) return;
+
+    const favorites = this.data.favorites || [];
+    const exists = favorites.some(f =>
+      (translation.traditional && f.traditional === translation.traditional) ||
+      (translation.id && f.id === translation.id)
+    );
+
+    if (exists) {
+      // 已收藏，执行移除
+      this.removeFromFavorites(translation);
+    } else {
+      // 未收藏，执行添加
+      this.addToFavorites(translation);
+    }
+
+    // 更新当前翻译的收藏状态
+    this.setData({
+      'translation.isFavorite': !exists
+    });
+
+    // 刷新收藏列表
+    this.loadFavorites();
+  },
+
+  // 从收藏中移除（内部函数）
+  removeFromFavorites(phrase) {
+    try {
+      let favorites = this.data.favorites || [];
+      favorites = favorites.filter(f =>
+        f.id !== (phrase.id || phrase.traditional) &&
+        f.traditional !== (phrase.id || phrase.traditional)
+      );
+      wx.setStorageSync('favorite_phrases', favorites);
+      this.setData({ favorites });
+    } catch (error) {
+      console.error('取消收藏失败:', error);
+    }
+  },
+
+  // 显示收藏
+  showFavorites() {
+    this.setData({ showFavorites: true });
+  },
+
+  // 隐藏收藏
+  hideFavorites() {
+    this.setData({ showFavorites: false });
   },
 
   onShow: function() {
@@ -210,7 +441,10 @@ Page({
           icon: 'success',
           duration: 2000
         });
-        
+
+        // 保存翻译历史记录
+        this.saveTranslationHistory(found, found);
+
         // 触发插屏广告检查（翻译成功后）
         setTimeout(() => {
           this.checkAndShowInterstitialAd();
