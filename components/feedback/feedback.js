@@ -81,18 +81,18 @@ Component({
    */
   lifetimes: {
     attached() {
-      // 初始化按钮位置（屏幕右侧中间）
+      // 初始化按钮位置（屏幕右侧中间，增加安全边距）
       const windowInfo = wx.getWindowInfo();
       this.setData({
-        'btnPosition.x': windowInfo.windowWidth - 80, // 调整位置确保可见
-        'btnPosition.y': windowInfo.windowHeight * 0.5, // 调整到中间位置
+        'btnPosition.x': windowInfo.windowWidth - 120, // 距离右边距120px，确保不贴边
+        'btnPosition.y': windowInfo.windowHeight * 0.6, // 屏幕高度的60%处
         'btnSize.width': 60,
         'btnSize.height': 60
       });
-      
+
       // 加载统计信息
       this.loadStats();
-      
+
       // 检查钉钉服务状态
       this.checkDingTalkStatus();
     }
@@ -736,14 +736,25 @@ Component({
       });
     }
 
-    // 更新按钮位置
-    const windowInfo = wx.getWindowInfo();
+    // 更新按钮位置 - 使用相对偏移而不是绝对位置
     let newX = btnPosition.x + moveX;
     let newY = btnPosition.y + moveY;
 
-    // 边界限制
-    newX = Math.max(0, Math.min(newX, windowInfo.windowWidth - 50));
-    newY = Math.max(0, Math.min(newY, windowInfo.windowHeight - 50));
+    // 获取窗口尺寸和按钮尺寸
+    const windowInfo = wx.getWindowInfo();
+    const btnWidth = this.data.btnSize.width || 60;
+    const btnHeight = this.data.btnSize.height || 60;
+
+    // 🔴 P1: 更严格的边界限制，确保按钮始终在屏幕内
+    // 水平方向：确保按钮不会移出屏幕
+    const minX = 20; // 距离左边界最小距离
+    const maxX = windowInfo.windowWidth - btnWidth - 20; // 距离右边界最小距离
+    newX = Math.max(minX, Math.min(newX, maxX));
+
+    // 垂直方向：确保按钮不会移出屏幕
+    const minY = 20; // 距离上边界最小距离
+    const maxY = windowInfo.windowHeight - btnHeight - 20; // 距离下边界最小距离
+    newY = Math.max(minY, Math.min(newY, maxY));
 
     this.setData({
       'btnPosition.x': newX,
