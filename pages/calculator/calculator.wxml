@@ -44,30 +44,30 @@
       <view class="form-group">
         <view class="form-label">选择亲疏程度</view>
         <view class="category-grid">
-          <view 
-            class="category-btn {{closeness === 'acquaintance' ? 'active' : ''}}" 
-            bindtap="selectCloseness" 
+          <view
+            class="category-btn {{closeness === 'acquaintance' ? 'active' : ''}}"
+            bindtap="selectCloseness"
             data-close="acquaintance"
           >
             点头之交
           </view>
-          <view 
-            class="category-btn {{closeness === 'normal' ? 'active' : ''}}" 
-            bindtap="selectCloseness" 
+          <view
+            class="category-btn {{closeness === 'normal' ? 'active' : ''}}"
+            bindtap="selectCloseness"
             data-close="normal"
           >
             普通关系
           </view>
-          <view 
-            class="category-btn {{closeness === 'close' ? 'active' : ''}}" 
-            bindtap="selectCloseness" 
+          <view
+            class="category-btn {{closeness === 'close' ? 'active' : ''}}"
+            bindtap="selectCloseness"
             data-close="close"
           >
             关系密切
           </view>
-          <view 
-            class="category-btn {{closeness === 'very-close' ? 'active' : ''}}" 
-            bindtap="selectCloseness" 
+          <view
+            class="category-btn {{closeness === 'very-close' ? 'active' : ''}}"
+            bindtap="selectCloseness"
             data-close="very-close"
           >
             非常要好
@@ -75,18 +75,119 @@
         </view>
       </view>
 
-      <button 
-        class="btn btn-primary" 
-        bindtap="calculateAmount" 
+      <!-- 场合选择 -->
+      <view class="form-group">
+        <view class="form-label">
+          <text>选择场合</text>
+          <text class="optional-tag">(可选)</text>
+        </view>
+        <view class="selector-trigger" bindtap="showOccasionSelector">
+          <text class="selector-text">{{occasion ? occasionList.find(i => i.id === occasion).name : '请选择场合'}}</text>
+          <text class="selector-arrow">▼</text>
+        </view>
+      </view>
+
+      <!-- 地域选择 -->
+      <view class="form-group">
+        <view class="form-label">
+          <text>选择地域</text>
+          <text class="optional-tag">(可选)</text>
+        </view>
+        <view class="selector-trigger" bindtap="showRegionSelector">
+          <text class="selector-text">{{region ? regionList.find(i => i.id === region).name : '请选择地域'}}</text>
+          <text class="selector-arrow">▼</text>
+        </view>
+      </view>
+
+      <!-- 预算设置按钮 -->
+      <view class="budget-trigger" bindtap="showBudgetSettings">
+        <text class="budget-icon">💰</text>
+        <text class="budget-text">{{budgetMin && budgetMax ? '预算: ¥' + budgetMin + '-' + budgetMax : '设置预算范围'}}</text>
+      </view>
+
+      <button
+        class="btn btn-primary"
+        bindtap="calculateAmount"
         disabled="{{!relationship || !closeness}}"
       >
         计算推荐金额
       </button>
 
       <view wx:if="{{result}}" class="result-card">
-        <view class="result-title">推荐金额</view>
-        <view class="result-amount">¥{{result.low}} - ¥{{result.high}}</view>
-        <view class="result-message">{{result.message}}</view>
+        <!-- 推荐金额和置信度 -->
+        <view class="result-main">
+          <view class="result-amount-section">
+            <view class="result-title">推荐金额</view>
+            <view class="result-amount">¥{{result.amount}}</view>
+            <view class="result-confidence">
+              <text class="confidence-label">{{result.confidenceLabel}}</text>
+              <progress percent="{{result.confidence * 100}}" activeColor="#dc2626" stroke-width="4" />
+            </view>
+          </view>
+
+          <!-- 金额范围 -->
+          <view class="result-range-section">
+            <view class="range-label">参考范围</view>
+            <view class="range-value">¥{{result.range.low}} - ¥{{result.range.high}}</view>
+          </view>
+        </view>
+
+        <!-- 推荐依据 -->
+        <view class="result-factors">
+          <view class="factors-title">📊 推荐依据</view>
+          <view class="factors-list">
+            <view class="factor-item">
+              <text class="factor-label">关系类型</text>
+              <text class="factor-value">{{result.factors.relationship}}</text>
+            </view>
+            <view class="factor-item">
+              <text class="factor-label">亲疏程度</text>
+              <text class="factor-value">{{result.factors.closeness}}</text>
+            </view>
+            <view wx:if="{{region}}" class="factor-item">
+              <text class="factor-label">所在地域</text>
+              <text class="factor-value">{{result.factors.region}}</text>
+            </view>
+            <view class="factor-item">
+              <text class="factor-label">场合类型</text>
+              <text class="factor-value">{{result.factors.occasion}}</text>
+            </view>
+            <view class="factor-item">
+              <text class="factor-label">预算范围</text>
+              <text class="factor-value">{{result.factors.budget}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 地域习俗 -->
+        <view wx:if="{{result.customs}}" class="result-customs">
+          <view class="customs-title">🏮 地域习俗</view>
+          <view class="customs-content">
+            <view class="customs-tips">
+              <text class="tips-text">{{result.customs.tips}}</text>
+            </view>
+            <view class="customs-traditions">
+              <view wx:for="{{result.customs.traditions}}" wx:key="*this" class="tradition-item">
+                <text>• {{item}}</text>
+              </view>
+            </view>
+            <view class="customs-numbers">
+              <text class="numbers-label">吉利数字：</text>
+              <text class="numbers-list">{{result.customs.preferredNumbers.join(', ')}}</text>
+            </view>
+          </view>
+        </view>
+
+        <!-- 历史对比 -->
+        <view wx:if="{{result.comparison}}" class="result-comparison">
+          <view class="comparison-title">📈 您的历史平均：¥{{result.comparison.userAverage}}</view>
+          <view class="comparison-diff">
+            <text class="diff-value">当前推荐 vs 历史平均</text>
+            <text class="diff-amount {{result.comparison.difference > 0 ? 'positive' : 'negative'}}">
+              {{result.comparison.difference}}
+            </text>
+          </view>
+        </view>
         
         <!-- Banner广告区域 - 临时隐藏，过审后将恢复 -->
         <!--
@@ -177,4 +278,94 @@
 
   <!-- 用户反馈组件 -->
   <feedback pageName="calculator" />
+
+  <!-- 预算设置弹窗 -->
+  <view wx:if="{{showBudgetSettings}}" class="modal-overlay" bindtap="hideBudgetSettings">
+    <view class="modal-content budget-modal" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">预算范围设置</text>
+        <text class="modal-close" bindtap="hideBudgetSettings">✕</text>
+      </view>
+
+      <view class="budget-input-section">
+        <view class="input-group">
+          <text class="input-label">最低金额</text>
+          <input
+            class="budget-input"
+            type="number"
+            placeholder="不设置"
+            value="{{budgetMin}}"
+            bindinput="onMinBudgetInput"
+          />
+          <text class="input-unit">元</text>
+        </view>
+
+        <view class="input-group">
+          <text class="input-label">最高金额</text>
+          <input
+            class="budget-input"
+            type="number"
+            placeholder="不设置"
+            value="{{budgetMax}}"
+            bindinput="onMaxBudgetInput"
+          />
+          <text class="input-unit">元</text>
+        </view>
+      </view>
+
+      <view class="budget-tips">
+        <text class="tips-text">💡 设置预算后,推荐金额会自动调整到范围内</text>
+      </view>
+
+      <button class="btn btn-primary modal-btn" bindtap="hideBudgetSettings">
+        确认
+      </button>
+    </view>
+  </view>
+
+  <!-- 场合选择弹窗 -->
+  <view wx:if="{{showOccasionPicker}}" class="modal-overlay" bindtap="hideOccasionSelector">
+    <view class="modal-content picker-modal" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">选择场合</text>
+        <text class="modal-close" bindtap="hideOccasionSelector">✕</text>
+      </view>
+
+      <scroll-view class="picker-list" scroll-y="true">
+        <view
+          wx:for="{{occasionList}}"
+          wx:key="id"
+          class="picker-item {{occasion === item.id ? 'selected' : ''}}"
+          bindtap="selectOccasion"
+          data-occasion="{{item.id}}"
+        >
+          <text class="picker-text">{{item.name}}</text>
+          <text wx:if="{{occasion === item.id}}" class="picker-check">✓</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 地域选择弹窗 -->
+  <view wx:if="{{showRegionPicker}}" class="modal-overlay" bindtap="hideRegionSelector">
+    <view class="modal-content picker-modal" catchtap="stopPropagation">
+      <view class="modal-header">
+        <text class="modal-title">选择地域</text>
+        <text class="modal-close" bindtap="hideRegionSelector">✕</text>
+      </view>
+
+      <scroll-view class="picker-list" scroll-y="true">
+        <view
+          wx:for="{{regionList}}"
+          wx:key="id"
+          class="picker-item {{region === item.id ? 'selected' : ''}}"
+          bindtap="selectRegion"
+          data-region="{{item.id}}"
+        >
+          <text class="picker-text">{{item.name}}</text>
+          <text wx:if="{{region === item.id}}" class="picker-check">✓</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
 </view>

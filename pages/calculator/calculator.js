@@ -1,12 +1,17 @@
 // pages/calculator/calculator.js
 const app = getApp();
 import { adManager } from '../../utils/ad-config';
+const SmartRecommendationEngine = require('../../utils/smart-recommendation-engine');
+
 Page({
   data: {
     // 表单数据
     relationship: '',
     closeness: '',
-    occasion: '',
+    occasion: 'general', // 默认一般场合
+    region: '', // 地域选择
+    budgetMin: '', // 预算最低金额
+    budgetMax: '', // 预算最高金额
     // 计算结果
     result: null,
     // 推荐金额列表
@@ -15,12 +20,34 @@ Page({
     showFeedbackModal: false, // 是否显示反馈成功弹窗
     loading: false,  // 🔴 P0: 加载状态
     loadingText: '',  // 🔴 P0: 加载文本
-    showBannerAd: false  // Banner广告显示状态
+    showBannerAd: false,  // Banner广告显示状态
+    showBudgetSettings: false,  // 是否显示预算设置
+    showOccasionPicker: false,  // 是否显示场合选择
+    showRegionPicker: false,  // 是否显示地域选择
+    regionList: [],  // 地域列表
+    occasionList: [  // 场合列表
+      { id: 'general', name: '一般场合' },
+      { id: 'birthday', name: '生日' },
+      { id: 'wedding', name: '婚礼' },
+      { id: 'funeral', name: '葬礼' },
+      { id: 'new-year', name: '春节' },
+      { id: 'graduation', name: '毕业' },
+      { id: 'house-warming', name: '乔迁' },
+      { id: 'baby-birth', name: '满月' }
+    ]
   },
 
   // 生命周期函数
   onLoad: function(options) {
     app.globalData.currentRoute = 'pages/calculator/calculator';
+
+    // 初始化智能推荐引擎
+    this.recommendationEngine = new SmartRecommendationEngine();
+
+    // 获取地域列表
+    this.setData({
+      regionList: this.recommendationEngine.regionalRules.getAllRegions()
+    });
 
     // 广告组件 - 临时禁用，过审后恢复
     // adManager.createBannerAd();
@@ -53,15 +80,74 @@ Page({
     this.setData({ closeness });
   },
 
+  // 选择场合
+  selectOccasion(e) {
+    const occasion = e.currentTarget.dataset.occasion;
+    this.setData({ occasion, showOccasionPicker: false });
+  },
+
+  // 显示场合选择器
+  showOccasionSelector() {
+    this.setData({ showOccasionPicker: true });
+  },
+
+  // 关闭场合选择器
+  hideOccasionSelector() {
+    this.setData({ showOccasionPicker: false });
+  },
+
+  // 选择地域
+  selectRegion(e) {
+    const region = e.currentTarget.dataset.region;
+    this.setData({ region, showRegionPicker: false });
+  },
+
+  // 显示地域选择器
+  showRegionSelector() {
+    this.setData({ showRegionPicker: true });
+  },
+
+  // 关闭地域选择器
+  hideRegionSelector() {
+    this.setData({ showRegionPicker: false });
+  },
+
+  // 显示预算设置
+  showBudgetSettings() {
+    this.setData({ showBudgetSettings: true });
+  },
+
+  // 关闭预算设置
+  hideBudgetSettings() {
+    this.setData({ showBudgetSettings: false });
+  },
+
+  // 输入最低预算
+  onMinBudgetInput(e) {
+    const value = e.detail.value;
+    this.setData({ budgetMin: value });
+  },
+
+  // 输入最高预算
+  onMaxBudgetInput(e) {
+    const value = e.detail.value;
+    this.setData({ budgetMax: value });
+  },
+
+  // 阻止事件冒泡
+  stopPropagation() {
+    // 阻止点击事件冒泡到modal-overlay
+  },
+
   calculateAmount() {
-    const { relationship, closeness } = this.data;
-    
+    const { relationship, closeness, occasion, region, budgetMin, budgetMax } = this.data;
+
     if (!relationship || !closeness) return;
-    
+
     // 🔴 中优先级修复：添加关系类型和亲疏程度的有效性验证
     const validRelationships = ['family', 'friend', 'colleague', 'boss'];
     const validCloseness = ['acquaintance', 'normal', 'close', 'very-close'];
-    
+
     if (!validRelationships.includes(relationship)) {
       wx.showToast({
         title: '请选择有效的关系类型',
@@ -70,7 +156,7 @@ Page({
       });
       return;
     }
-    
+
     if (!validCloseness.includes(closeness)) {
       wx.showToast({
         title: '请选择有效的亲疏程度',
@@ -80,6 +166,38 @@ Page({
       return;
     }
 
+    // 构建预算范围
+    let budget = null;
+    if (budgetMin && budgetMax) {
+      budget = {
+        min: parseInt(budgetMin),
+        max: parseInt(budgetMax)
+      };
+    }
+
+    // 使用智能推荐引擎计算推荐金额
+    try {
+      const recommendation = this.recommendationEngine.recommend({
+        relationship,
+        closeness,
+        occasion,
+        region,
+        budget
+      });
+
+      this.setData({
+        result: recommendation
+      });
+    } catch (error) {
+      console.error('智能推荐计算失败:', error);
+
+      // 降级到传统计算方式
+      this.fallbackCalculate(relationship, closeness);
+    }
+  },
+
+  // 降级计算方法（当智能推荐失败时使用）
+  fallbackCalculate(relationship, closeness) {
     const baseAmounts = {
       family: 800,
       friend: 500,
@@ -128,18 +246,28 @@ Page({
       high: amount + 200,
       message: '量力而行，心意最重要'
     };
-    
+
     this.setData({
       result: {
         amount,
-        ...suggestion
+        range: {
+          low: suggestion.low,
+          high: suggestion.high,
+          recommended: amount
+        },
+        confidence: 0.5,
+        confidenceLabel: '仅供参考',
+        factors: {
+          relationship: relationship,
+          closeness: closeness,
+          region: '未选择',
+          occasion: '一般场合',
+          budget: '未设置'
+        },
+        customs: null,
+        comparison: null
       }
     });
-    
-    // Banner广告 - 临时隐藏，过审后将恢复
-    // setTimeout(() => {
-    //   this.showCalculatorBannerAd();
-    // }, 100);
   },
 
   // 输入实际金额

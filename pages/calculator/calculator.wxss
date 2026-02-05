@@ -387,3 +387,394 @@
     opacity: 0.6;
   }
 }
+
+/* 新增样式：选择器触发器 */
+.selector-trigger {
+  background: #fafafa;
+  border: 2rpx solid #e5e7eb;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.3s ease;
+}
+
+.selector-trigger:active {
+  background: #f0f0f0;
+}
+
+.selector-text {
+  font-size: 28rpx;
+  color: #1f2937;
+  flex: 1;
+}
+
+.selector-arrow {
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.optional-tag {
+  font-size: 22rpx;
+  color: #a16207;
+  margin-left: 8rpx;
+  opacity: 0.7;
+}
+
+/* 新增样式：预算设置触发器 */
+.budget-trigger {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffaf0 100%);
+  border: 2rpx solid #fbbf24;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-bottom: 24rpx;
+  transition: all 0.3s ease;
+}
+
+.budget-trigger:active {
+  transform: scale(0.98);
+}
+
+.budget-icon {
+  font-size: 28rpx;
+}
+
+.budget-text {
+  font-size: 26rpx;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* 新增样式：弹窗遮罩层 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* 新增样式：弹窗内容 */
+.modal-content {
+  background: white;
+  width: 100%;
+  border-radius: 24rpx 24rpx 0 0;
+  padding: 0;
+  animation: slideUp 0.3s ease;
+  max-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* 新增样式：弹窗头部 */
+.modal-header {
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fafafa;
+}
+
+.modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #1f2937;
+}
+
+.modal-close {
+  font-size: 40rpx;
+  color: #6b7280;
+  line-height: 1;
+}
+
+/* 新增样式：预算弹窗 */
+.budget-modal {
+  border-radius: 24rpx;
+}
+
+.budget-input-section {
+  padding: 32rpx;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: #fafafa;
+  border: 1rpx solid #e5e7eb;
+  border-radius: 12rpx;
+  padding: 24rpx;
+  margin-bottom: 16rpx;
+}
+
+.input-label {
+  font-size: 28rpx;
+  color: #1f2937;
+  width: 160rpx;
+}
+
+.budget-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1f2937;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.input-unit {
+  font-size: 28rpx;
+  color: #6b7280;
+  margin-left: 16rpx;
+}
+
+.budget-tips {
+  padding: 0 32rpx 24rpx;
+}
+
+/* 新增样式：选择器弹窗 */
+.picker-modal {
+  border-radius: 24rpx;
+  max-height: 60vh;
+}
+
+.picker-list {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.picker-item {
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.2s ease;
+}
+
+.picker-item:active {
+  background: #f5f5f5;
+}
+
+.picker-item.selected {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffaf0 100%);
+}
+
+.picker-text {
+  font-size: 28rpx;
+  color: #1f2937;
+  flex: 1;
+}
+
+.picker-check {
+  font-size: 32rpx;
+  color: #dc2626;
+  font-weight: bold;
+}
+
+.modal-btn {
+  margin: 32rpx;
+  border-radius: 0 0 24rpx 24rpx;
+}
+
+/* 新增样式：智能推荐结果 */
+.result-main {
+  padding: 32rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.result-amount-section {
+  text-align: center;
+  margin-bottom: 24rpx;
+}
+
+.result-confidence {
+  margin-top: 16rpx;
+}
+
+.confidence-label {
+  font-size: 24rpx;
+  color: #6b7280;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.result-range-section {
+  padding: 32rpx;
+  background: #f0fdf4;
+  border-radius: 12rpx;
+  margin-bottom: 24rpx;
+  text-align: center;
+}
+
+.range-label {
+  font-size: 24rpx;
+  color: #6b7280;
+  margin-bottom: 8rpx;
+}
+
+.range-value {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #dc2626;
+}
+
+/* 新增样式：推荐依据 */
+.result-factors {
+  padding: 32rpx;
+}
+
+.factors-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 16rpx;
+}
+
+.factors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.factor-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.factor-item:last-child {
+  border-bottom: none;
+}
+
+.factor-label {
+  font-size: 26rpx;
+  color: #6b7280;
+}
+
+.factor-value {
+  font-size: 26rpx;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* 新增样式：地域习俗 */
+.result-customs {
+  padding: 32rpx;
+  background: #f0fdf4;
+  border-radius: 12rpx;
+  margin-bottom: 24rpx;
+}
+
+.customs-title {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1f2937;
+  margin-bottom: 16rpx;
+}
+
+.customs-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.customs-tips {
+  background: #fff9c6;
+  padding: 16rpx;
+  border-radius: 8rpx;
+  border-left: 4rpx solid #dc2626;
+}
+
+.customs-traditions {
+  padding: 0 16rpx;
+}
+
+.tradition-item {
+  font-size: 24rpx;
+  color: #6b7280;
+  line-height: 1.4;
+}
+
+.customs-numbers {
+  padding: 0 16rpx;
+}
+
+.numbers-label {
+  font-size: 24rpx;
+  color: #6b7280;
+}
+
+.numbers-list {
+  font-size: 24rpx;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+/* 新增样式：历史对比 */
+.result-comparison {
+  padding: 32rpx;
+  background: linear-gradient(135deg, #fef3c7 0%, #fffaf0 100%);
+  border-radius: 12rpx;
+  text-align: center;
+}
+
+.comparison-title {
+  font-size: 26rpx;
+  color: #6b7280;
+  margin-bottom: 12rpx;
+}
+
+.comparison-diff {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.diff-value {
+  font-size: 22rpx;
+  color: #a16207;
+}
+
+.diff-amount {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+.diff-amount.positive {
+  color: #10b981;
+}
+
+.diff-amount.negative {
+  color: #dc2626;
+}
