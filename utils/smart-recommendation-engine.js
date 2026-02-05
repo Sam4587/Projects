@@ -184,11 +184,25 @@ class SmartRecommendationEngine {
     const { relationship, closeness, region, occasion, budget } = params;
 
     // 计算金额范围
-    const range = {
+    let range = {
       low: Math.max(100, finalAmount - 200),
       high: finalAmount + 400,
       recommended: finalAmount
     };
+
+    // 如果用户设置了预算范围，且最终金额在预算范围内，则用预算范围作为显示的参考范围
+    if (budget && budget.min !== undefined && budget.max !== undefined) {
+      if (finalAmount >= budget.min && finalAmount <= budget.max) {
+        // 最终金额在预算范围内，显示预算范围
+        range.low = budget.min;
+        range.high = budget.max;
+      } else {
+        // 最终金额不在预算范围内（通常被预算调整函数调整过），仍然显示基于金额的范围
+        // 但确保范围不低于预算下限且不高于预算上限
+        range.low = Math.max(budget.min, range.low);
+        range.high = Math.min(budget.max, range.high);
+      }
+    }
 
     // 获取地域习俗
     let customs = null;
