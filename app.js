@@ -50,13 +50,45 @@ App({
   initStorageMonitor: function() {
     // 启动存储监控定时器
     this.storageMonitorInterval = setInterval(this.checkStorageHealth.bind(this), 60000);
-    
+
     // 启动缓存过期清理定时器
     this.cacheCleanupInterval = setInterval(this.cleanExpiredCache.bind(this), 24 * 60 * 60 * 1000);
-    
+
     // 生产环境减少控制台输出
     if (typeof process === 'undefined' || process.env.NODE_ENV !== 'production') {
       console.log('存储监控系统已启动');
+    }
+  },
+
+  // 🔴 P1: 暂停存储监控定时器
+  pauseStorageMonitor: function() {
+    if (this.storageMonitorInterval) {
+      clearInterval(this.storageMonitorInterval);
+      if (typeof process === 'undefined' || process.env.NODE_ENV !== 'production') {
+        console.log('存储监控定时器已暂停');
+      }
+    }
+    if (this.cacheCleanupInterval) {
+      clearInterval(this.cacheCleanupInterval);
+    if (typeof process === 'undefined' || process.env.NODE_ENV !== 'production') {
+        console.log('缓存清理定时器已暂停');
+      }
+    }
+  },
+
+  // 🔴 P1: 恢复存储监控定时器
+  resumeStorageMonitor: function() {
+    if (!this.storageMonitorInterval) {
+      this.storageMonitorInterval = setInterval(this.checkStorageHealth.bind(this), 60000);
+      if (typeof process === 'undefined' || process.env.NODE_ENV !== 'production') {
+        console.log('存储监控定时器已恢复');
+      }
+    }
+    if (!this.cacheCleanupInterval) {
+      this.cacheCleanupInterval = setInterval(this.cleanExpiredCache.bind(this), 24 * 60 * 60 * 1000);
+      if (typeof process === 'undefined' || process.env.NODE_ENV !== 'production') {
+        console.log('缓存清理定时器已恢复');
+      }
     }
   },
 
@@ -313,7 +345,8 @@ App({
   },
 
   onHide: function() {
-    // 应用隐藏时调用
+    // 🔴 P1: 应用隐藏时暂停存储监控
+    this.pauseStorageMonitor();
   },
 
   onError: function(msg) {
