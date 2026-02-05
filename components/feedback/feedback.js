@@ -709,43 +709,47 @@ Component({
     },
 
     // 触摸移动
-    onTouchMove(e) {
+    onTouchMove: function(e) {
       // 阻止页面滚动
       if (e.cancelable && e.preventDefault) {
         e.preventDefault();
       }
-      
-      const touch = e.touches[0];
-      const { touchStart, btnPosition } = this.data;
-      
-      // 计算移动距离
-      const moveX = touch.clientX - touchStart.x;
-      const moveY = touch.clientY - touchStart.y;
-      
-      // 如果移动距离超过 10px，认为是拖拽
-      if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
-        this.setData({ 
-          dragging: true,
-          allowClick: false
-        });
-      }
-      
-      // 更新按钮位置
-      const windowInfo = wx.getWindowInfo();
-      let newX = btnPosition.x + moveX;
-      let newY = btnPosition.y + moveY;
-      
-      // 边界限制
-      newX = Math.max(0, Math.min(newX, windowInfo.windowWidth - 50));
-      newY = Math.max(0, Math.min(newY, windowInfo.windowHeight - 50));
-      
-      this.setData({
-        'btnPosition.x': newX,
-        'btnPosition.y': newY,
-        'touchStart.x': touch.clientX,
-        'touchStart.y': touch.clientY
-      });
+
+      // 🔴 P1: 使用节流优化拖拽性能,减少setData调用
+      this.throttleTouchMove(this.handleTouchMove.bind(this))(e);
     },
+
+  // 🔴 P1: 处理拖拽移动的实际逻辑(节流后调用)
+  handleTouchMove: function(e) {
+    const touch = e.touches[0];
+    const { touchStart, btnPosition } = this.data;
+
+    // 计算移动距离
+    const moveX = touch.clientX - touchStart.x;
+    const moveY = touch.clientY - touchStart.y;
+
+    // 如果移动距离超过 10px，认为是拖拽
+    if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
+      this.setData({
+        dragging: true,
+        allowClick: false
+      });
+    }
+
+    // 更新按钮位置
+    const windowInfo = wx.getWindowInfo();
+    let newX = btnPosition.x + moveX;
+    let newY = btnPosition.y + moveY;
+
+    // 边界限制
+    newX = Math.max(0, Math.min(newX, windowInfo.windowWidth - 50));
+    newY = Math.max(0, Math.min(newY, windowInfo.windowHeight - 50));
+
+    this.setData({
+      'btnPosition.x': newX,
+      'btnPosition.y': newY
+    });
+  },
 
     // 触摸结束
     onTouchEnd(e) {
@@ -767,7 +771,19 @@ Component({
       return;
     },
 
-    // 统计事件追踪
+    // 🔴 P1: 节流优化拖拽性能 - 16ms一次,约60fps
+  throttleTouchMove: function(callback) {
+    let lastTime = 0;
+    const THROTTLE_DELAY = 16; // 约60fps
+
+    return function(e) {
+      const now = Date.now();
+      if (now - lastTime >= THROTTLE_DELAY) {
+        lastTime = now;
+        callback(e);
+      }
+    };
+  },
     trackEvent(eventName, params = {}) {
       try {
         const app = getApp();
