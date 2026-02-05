@@ -28,7 +28,7 @@
               bindchange="onCompareRegion1Change"
             >
               <view class="compare-picker">
-                {{regions[compareRegion1Index]?.name || '请选择'}}
+                {{regions[compareRegion1Index].name || '请选择'}}
               </view>
             </picker>
           </view>
@@ -42,7 +42,7 @@
               bindchange="onCompareRegion2Change"
             >
               <view class="compare-picker">
-                {{regions[compareRegion2Index]?.name || '请选择'}}
+                {{regions[compareRegion2Index].name || '请选择'}}
               </view>
             </picker>
           </view>
@@ -54,8 +54,8 @@
             <view class="compare-table">
               <view class="compare-row compare-row-header">
                 <view class="compare-cell compare-cell-region">项目</view>
-                <view class="compare-cell">{{regions[compareRegion1Index]?.name}}</view>
-                <view class="compare-cell">{{regions[compareRegion2Index]?.name}}</view>
+                <view class="compare-cell">{{regions[compareRegion1Index].name}}</view>
+                <view class="compare-cell">{{regions[compareRegion2Index].name}}</view>
               </view>
               <view class="compare-row">
                 <view class="compare-cell compare-cell-label">金额区间</view>
@@ -75,8 +75,8 @@
             <view class="compare-table">
               <view class="compare-row compare-row-header">
                 <view class="compare-cell compare-cell-region">项目</view>
-                <view class="compare-cell">{{regions[compareRegion1Index]?.name}}</view>
-                <view class="compare-cell">{{regions[compareRegion2Index]?.name}}</view>
+                <view class="compare-cell">{{regions[compareRegion1Index].name}}</view>
+                <view class="compare-cell">{{regions[compareRegion2Index].name}}</view>
               </view>
               <view class="compare-row">
                 <view class="compare-cell compare-cell-label">普通同事</view>
@@ -101,18 +101,18 @@
             <view class="compare-table">
               <view class="compare-row compare-row-header">
                 <view class="compare-cell compare-cell-region">项目</view>
-                <view class="compare-cell">{{regions[compareRegion1Index]?.name}}</view>
-                <view class="compare-cell">{{regions[compareRegion2Index]?.name}}</view>
+                <view class="compare-cell">{{regions[compareRegion1Index].name}}</view>
+                <view class="compare-cell">{{regions[compareRegion2Index].name}}</view>
               </view>
               <view class="compare-row">
                 <view class="compare-cell compare-cell-label">风格特点</view>
-                <view class="compare-cell">{{compareData.region1.features?.tone || '暂无'}}</view>
-                <view class="compare-cell">{{compareData.region2.features?.tone || '暂无'}}</view>
+                <view class="compare-cell">{{compareData.region1.features.tone || '暂无'}}</view>
+                <view class="compare-cell">{{compareData.region2.features.tone || '暂无'}}</view>
               </view>
               <view class="compare-row">
                 <view class="compare-cell compare-cell-label">吉利数字</view>
-                <view class="compare-cell">{{compareData.region1.features?.luckyNumbers?.join('、') || '暂无'}}</view>
-                <view class="compare-cell">{{compareData.region2.features?.luckyNumbers?.join('、') || '暂无'}}</view>
+                <view class="compare-cell">{{compareData.region1.features.luckyNumbers.join('、') || '暂无'}}</view>
+                <view class="compare-cell">{{compareData.region2.features.luckyNumbers.join('、') || '暂无'}}</view>
               </view>
             </view>
           </view>
@@ -293,12 +293,12 @@
             <view class="occasion-content">
               <view class="form-group">
                 <view class="form-label">金额建议</view>
-                <view class="occasion-amount">{{giftMoneyData.specialOccasions?.wedding?.amount || '暂无数据'}}</view>
+                <view class="occasion-amount">{{giftMoneyData.specialOccasions.wedding.amount || '暂无数据'}}</view>
               </view>
               <view class="form-group">
                 <view class="form-label">当地习俗</view>
                 <view class="occasion-customs">
-                  <block wx:for="{{giftMoneyData.specialOccasions?.wedding?.customs || []}}" wx:key="*this">
+                  <block wx:for="{{giftMoneyData.specialOccasions.wedding.customs || []}}" wx:key="*this">
                     <view class="occasion-custom-item">{{item}}</view>
                   </block>
                 </view>
@@ -306,7 +306,7 @@
               <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                 <view class="form-label text-yellow-800">贴心提示</view>
                 <text class="text-sm text-yellow-700">
-                  {{giftMoneyData.specialOccasions?.wedding?.tips || '暂无提示'}}
+                  {{giftMoneyData.specialOccasions.wedding.tips || '暂无提示'}}
                 </text>
               </view>
             </view>
@@ -321,12 +321,12 @@
             <view class="occasion-content">
               <view class="form-group">
                 <view class="form-label">金额建议</view>
-                <view class="occasion-amount">{{giftMoneyData.specialOccasions?.birthday?.amount || '暂无数据'}}</view>
+                <view class="occasion-amount">{{giftMoneyData.specialOccasions.birthday.amount || '暂无数据'}}</view>
               </view>
               <view class="form-group">
                 <view class="form-label">当地习俗</view>
                 <view class="occasion-customs">
-                  <block wx:for="{{giftMoneyData.specialOccasions?.birthday?.customs || []}}" wx:key="*this">
+                  <block wx:for="{{giftMoneyData.specialOccasions.birthday.customs || []}}" wx:key="*this">
                     <view class="occasion-custom-item">{{item}}</view>
                   </block>
                 </view>
@@ -334,7 +334,7 @@
               <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                 <view class="form-label text-yellow-800">贴心提示</view>
                 <text class="text-sm text-yellow-700">
-                  {{giftMoneyData.specialOccasions?.birthday?.tips || '暂无提示'}}
+                  {{giftMoneyData.specialOccasions.birthday.tips || '暂无提示'}}
                 </text>
               </view>
             </view>
@@ -349,12 +349,12 @@
             <view class="occasion-content">
               <view class="form-group">
                 <view class="form-label">金额建议</view>
-                <view class="occasion-amount">{{giftMoneyData.specialOccasions?.funeral?.amount || '暂无数据'}}</view>
+                <view class="occasion-amount">{{giftMoneyData.specialOccasions.funeral.amount || '暂无数据'}}</view>
               </view>
               <view class="form-group">
                 <view class="form-label">当地习俗</view>
                 <view class="occasion-customs">
-                  <block wx:for="{{giftMoneyData.specialOccasions?.funeral?.customs || []}}" wx:key="*this">
+                  <block wx:for="{{giftMoneyData.specialOccasions.funeral.customs || []}}" wx:key="*this">
                     <view class="occasion-custom-item">{{item}}</view>
                   </block>
                 </view>
@@ -362,7 +362,7 @@
               <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
                 <view class="form-label text-yellow-800">贴心提示</view>
                 <text class="text-sm text-yellow-700">
-                  {{giftMoneyData.specialOccasions?.funeral?.tips || '暂无提示'}}
+                  {{giftMoneyData.specialOccasions.funeral.tips || '暂无提示'}}
                 </text>
               </view>
             </view>
