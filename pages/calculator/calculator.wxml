@@ -172,8 +172,12 @@
               </view>
             </view>
             <view class="customs-numbers">
-              <text class="numbers-label">吉利数字：</text>
-              <text class="numbers-list">{{result.customs.preferredNumbers.join(', ')}}</text>
+              <view class="numbers-label">🔢 吉利数字推荐</view>
+              <view class="numbers-grid">
+                <view wx:for="{{result.customs.preferredNumbers}}" wx:key="*this" class="number-chip">
+                  <text class="chip-text">{{item}}</text>
+                </view>
+              </view>
             </view>
           </view>
         </view>
@@ -247,29 +251,6 @@
             本计算结果仅供参考，不构成任何建议。
             实际随礼金额请结合当地风俗、个人经济状况和双方关系综合判断。
             开发者不承担由此产生的任何法律责任。
-          </view>
-        </view>
-        
-        <!-- 吉利数字建议 -->
-        <view class="lucky-section">
-          <view class="lucky-header">
-            <text class="lucky-title">🧧 吉利数字建议</text>
-            <text class="lucky-desc">中国人最喜欢的吉祥数字</text>
-          </view>
-          
-          <view class="lucky-numbers-grid">
-            <block wx:for="{{luckyNumbers}}" wx:key="*this">
-              <view class="lucky-number-card">
-                <view class="number-circle">
-                  <text class="lucky-number">{{item}}</text>
-                </view>
-                <text class="unit-text">元</text>
-              </view>
-            </block>
-          </view>
-          
-          <view class="lucky-tips">
-            <text class="tips-text">🌟 数字寓意：6(顺利) 8(发财) 9(长久)</text>
           </view>
         </view>
       </view>

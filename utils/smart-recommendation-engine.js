@@ -317,20 +317,44 @@ class SmartRecommendationEngine {
   }
 
   /**
-   * 获取地域中文名称
+   * 获取地域中文名称 - 支持34个地区
    */
   getRegionName(regionId) {
     const regionNames = {
       'beijing': '北京',
+      'tianjin': '天津',
+      'hebei': '河北',
+      'shanxi': '山西',
+      'neimenggu': '内蒙古',
+      'liaoning': '辽宁',
+      'jilin': '吉林',
+      'heilongjiang': '黑龙江',
       'shanghai': '上海',
-      'guangdong': '广东',
-      'zhejiang': '浙江',
       'jiangsu': '江苏',
-      'sichuan': '四川',
+      'zhejiang': '浙江',
+      'anhui': '安徽',
+      'fujian': '福建',
+      'jiangxi': '江西',
+      'shandong': '山东',
+      'henan': '河南',
       'hubei': '湖北',
       'hunan': '湖南',
-      'henan': '河南',
-      'shandong': '山东'
+      'guangdong': '广东',
+      'guangxi': '广西',
+      'hainan': '海南',
+      'chongqing': '重庆',
+      'sichuan': '四川',
+      'guizhou': '贵州',
+      'yunnan': '云南',
+      'xizang': '西藏',
+      'shaanxi': '陕西',
+      'gansu': '甘肃',
+      'qinghai': '青海',
+      'ningxia': '宁夏',
+      'xinjiang': '新疆',
+      'hongkong': '香港',
+      'macau': '澳门',
+      'taiwan': '台湾'
     };
     return regionNames[regionId] || regionId;
   }

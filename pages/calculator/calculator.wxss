@@ -687,6 +687,38 @@
   font-weight: 500;
 }
 
+/* 新增样式：地域习俗 - 吉利数字网格 */
+.result-customs .numbers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 8rpx;
+}
+
+.result-customs .number-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12rpx 24rpx;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  border-radius: 24rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  min-width: 64rpx;
+  height: 48rpx;
+  transition: all 0.3s ease;
+}
+
+.result-customs .number-chip:active {
+  transform: scale(0.95);
+  opacity: 0.8;
+}
+
+.result-customs .chip-text {
+  color: white;
+}
+
 /* 新增样式：地域习俗 */
 .result-customs {
   padding: 32rpx;
