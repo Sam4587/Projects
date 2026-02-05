@@ -59,7 +59,7 @@
           >
             <view class="favorite-phrase">{{item.traditional}}</view>
             <view class="favorite-modern">{{item.modern}}</view>
-            <text class="favorite-remove" bindtap="removeFavorite" data-id="{{item.id || item.traditional}}" catchtap="">移除</text>
+            <text class="favorite-remove" catchtap="removeFavorite" data-id="{{item.id || item.traditional}}">移除</text>
           </view>
         </view>
         <view wx:else class="empty-state">
