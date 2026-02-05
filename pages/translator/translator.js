@@ -62,32 +62,25 @@ Page({
 
   onLoad: function(options) {
     app.globalData.currentRoute = 'pages/translator/translator';
-      
+
     // 记录页面启动时间
     this.startTime = Date.now();
-      
+
     // 初始化插屏广告
     adManager.createInterstitialAd();
-    
-    // 显示加载状态
-    this.setData({
-      loading: true,
-      loadingText: '正在加载通用祝福数据...'
-    });
-    
-    // 按需加载数据
+
+    // 🔴 P0: 移除人为延迟,立即加载数据
     var that = this;
-    setTimeout(async function() {
+    (async function() {
       try {
         // 加载默认分类数据（通用祝福）
         const generalData = await loadBlessingData('通用祝福');
-        
+
         that.setData({
           phrases: generalData,
-          filteredPhrases: generalData,
-          loading: false
+          filteredPhrases: generalData
         });
-        
+
         console.log('按需加载祝福语列表:', generalData.length, '条');
         wx.showToast({
           title: '加载完成',
@@ -105,7 +98,7 @@ Page({
           duration: 2000
         });
       }
-    }, 500);
+    })();
   },
 
   onShow: function() {
@@ -265,24 +258,21 @@ Page({
   selectCategory: function(e) {
     const category = e.currentTarget.dataset.category;
     const that = this;
-    
+
     if (!category) {
       console.error('未获取到分类信息');
       return;
     }
-    
-    // 显示加载状态
+
     this.setData({
-      loading: true,
-      loadingText: `正在加载${category}数据...`,
       selectedCategory: category
     });
-    
-    // 按需加载选定分类的数据
-    setTimeout(async function() {
+
+    // 🔴 P0: 移除人为延迟,立即加载分类数据
+    (async function() {
       try {
         let dataToShow;
-        
+
         if (category === '全部') {
           // 如果是"全部"，加载通用祝福数据
           dataToShow = await loadBlessingData('通用祝福');
@@ -290,19 +280,18 @@ Page({
           // 加载指定分类数据
           dataToShow = await loadBlessingData(category);
         }
-        
+
         that.setData({
           phrases: dataToShow,
-          filteredPhrases: dataToShow,
-          loading: false
+          filteredPhrases: dataToShow
         });
-        
+
         wx.showToast({
           title: `${category}加载完成`,
           icon: 'success',
           duration: 1000
         });
-        
+
       } catch (error) {
         console.error('分类数据加载失败:', error);
         that.setData({
@@ -314,7 +303,7 @@ Page({
           duration: 2000
         });
       }
-    }, 300);
+    })();
   },
 
   selectPhrase: function(e) {

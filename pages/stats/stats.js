@@ -29,29 +29,19 @@ Page({
 
   // 加载统计数据
   loadStats: function() {
-    // 🔴 P0: 添加统计加载状态
-    this.setData({
-      loading: true,
-      loadingText: '正在加载统计报告...'
-    });
-    
-    // 模拟数据加载过程
-    var that = this;
-    setTimeout(function() {
-      const report = analytics.generateReport();
-      // 🔴 审核修改：移除用户反馈数据加载，避免显示用户信息
-      const feedbackList = []; // 不再加载用户反馈数据
-      const today = new Date().toDateString();
-      const todayEvents = wx.getStorageSync(`analytics_events_${today}`) || [];
+    // 🔴 P0: 移除人为延迟,立即加载统计报告
+    const report = analytics.generateReport();
+    // 🔴 审核修改：移除用户反馈数据加载，避免显示用户信息
+    const feedbackList = []; // 不再加载用户反馈数据
+    const today = new Date().toDateString();
+    const todayEvents = wx.getStorageSync(`analytics_events_${today}`) || [];
 
-      that.setData({
-        report,
-        feedbackList: [], // 用户反馈列表已清空
-        todayEvents: todayEvents.slice(-50), // 最近50条
-        loading: false
-      });
-      console.log('✅ 统计报告加载完成');
-    }, 700);
+    this.setData({
+      report,
+      feedbackList: [], // 用户反馈列表已清空
+      todayEvents: todayEvents.slice(-50) // 最近50条
+    });
+    console.log('✅ 统计报告加载完成');
   },
 
   // 切换标签

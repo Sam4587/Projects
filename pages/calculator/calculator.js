@@ -21,24 +21,12 @@ Page({
   // 生命周期函数
   onLoad: function(options) {
     app.globalData.currentRoute = 'pages/calculator/calculator';
-    
+
     // 广告组件 - 临时禁用，过审后恢复
     // adManager.createBannerAd();
-    
-    // 🔴 P0: 添加数据加载状态
-    this.setData({
-      loading: true,
-      loadingText: '正在初始化计算器...'
-    });
-    
-    // 模拟初始化过程
-    var that = this;
-    setTimeout(function() {
-      that.setData({
-        loading: false
-      });
-      // console.log('✅ 计算器初始化完成');
-    }, 600);
+
+    // 🔴 P0: 移除人为延迟,立即显示页面
+    // 页面初始化完成
   },
 
   onShow: function() {

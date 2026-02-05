@@ -158,35 +158,21 @@ Page({
       .filter(r => r.id !== 'common')
       .map(r => ({ id: r.id, name: r.name }));
 
-    // 🔴 P0: 添加数据加载状态  
-    this.setData({
-      loading: true,
-      loadingText: '正在加载地域习俗数据...',
-      regions: allRegions,
-      giftMoneyData: {},
-      giftGivingData: {}
-    });
-    
-    // 按需加载默认地域数据（北京）
-    var that = this;
-    setTimeout(async function() {
+    // 🔴 P0: 移除人为延迟,立即加载数据
+    const that = this;
+    (async function() {
       try {
         const beijingData = await loadCustomsData('beijing');
-        
+
         that.setData({
+          regions: allRegions,
           giftMoneyData: beijingData,
-          giftGivingData: beijingData,
-          loading: false
+          giftGivingData: beijingData
         });
-        
-        wx.showToast({
-          title: '数据已更新',
-          icon: 'success',
-          duration: 1000
-        });
+
       } catch (error) {
         console.error('加载地域数据失败:', error);
-        
+
         // 🔴 高优先级修复：添加默认数据回退机制
         const defaultData = {
           name: '北京',
@@ -207,20 +193,14 @@ Page({
             colors: ['#FF0000', '#FFD700']
           }
         };
-        
+
         that.setData({
+          regions: allRegions,
           giftMoneyData: defaultData,
-          giftGivingData: defaultData,
-          loading: false
-        });
-        
-        wx.showToast({
-          title: '使用默认数据',
-          icon: 'none',
-          duration: 2000
+          giftGivingData: defaultData
         });
       }
-    }, 800);
+    })();
   },
 
   onShow: function() {
@@ -264,27 +244,24 @@ Page({
       return;
     }
     
-    this.setData({ 
+    this.setData({
       selectedRegion: region.id,
-      selectedRegionIndex: index,
-      loading: true,
-      loadingText: `正在加载${region.name}数据...`
+      selectedRegionIndex: index
     });
-    
-    // 按需加载选中地区的数据
-    setTimeout(async () => {
+
+    // 🔴 P0: 移除人为延迟,立即加载地区数据
+    (async function() {
       try {
         const regionData = await loadCustomsData(region.id);
-        
+
         // 🔴 高优先级修复：添加数据有效性检查
-        const validData = regionData && Object.keys(regionData).length > 0 ? regionData : this.createDefaultRegionData(region.name);
-        
-        this.setData({
+        const validData = regionData && Object.keys(regionData).length > 0 ? regionData : that.createDefaultRegionData(region.name);
+
+        that.setData({
           giftMoneyData: validData,
-          giftGivingData: validData,
-          loading: false
+          giftGivingData: validData
         });
-        
+
         wx.showToast({
           title: `${region.name}数据加载完成`,
           icon: 'success',
@@ -292,22 +269,21 @@ Page({
         });
       } catch (error) {
         console.error('加载地域数据失败:', error);
-        
+
         // 🔴 高优先级修复：使用默认数据确保功能不失效
-        const defaultData = this.createDefaultRegionData(region.name);
-        this.setData({
+        const defaultData = that.createDefaultRegionData(region.name);
+        that.setData({
           giftMoneyData: defaultData,
-          giftGivingData: defaultData,
-          loading: false
+          giftGivingData: defaultData
         });
-        
+
         wx.showToast({
           title: '使用默认数据',
           icon: 'none',
           duration: 2000
         });
       }
-    }, 300);
+    })();
   },
 
   switchCustomsTab(e) {
