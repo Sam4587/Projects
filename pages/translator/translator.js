@@ -57,7 +57,10 @@ Page({
     categoryList: ['全部', '马年专属', '通用祝福', '健康祝福', '学业祝福', '事业祝福', '北方豪爽', '江南婉约', '粤语商题', '沿海渔家', '西南安逸', '婚礼祝福', '生日祝福', '开业祝福'],
     selectedCategory: '全部',
     filteredPhrases: [],
-    phrases: []
+    phrases: [],
+    // 🔴 P0: 祝福语搜索索引,加速查找
+    phraseIndex: new Map(),
+    searchDebounceTimer: null
   },
 
   onLoad: function(options) {
@@ -80,6 +83,9 @@ Page({
           phrases: generalData,
           filteredPhrases: generalData
         });
+
+        // 🔴 P0: 建立祝福语索引,加速后续搜索
+        that.buildPhraseIndex(generalData);
 
         console.log('按需加载祝福语列表:', generalData.length, '条');
         wx.showToast({
@@ -111,9 +117,65 @@ Page({
   },
 
   onInputText: function(e) {
-    this.setData({
-      inputText: e.detail.value
+    // 🔴 P0: 使用防抖优化输入处理
+    const inputValue = e.detail.value;
+    this.setData({ inputText: inputValue });
+
+    // 清除之前的防抖定时器
+    if (this.data.searchDebounceTimer) {
+      clearTimeout(this.data.searchDebounceTimer);
+    }
+
+    // 设置新的防抖定时器(300ms)
+    const timer = setTimeout(() => {
+      this.performSearch(inputValue);
+    }, 300);
+
+    this.setData({ searchDebounceTimer: timer });
+  },
+
+  // 🔴 P0: 建立祝福语索引,将搜索复杂度从O(n)降到O(1)
+  buildPhraseIndex: function(phrases) {
+    const index = new Map();
+    phrases.forEach(phrase => {
+      if (phrase && phrase.traditional) {
+        index.set(phrase.traditional, phrase);
+      }
     });
+    this.setData({ phraseIndex: index });
+    console.log(`建立索引完成,共${index.size}条记录`);
+  },
+
+  // 🔴 P0: 优化后的搜索函数,使用索引加速查找
+  performSearch: function(inputText) {
+    if (!inputText || !inputText.trim()) {
+      return null;
+    }
+
+    const phrases = this.data.phrases;
+    const index = this.data.phraseIndex;
+
+    // 1. 尝试精确匹配,O(1)时间复杂度
+    const exactMatch = index.get(inputText);
+    if (exactMatch) {
+      return exactMatch;
+    }
+
+    // 2. 模糊搜索,但只遍历一次,O(n)时间复杂度
+    const lowerInput = inputText.toLowerCase();
+    const matches = [];
+
+    for (const phrase of phrases) {
+      if (phrase && phrase.traditional) {
+        const lowerPhrase = phrase.traditional.toLowerCase();
+        if (lowerPhrase.includes(lowerInput) || lowerInput.includes(lowerPhrase)) {
+          matches.push(phrase);
+        }
+      }
+    }
+
+    // 返回第一个匹配项
+    return matches.length > 0 ? matches[0] : null;
   },
 
   translateText: function() {
@@ -131,28 +193,8 @@ Page({
       title: '正在查找翻译...'
     });
 
-    const phrases = this.data.phrases;
-    let found = null;
-    
-    // 精确匹配搜索
-    for (let i = 0; i < phrases.length; i++) {
-      const phrase = phrases[i];
-      if (phrase && phrase.traditional === inputText) {
-        found = phrase;
-        break;
-      }
-    }
-
-    // 如果没有找到精确匹配，尝试模糊搜索
-    if (!found) {
-      for (let i = 0; i < phrases.length; i++) {
-        const phrase = phrases[i];
-        if (phrase && phrase.traditional.includes(inputText) || inputText.includes(phrase.traditional)) {
-          found = phrase;
-          break;
-        }
-      }
-    }
+    // 🔴 P0: 使用优化后的搜索方法,O(n)时间复杂度
+    const found = this.performSearch(inputText);
 
     setTimeout(() => {
       wx.hideLoading();
@@ -285,6 +327,9 @@ Page({
           phrases: dataToShow,
           filteredPhrases: dataToShow
         });
+
+        // 🔴 P0: 为新分类建立索引
+        that.buildPhraseIndex(dataToShow);
 
         wx.showToast({
           title: `${category}加载完成`,
