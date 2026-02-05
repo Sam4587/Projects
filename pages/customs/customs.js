@@ -250,14 +250,15 @@ Page({
     });
 
     // 🔴 P0: 移除人为延迟,立即加载地区数据
+    const page = this;
     (async function() {
       try {
         const regionData = await loadCustomsData(region.id);
 
         // 🔴 高优先级修复：添加数据有效性检查
-        const validData = regionData && Object.keys(regionData).length > 0 ? regionData : that.createDefaultRegionData(region.name);
+        const validData = regionData && Object.keys(regionData).length > 0 ? regionData : page.createDefaultRegionData(region.name);
 
-        that.setData({
+        page.setData({
           giftMoneyData: validData,
           giftGivingData: validData
         });
