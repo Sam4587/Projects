@@ -153,13 +153,13 @@ Page({
   },
 
   // 保存翻译历史记录
-  saveTranslationHistory(phrase, result) {
+  saveTranslationHistory(phrase) {
     try {
       const history = wx.getStorageSync('translation_history') || [];
       const record = {
         id: Date.now().toString(),
         phrase: phrase.traditional,
-        result: result,
+        result: phrase,
         timestamp: Date.now()
       };
 
@@ -172,6 +172,9 @@ Page({
       }
 
       wx.setStorageSync('translation_history', history);
+
+      // 重新加载历史记录
+      this.loadTranslationHistory();
     } catch (error) {
       console.error('保存历史记录失败:', error);
     }
@@ -469,7 +472,7 @@ Page({
         });
 
         // 保存翻译历史记录
-        this.saveTranslationHistory(found, found);
+        this.saveTranslationHistory(found);
 
         // 触发插屏广告检查（翻译成功后）
         setTimeout(() => {
@@ -620,6 +623,8 @@ Page({
         inputText: phraseText,
         translation: foundPhrase
       });
+      // 保存翻译历史记录
+      this.saveTranslationHistory(foundPhrase);
     } else {
       // 使用默认值，确保不会因为未找到而崩溃
       this.setData({
@@ -632,6 +637,15 @@ Page({
           category: '自定义'
         }
       });
+      // 自定义祝福语也保存到历史记录
+      const customPhrase = {
+        traditional: phraseText,
+        modern: '自定义祝福语',
+        meaning: '用户自定义输入',
+        usage: '无',
+        category: '自定义'
+      };
+      this.saveTranslationHistory(customPhrase);
     }
 
     wx.showToast({
@@ -653,6 +667,8 @@ Page({
         inputText: phrase,
         translation: foundPhrase
       });
+      // 保存翻译历史记录
+      this.saveTranslationHistory(foundPhrase);
     } else {
       // 使用默认值，确保不会因为未找到而崩溃
       this.setData({
@@ -665,6 +681,15 @@ Page({
           category: '自定义'
         }
       });
+      // 自定义祝福语也保存到历史记录
+      const customPhrase = {
+        traditional: phrase,
+        modern: '自定义祝福语',
+        meaning: '用户自定义输入',
+        usage: '无',
+        category: '自定义'
+      };
+      this.saveTranslationHistory(customPhrase);
     }
 
     wx.showToast({
