@@ -82,7 +82,7 @@
           <text class="optional-tag">(可选)</text>
         </view>
         <view class="selector-trigger" bindtap="showOccasionSelector">
-          <text class="selector-text">{{occasion ? occasionList.find(i => i.id === occasion).name : '请选择场合'}}</text>
+          <text class="selector-text">{{occasionName}}</text>
           <text class="selector-arrow">▼</text>
         </view>
       </view>
@@ -94,7 +94,7 @@
           <text class="optional-tag">(可选)</text>
         </view>
         <view class="selector-trigger" bindtap="showRegionSelector">
-          <text class="selector-text">{{region ? regionList.find(i => i.id === region).name : '请选择地域'}}</text>
+          <text class="selector-text">{{regionName}}</text>
           <text class="selector-arrow">▼</text>
         </view>
       </view>

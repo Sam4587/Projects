@@ -354,18 +354,26 @@ Page({
   selectPhrase: function(e) {
     const phraseText = e.currentTarget.dataset.phrase;
     const foundPhrase = this.data.phrases.find(p => p.traditional === phraseText);
-    
+
     if (foundPhrase) {
       this.setData({
         inputText: phraseText,
         translation: foundPhrase
       });
     } else {
+      // 使用默认值，确保不会因为未找到而崩溃
       this.setData({
-        inputText: phraseText
+        inputText: phraseText,
+        translation: {
+          traditional: phraseText,
+          modern: '自定义祝福语',
+          meaning: '用户自定义输入',
+          usage: '无',
+          category: '自定义'
+        }
       });
     }
-    
+
     wx.showToast({
       title: `已选择: ${phraseText}`,
       icon: 'success'
@@ -379,16 +387,26 @@ Page({
   copyPhrase: function(e) {
     const phrase = e.currentTarget.dataset.phrase;
     const foundPhrase = this.data.phrases.find(p => p.traditional === phrase);
-    
+
     if (foundPhrase) {
-      this.setData({ 
+      this.setData({
         inputText: phrase,
         translation: foundPhrase
       });
     } else {
-      this.setData({ inputText: phrase });
+      // 使用默认值，确保不会因为未找到而崩溃
+      this.setData({
+        inputText: phrase,
+        translation: {
+          traditional: phrase,
+          modern: '自定义祝福语',
+          meaning: '用户自定义输入',
+          usage: '无',
+          category: '自定义'
+        }
+      });
     }
-    
+
     wx.showToast({
       title: `已选择: ${phrase}`,
       icon: 'success'

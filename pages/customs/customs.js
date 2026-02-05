@@ -272,8 +272,8 @@ Page({
         console.error('加载地域数据失败:', error);
 
         // 🔴 高优先级修复：使用默认数据确保功能不失效
-        const defaultData = that.createDefaultRegionData(region.name);
-        that.setData({
+        const defaultData = page.createDefaultRegionData(region.name);
+        page.setData({
           giftMoneyData: defaultData,
           giftGivingData: defaultData
         });

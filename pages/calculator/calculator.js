@@ -12,6 +12,9 @@ Page({
     region: '', // 地域选择
     budgetMin: '', // 预算最低金额
     budgetMax: '', // 预算最高金额
+    // 计算属性（用于WXML显示）
+    occasionName: '一般场合', // 场合名称
+    regionName: '请选择地域', // 地域名称
     // 计算结果
     result: null,
     // 推荐金额列表
@@ -83,7 +86,9 @@ Page({
   // 选择场合
   selectOccasion(e) {
     const occasion = e.currentTarget.dataset.occasion;
-    this.setData({ occasion, showOccasionPicker: false });
+    const occasionList = this.data.occasionList;
+    const occasionName = occasionList.find(i => i.id === occasion)?.name || '请选择场合';
+    this.setData({ occasion, occasionName, showOccasionPicker: false });
   },
 
   // 显示场合选择器
@@ -99,7 +104,9 @@ Page({
   // 选择地域
   selectRegion(e) {
     const region = e.currentTarget.dataset.region;
-    this.setData({ region, showRegionPicker: false });
+    const regionList = this.data.regionList;
+    const regionName = regionList.find(i => i.id === region)?.name || '请选择地域';
+    this.setData({ region, regionName, showRegionPicker: false });
   },
 
   // 显示地域选择器
@@ -374,7 +381,7 @@ Page({
       app.trackEvent('pseudo_feedback_submit', {
         relationship: relationship,
         closeness: closeness,
-        suggested: `${result.low}-${result.high}`,
+        suggested: `${result.range?.low || 0}-${result.range?.high || 0}`,
         actual: parseInt(actualAmount)
       });
     }
