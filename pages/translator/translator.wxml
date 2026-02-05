@@ -54,10 +54,12 @@
             wx:for="{{favorites}}"
             wx:key="id"
             class="favorite-item"
+            bindtap="selectFavoriteItem"
+            data-phrase="{{item.traditional}}"
           >
             <view class="favorite-phrase">{{item.traditional}}</view>
             <view class="favorite-modern">{{item.modern}}</view>
-            <text class="favorite-remove" bindtap="removeFavorite" data-id="{{item.id || item.traditional}}">移除</text>
+            <text class="favorite-remove" bindtap="removeFavorite" data-id="{{item.id || item.traditional}}" catchtap="">移除</text>
           </view>
         </view>
         <view wx:else class="empty-state">

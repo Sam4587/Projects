@@ -258,6 +258,7 @@ Page({
         favorites: filteredFavorites,
         favoriteIds: new Set(filteredFavorites.map(f => f.id || f.traditional))
       });
+
       wx.showToast({
         title: '已取消收藏',
         icon: 'success'
@@ -298,10 +299,49 @@ Page({
   // 选择历史记录项
   selectHistoryItem(e) {
     const phraseText = e.currentTarget.dataset.phrase;
-    this.setData({ inputText: phraseText });
-    this.hideHistory();
-    // 自动触发翻译
-    this.translateText();
+    const foundPhrase = this.data.phrases.find(p => p.traditional === phraseText);
+
+    // 隐藏历史弹窗
+    this.setData({ showHistory: false });
+
+    if (foundPhrase) {
+      // 检查是否在收藏中
+      const favorites = wx.getStorageSync('favorite_phrases') || [];
+      const isFavorite = favorites.some(f =>
+        (foundPhrase.traditional && f.traditional === foundPhrase.traditional) ||
+        (foundPhrase.id && f.id === foundPhrase.id)
+      );
+
+      this.setData({
+        inputText: phraseText,
+        translation: foundPhrase,
+        'translation.isFavorite': isFavorite
+      });
+
+      // 保存翻译历史记录
+      this.saveTranslationHistory(foundPhrase);
+    } else {
+      // 使用默认值，确保不会因为未找到而崩溃
+      this.setData({
+        inputText: phraseText,
+        translation: {
+          traditional: phraseText,
+          modern: '自定义祝福语',
+          meaning: '用户自定义输入',
+          usage: '无',
+          category: '自定义'
+        }
+      });
+      // 自定义祝福语也保存到历史记录
+      const customPhrase = {
+        traditional: phraseText,
+        modern: '自定义祝福语',
+        meaning: '用户自定义输入',
+        usage: '无',
+        category: '自定义'
+      };
+      this.saveTranslationHistory(customPhrase);
+    }
   },
 
   // 切换收藏状态
@@ -309,7 +349,8 @@ Page({
     const translation = this.data.translation;
     if (!translation) return;
 
-    const favorites = this.data.favorites || [];
+    // 从存储中获取最新的收藏列表
+    const favorites = wx.getStorageSync('favorite_phrases') || [];
     const exists = favorites.some(f =>
       (translation.traditional && f.traditional === translation.traditional) ||
       (translation.id && f.id === translation.id)
@@ -327,9 +368,6 @@ Page({
     this.setData({
       'translation.isFavorite': !exists
     });
-
-    // 刷新收藏列表
-    this.loadFavorites();
   },
 
   // 从收藏中移除（内部函数）
@@ -365,6 +403,47 @@ Page({
   // 隐藏收藏
   hideFavorites() {
     this.setData({ showFavorites: false });
+  },
+
+  // 选择收藏项
+  selectFavoriteItem(e) {
+    const phraseText = e.currentTarget.dataset.phrase;
+    const foundPhrase = this.data.phrases.find(p => p.traditional === phraseText);
+
+    // 隐藏收藏弹窗
+    this.setData({ showFavorites: false });
+
+    if (foundPhrase) {
+      this.setData({
+        inputText: phraseText,
+        translation: foundPhrase,
+        'translation.isFavorite': true
+      });
+      // 保存翻译历史记录
+      this.saveTranslationHistory(foundPhrase);
+    } else {
+      // 使用默认值，确保不会因为未找到而崩溃
+      this.setData({
+        inputText: phraseText,
+        translation: {
+          traditional: phraseText,
+          modern: '自定义祝福语',
+          meaning: '用户自定义输入',
+          usage: '无',
+          category: '自定义',
+          isFavorite: true
+        }
+      });
+      // 自定义祝福语也保存到历史记录
+      const customPhrase = {
+        traditional: phraseText,
+        modern: '自定义祝福语',
+        meaning: '用户自定义输入',
+        usage: '无',
+        category: '自定义'
+      };
+      this.saveTranslationHistory(customPhrase);
+    }
   },
 
   onShow: function() {
