@@ -193,13 +193,15 @@ Page({
   // 添加收藏
   addToFavorites(phrase) {
     try {
-      const favorites = this.data.favorites || [];
+      // 从存储中获取最新的收藏列表
+      const favorites = wx.getStorageSync('favorite_phrases') || [];
       const exists = favorites.some(f =>
         (phrase.traditional && f.traditional === phrase.traditional) ||
-        (phrase.id && phrase.id === phrase.id)
+        (phrase.id && f.id === phrase.id)
       );
 
       if (!exists && favorites.length < 50) {
+        // 添加到开头
         favorites.unshift({
           id: phrase.id || phrase.traditional,
           traditional: phrase.traditional,
@@ -210,8 +212,14 @@ Page({
           timestamp: Date.now()
         });
 
+        // 保存到存储
         wx.setStorageSync('favorite_phrases', favorites);
-        this.setData({ favorites });
+
+        // 更新页面数据
+        this.setData({
+          favorites: favorites,
+          favoriteIds: new Set(favorites.map(f => f.id || f.traditional))
+        });
         wx.showToast({
           title: '已收藏',
           icon: 'success'
@@ -235,10 +243,18 @@ Page({
   // 移除收藏
   removeFavorite(id) {
     try {
-      let favorites = this.data.favorites || [];
-      favorites = favorites.filter(f => (f.id !== id && f.traditional !== id));
-      wx.setStorageSync('favorite_phrases', favorites);
-      this.setData({ favorites });
+      // 从存储中获取最新的收藏列表
+      const favorites = wx.getStorageSync('favorite_phrases') || [];
+      const filteredFavorites = favorites.filter(f => (f.id !== id && f.traditional !== id));
+
+      // 保存到存储
+      wx.setStorageSync('favorite_phrases', filteredFavorites);
+
+      // 更新页面数据
+      this.setData({
+        favorites: filteredFavorites,
+        favoriteIds: new Set(filteredFavorites.map(f => f.id || f.traditional))
+      });
       wx.showToast({
         title: '已取消收藏',
         icon: 'success'
@@ -316,13 +332,23 @@ Page({
   // 从收藏中移除（内部函数）
   removeFromFavorites(phrase) {
     try {
-      let favorites = this.data.favorites || [];
-      favorites = favorites.filter(f =>
-        f.id !== (phrase.id || phrase.traditional) &&
-        f.traditional !== (phrase.id || phrase.traditional)
+      // 从存储中获取最新的收藏列表
+      const favorites = wx.getStorageSync('favorite_phrases') || [];
+      const removeId = phrase.id || phrase.traditional;
+
+      // 过滤掉要删除的项
+      const filteredFavorites = favorites.filter(f =>
+        f.id !== removeId && f.traditional !== removeId
       );
-      wx.setStorageSync('favorite_phrases', favorites);
-      this.setData({ favorites });
+
+      // 保存到存储
+      wx.setStorageSync('favorite_phrases', filteredFavorites);
+
+      // 更新页面数据
+      this.setData({
+        favorites: filteredFavorites,
+        favoriteIds: new Set(filteredFavorites.map(f => f.id || f.traditional))
+      });
     } catch (error) {
       console.error('取消收藏失败:', error);
     }
