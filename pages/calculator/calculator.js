@@ -73,6 +73,7 @@ Page({
 
   selectRelationship(e) {
     const relationship = e.currentTarget.dataset.rel;
+    console.log('选择关系:', relationship);
     this.setData({ relationship, result: null }, () => {
       this.calculateAmount();
     });
@@ -80,6 +81,7 @@ Page({
 
   selectCloseness(e) {
     const closeness = e.currentTarget.dataset.close;
+    console.log('选择亲疏程度:', closeness);
     this.setData({ closeness, result: null }, () => {
       this.calculateAmount();
     });
