@@ -43,6 +43,8 @@ Component({
     dragging: false,
     // 是否允许触发点击
     allowClick: true,
+    // 节流控制
+    lastMoveTime: 0,
     // 按钮位置
     btnPosition: {
       x: 300,
@@ -725,72 +727,78 @@ Component({
         e.preventDefault();
       }
 
-      // 🔴 P1: 使用节流优化拖拽性能,减少setData调用
-      this.throttleTouchMove(this.handleTouchMove.bind(this))(e);
-    },
+      const touch = e.touches[0];
+      const { touchStart, btnPosition } = this.data;
+      const MOVE_THRESHOLD = 10; // 移动阈值
+      const THROTTLE_DELAY = 16; // 节流延迟约60fps
 
-  // 🔴 P1: 处理拖拽移动的实际逻辑(节流后调用)
-  handleTouchMove: function(e) {
-    const touch = e.touches[0];
-    const { touchStart, btnPosition, windowInfo } = this.data;
+      // 计算移动距离
+      const moveX = touch.clientX - touchStart.x;
+      const moveY = touch.clientY - touchStart.y;
 
-    // 计算移动距离
-    const moveX = touch.clientX - touchStart.x;
-    const moveY = touch.clientY - touchStart.y;
+      // 如果移动距离超过阈值，标记为拖拽
+      if (Math.abs(moveX) > MOVE_THRESHOLD || Math.abs(moveY) > MOVE_THRESHOLD) {
+        if (!this.data.dragging) {
+          this.setData({
+            dragging: true,
+            allowClick: false
+          });
+        }
+      }
 
-    // 如果移动距离超过 10px，认为是拖拽
-    if (Math.abs(moveX) > 10 || Math.abs(moveY) > 10) {
+      // 节流控制：限制更新频率
+      const now = Date.now();
+      if (now - this.data.lastMoveTime < THROTTLE_DELAY) {
+        return;
+      }
+
+      // 更新最后移动时间
+      this.setData({ lastMoveTime: now });
+
+      // 计算新位置
+      let newX = btnPosition.x + moveX;
+      let newY = btnPosition.y + moveY;
+
+      const btnWidth = 60;
+      const btnHeight = 60;
+      const { windowInfo } = this.data;
+
+      // 快速边界限制
+      const minX = 20;
+      const maxX = windowInfo.windowWidth - btnWidth - 20;
+      const minY = 20;
+      const maxY = windowInfo.windowHeight - btnHeight - 20;
+
+      newX = Math.max(minX, Math.min(newX, maxX));
+      newY = Math.max(minY, Math.min(newY, maxY));
+
+      // 角落吸附（只在靠近时执行）
+      const safeMargin = 80;
+      const nearTopLeft = newX < minX + safeMargin && newY < minY + safeMargin;
+      const nearTopRight = newX > maxX - safeMargin && newY < minY + safeMargin;
+      const nearBottomLeft = newX < minX + safeMargin && newY > maxY - safeMargin;
+      const nearBottomRight = newX > maxX - safeMargin && newY > maxY - safeMargin;
+
+      if (nearTopLeft) {
+        newX = minX + safeMargin;
+        newY = Math.max(minY, newY);
+      } else if (nearTopRight) {
+        newX = maxX - safeMargin;
+        newY = Math.max(minY, newY);
+      } else if (nearBottomLeft) {
+        newX = minX + safeMargin;
+        newY = Math.min(maxY, newY);
+      } else if (nearBottomRight) {
+        newX = maxX - safeMargin;
+        newY = Math.min(maxY, newY);
+      }
+
+      // 更新按钮位置
       this.setData({
-        dragging: true,
-        allowClick: false
+        'btnPosition.x': newX,
+        'btnPosition.y': newY
       });
-    }
-
-    // 更新按钮位置 - 使用相对偏移而不是绝对位置
-    let newX = btnPosition.x + moveX;
-    let newY = btnPosition.y + moveY;
-
-    const btnWidth = this.data.btnSize.width || 60;
-    const btnHeight = this.data.btnSize.height || 60;
-
-    // 🔴 P1: 简化边界限制，减少计算开销
-    const minX = 20;
-    const maxX = windowInfo.windowWidth - btnWidth - 20;
-    const minY = 20;
-    const maxY = windowInfo.windowHeight - btnHeight - 20;
-
-    // 快速边界限制
-    newX = Math.max(minX, Math.min(newX, maxX));
-    newY = Math.max(minY, Math.min(newY, maxY));
-
-    // 🔴 P1: 只在真正需要时才执行角落吸附逻辑
-    const safeMargin = 80;
-
-    // 只在按钮靠近角落时才执行吸附逻辑
-    const nearTopLeft = newX < minX + safeMargin && newY < minY + safeMargin;
-    const nearTopRight = newX > maxX - safeMargin && newY < minY + safeMargin;
-    const nearBottomLeft = newX < minX + safeMargin && newY > maxY - safeMargin;
-    const nearBottomRight = newX > maxX - safeMargin && newY > maxY - safeMargin;
-
-    if (nearTopLeft) {
-      newX = minX + safeMargin;
-      newY = Math.max(minY, newY);
-    } else if (nearTopRight) {
-      newX = maxX - safeMargin;
-      newY = Math.max(minY, newY);
-    } else if (nearBottomLeft) {
-      newX = minX + safeMargin;
-      newY = Math.min(maxY, newY);
-    } else if (nearBottomRight) {
-      newX = maxX - safeMargin;
-      newY = Math.min(maxY, newY);
-    }
-
-    this.setData({
-      'btnPosition.x': newX,
-      'btnPosition.y': newY
-    });
-  },
+    },
 
     // 触摸结束
     onTouchEnd(e) {
@@ -812,19 +820,7 @@ Component({
       return;
     },
 
-    // 🔴 P1: 节流优化拖拽性能 - 16ms一次,约60fps
-  throttleTouchMove: function(callback) {
-    let lastTime = 0;
-    const THROTTLE_DELAY = 16; // 约60fps
-
-    return function(e) {
-      const now = Date.now();
-      if (now - lastTime >= THROTTLE_DELAY) {
-        lastTime = now;
-        callback(e);
-      }
-    };
-  },
+    // 事件追踪
     trackEvent(eventName, params = {}) {
       try {
         const app = getApp();
