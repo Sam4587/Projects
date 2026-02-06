@@ -389,7 +389,7 @@
   position: fixed;
   width: 100rpx;
   height: 100rpx;
-  z-index: 9998;
+  z-index: 900;
   border-radius: 50%;
   display: flex;
   align-items: center;
