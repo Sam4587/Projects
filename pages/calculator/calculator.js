@@ -73,12 +73,16 @@ Page({
 
   selectRelationship(e) {
     const relationship = e.currentTarget.dataset.rel;
-    this.setData({ relationship, result: null });
+    this.setData({ relationship, result: null }, () => {
+      this.calculateAmount();
+    });
   },
 
   selectCloseness(e) {
     const closeness = e.currentTarget.dataset.close;
-    this.setData({ closeness, result: null });
+    this.setData({ closeness, result: null }, () => {
+      this.calculateAmount();
+    });
   },
 
   // 选择场合
@@ -86,7 +90,9 @@ Page({
     const occasion = e.currentTarget.dataset.occasion;
     const occasionList = this.data.occasionList;
     const occasionName = occasionList.find(i => i.id === occasion)?.name || '请选择场合';
-    this.setData({ occasion, occasionName, showOccasionPicker: false, result: null });
+    this.setData({ occasion, occasionName, showOccasionPicker: false, result: null }, () => {
+      this.calculateAmount();
+    });
   },
 
   // 显示场合选择器
@@ -104,7 +110,9 @@ Page({
     const region = e.currentTarget.dataset.region;
     const regionList = this.data.regionList;
     const regionName = regionList.find(i => i.id === region)?.name || '请选择地域';
-    this.setData({ region, regionName, showRegionPicker: false, result: null });
+    this.setData({ region, regionName, showRegionPicker: false, result: null }, () => {
+      this.calculateAmount();
+    });
   },
 
   // 显示地域选择器
@@ -130,13 +138,17 @@ Page({
   // 输入最低预算
   onMinBudgetInput(e) {
     const value = e.detail.value;
-    this.setData({ budgetMin: value, result: null });
+    this.setData({ budgetMin: value, result: null }, () => {
+      this.calculateAmount();
+    });
   },
 
   // 输入最高预算
   onMaxBudgetInput(e) {
     const value = e.detail.value;
-    this.setData({ budgetMax: value, result: null });
+    this.setData({ budgetMax: value, result: null }, () => {
+      this.calculateAmount();
+    });
   },
 
   // 阻止事件冒泡
