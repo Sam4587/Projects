@@ -174,23 +174,26 @@ function hmacSHA256(key, message) {
     let i = 0;
 
     // 处理每3个字节转换为4个Base64字符
-    while (i < bytes.length) {
-      const byte1 = bytes[i++];
-      const byte2 = bytes[i++];
-      const byte3 = bytes[i++];
+    for (; i < bytes.length; i += 3) {
+      const byte1 = bytes[i];
+      const byte2 = bytes[i + 1];
+      const byte3 = bytes[i + 2];
 
       // 取出6位二进制，转换为Base64字符
       const enc1 = byte1 >> 2;
-      const enc2 = ((byte1 & 3) << 4) | (byte2 >> 4);
-      const enc3 = ((byte2 & 15) << 2) | (byte3 >> 6);
-      const enc4 = byte3 & 63;
+      const enc2 = ((byte1 & 3) << 4) | (byte2 !== undefined ? byte2 >> 4 : 0);
+      const enc3 = (byte2 !== undefined) ? ((byte2 & 15) << 2) | (byte3 !== undefined ? byte3 >> 6 : 0) : ((byte1 & 15) << 2);
+      const enc4 = byte3 !== undefined ? byte3 & 63 : (byte1 & 63);
 
       // 处理边界情况
-      if (isNaN(byte2)) {
+      if (byte2 === undefined) {
+        // 只有1个字节
         result += base64Chars.charAt(enc1) + base64Chars.charAt(enc2) + '==';
-      } else if (isNaN(byte3)) {
+      } else if (byte3 === undefined) {
+        // 只有2个字节
         result += base64Chars.charAt(enc1) + base64Chars.charAt(enc2) + base64Chars.charAt(enc3) + '=';
       } else {
+        // 有3个字节
         result += base64Chars.charAt(enc1) + base64Chars.charAt(enc2) + base64Chars.charAt(enc3) + base64Chars.charAt(enc4);
       }
     }
