@@ -99,8 +99,8 @@ class SmartRecommendationEngine {
     const base = baseAmounts[relationship] || 300;
     const multiplier = closenessMultipliers[closeness] || 1.0;
 
-    // 确保为100的整数倍数
-    return Math.max(100, Math.round(base * multiplier / 100) * 100);
+    // 确保为100的整数倍数，使用floor避免吸附效应
+    return Math.max(100, Math.floor(base * multiplier / 100) * 100);
   }
 
   /**
@@ -128,8 +128,8 @@ class SmartRecommendationEngine {
     // 应用调整
     const adjustedAmount = Math.round(amount * adjustment);
 
-    // 确保是100的整数倍数
-    const result = Math.max(100, Math.round(adjustedAmount / 100) * 100);
+    // 确保是100的整数倍数，使用floor避免吸附效应
+    const result = Math.max(100, Math.floor(adjustedAmount / 100) * 100);
     console.log('  地域调整结果:', amount, '×', adjustment, '=', adjustedAmount, '→', result);
     return result;
   }
@@ -191,8 +191,8 @@ class SmartRecommendationEngine {
     console.log('  场合调整: 原金额=', amount, '系数=', multiplier, '场合=', occasion);
     const adjustedAmount = Math.round(amount * multiplier);
 
-    // 确保是100的整数倍数
-    const result = Math.max(100, Math.round(adjustedAmount / 100) * 100);
+    // 确保是100的整数倍数，使用floor避免吸附效应
+    const result = Math.max(100, Math.floor(adjustedAmount / 100) * 100);
     console.log('  场合调整结果:', amount, '×', multiplier, '=', adjustedAmount, '→', result);
     return result;
   }
