@@ -739,9 +739,13 @@ Page({
       this.saveTranslationHistory(customPhrase);
     }
 
+    // 截取祝福语前4个字符用于提示
+    const displayText = phraseText.length > 4 ? phraseText.substring(0, 4) + '...' : phraseText;
+
     wx.showToast({
-      title: `已选择: ${phraseText}`,
-      icon: 'success'
+      title: `已选择: ${displayText}`,
+      icon: 'success',
+      duration: 2000
     });
   },
 
@@ -783,9 +787,13 @@ Page({
       this.saveTranslationHistory(customPhrase);
     }
 
+    // 截取祝福语前4个字符用于提示
+    const displayText = phrase.length > 4 ? phrase.substring(0, 4) + '...' : phrase;
+
     wx.showToast({
-      title: `已选择: ${phrase}`,
-      icon: 'success'
+      title: `已选择: ${displayText}`,
+      icon: 'success',
+      duration: 2000
     });
   },
 
