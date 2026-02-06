@@ -159,9 +159,6 @@ Page({
   calculateAmount() {
     const { relationship, closeness, occasion, region, budgetMin, budgetMax } = this.data;
 
-    console.log('=== 开始计算推荐金额 ===');
-    console.log('输入参数:', { relationship, closeness, occasion, region, budgetMin, budgetMax });
-
     if (!relationship || !closeness) return;
 
     // 🔴 中优先级修复：添加关系类型和亲疏程度的有效性验证
@@ -213,8 +210,6 @@ Page({
       budget = { min, max };
     }
 
-    console.log('构建的预算范围:', budget);
-
     // 使用智能推荐引擎计算推荐金额
     try {
       const recommendation = this.recommendationEngine.recommend({
@@ -225,7 +220,6 @@ Page({
         budget
       });
 
-      console.log('推荐引擎返回结果:', recommendation);
       this.setData({
         result: recommendation
       });

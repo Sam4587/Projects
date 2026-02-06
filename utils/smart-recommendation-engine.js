@@ -34,19 +34,14 @@ class SmartRecommendationEngine {
       budget           // 预算范围 { min, max }
     } = params;
 
-    console.log('=== 推荐计算开始 ===');
-    console.log('输入参数:', { relationship, closeness, occasion, region, budget });
-
     // 1. 基础金额计算
     const baseAmount = this.calculateBaseAmount(relationship, closeness);
-    console.log('步骤1 - 基础金额:', baseAmount);
 
     // 2. 场合调整（在预算调整之前）
     const occasionAdjustedAmount = this.applyOccasionAdjustment(
       baseAmount,
       occasion
     );
-    console.log('步骤2 - 场合调整后:', occasionAdjustedAmount, '(场合:', occasion, ')');
 
     // 3. 地域习俗调整
     const regionalAdjustedAmount = this.applyRegionalRules(
@@ -54,14 +49,12 @@ class SmartRecommendationEngine {
       relationship,
       region
     );
-    console.log('步骤3 - 地域调整后:', regionalAdjustedAmount, '(地域:', region, ')');
 
     // 4. 预算调整（最后执行，确保最终金额在预算范围内）
     const finalAmount = this.applyBudgetAdjustment(
       regionalAdjustedAmount,
       budget
     );
-    console.log('步骤4 - 预算调整后:', finalAmount, '(预算:', budget, ')');
 
     // 5. 生成推荐结果
     const result = this.generateRecommendation(
@@ -69,7 +62,6 @@ class SmartRecommendationEngine {
       baseAmount,
       params
     );
-    console.log('=== 推荐计算完成 ===');
     return result;
   }
 
@@ -99,7 +91,7 @@ class SmartRecommendationEngine {
     const base = baseAmounts[relationship] || 300;
     const multiplier = closenessMultipliers[closeness] || 1.0;
 
-    // 确保为100的整数倍数，使用floor避免吸附效应
+    // 确保为100的整数倍数
     return Math.max(100, Math.floor(base * multiplier / 100) * 100);
   }
 
@@ -112,25 +104,21 @@ class SmartRecommendationEngine {
    */
   applyRegionalRules(amount, relationship, region) {
     if (!this.config.enableRegionalRules || !region) {
-      console.log('  地域调整: 跳过 (未启用或未选择地域)');
       return amount;
     }
 
     const rule = this.regionalRules.get(region);
     if (!rule) {
-      console.log('  地域调整: 跳过 (未找到规则)');
       return amount;
     }
 
     const adjustment = rule.adjustments[relationship] || rule.adjustments.base || 1.0;
-    console.log('  地域调整: 原金额=', amount, '系数=', adjustment, '关系=', relationship);
 
     // 应用调整
     const adjustedAmount = Math.round(amount * adjustment);
 
     // 确保是50的整数倍数（比100更细，保留更多地域差异）
     const result = Math.max(100, Math.floor(adjustedAmount / 50) * 50);
-    console.log('  地域调整结果:', amount, '×', adjustment, '=', adjustedAmount, '→', result);
     return result;
   }
 
@@ -171,7 +159,6 @@ class SmartRecommendationEngine {
    */
   applyOccasionAdjustment(amount, occasion) {
     if (!occasion) {
-      console.log('  场合调整: 跳过 (未选择场合)');
       return amount;
     }
 
@@ -188,12 +175,10 @@ class SmartRecommendationEngine {
     };
 
     const multiplier = occasionMultipliers[occasion] || 1.0;
-    console.log('  场合调整: 原金额=', amount, '系数=', multiplier, '场合=', occasion);
     const adjustedAmount = Math.round(amount * multiplier);
 
     // 确保是50的整数倍数（比100更细，保留更多场合差异）
     const result = Math.max(100, Math.floor(adjustedAmount / 50) * 50);
-    console.log('  场合调整结果:', amount, '×', multiplier, '=', adjustedAmount, '→', result);
     return result;
   }
 
