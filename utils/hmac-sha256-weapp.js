@@ -20,18 +20,16 @@ function hmacSHA256(key, message) {
     }
   }
 
-  // 方法2: 使用 crypto-js 库
+  // 方法2: 使用 crypto-js 库 (微信小程序环境)
   try {
-    const CryptoJS = require('/miniprogram_npm/crypto-js/crypto-js.js');
+    const CryptoJS = require('crypto-js');
     const hmac = CryptoJS.HmacSHA256(message, key);
     return CryptoJS.enc.Base64.stringify(hmac);
   } catch (e) {
-    // 忽略 crypto-js 不可用的情况，使用纯JavaScript实现
+    // 忽略 crypto-js 不可用的情况
   }
 
   // 方法3: 纯JavaScript实现 (备用方案 - 微信小程序真机环境)
-  const BLOCK_SIZE = 64;
-  const OUTPUT_SIZE = 32; // SHA256输出32字节
 
   // SHA256算法 - 严格按照FIPS 180-4实现
   function sha256(messageBytes) {
