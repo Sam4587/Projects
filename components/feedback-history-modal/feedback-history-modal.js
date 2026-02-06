@@ -31,7 +31,7 @@ Component({
       // 为每条记录添加类型标签
       const historyWithLabels = history.map(item => ({
         ...item,
-        typeLabel: this.getTypeLabel(item.type)
+        typeLabel: this.getTypeLabel(historyItem.type)
       }));
 
       this.setData({
@@ -105,7 +105,7 @@ Component({
       // 显示详情弹窗（待实现）
       wx.showModal({
         title: '反馈详情',
-        content: `类型: ${item.typeLabel}\n评分: ${item.rating}⭐\n内容: ${item.content}\n时间: ${item.submitTime}\n状态: ${this.getStatusText(item.status)}`,
+        content: `类型: ${historyItem.typeLabel}\n评分: ${historyItem.rating}⭐\n内容: ${historyItem.content}\n时间: ${historyItem.submitTime}\n状态: ${this.getStatusText(historyItem.status)}`,
         showCancel: false
       });
     },
@@ -129,13 +129,13 @@ Component({
       const id = e.currentTarget.dataset.id;
       const item = this.data.history.find(h => h.id === id);
 
-      if (!item || item.status !== 'failed') return;
+      if (!item || historyItem.status !== 'failed') return;
 
       console.log('📤 重新发送反馈:', id);
 
       wx.showModal({
         title: '确认重新发送',
-        content: `是否要重新发送这条反馈?\n\n类型: ${item.typeLabel}\n评分: ${item.rating}⭐\n内容: ${item.content}`,
+        content: `是否要重新发送这条反馈?\n\n类型: ${historyItem.typeLabel}\n评分: ${historyItem.rating}⭐\n内容: ${historyItem.content}`,
         success: (res) => {
           if (res.confirm) {
             // 触发页面级重试事件
@@ -158,7 +158,7 @@ Component({
 
       wx.showModal({
         title: '确认删除',
-        content: `确定要删除这条反馈记录吗?\n\n类型: ${item.typeLabel}\n评分: ${item.rating}⭐\n内容: ${item.content}`,
+        content: `确定要删除这条反馈记录吗?\n\n类型: ${historyItem.typeLabel}\n评分: ${historyItem.rating}⭐\n内容: ${historyItem.content}`,
         success: (res) => {
           if (res.confirm) {
             const result = FeedbackStorage.deleteFeedback(id);

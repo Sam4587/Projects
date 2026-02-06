@@ -4,7 +4,7 @@
   "projectname": "随礼那点事儿",
   "setting": {
     "libVersion": "3.14.1",
-    "nodeModules": false,
+    "nodeModules": true,
     "es6": true,
     "enhance": true,
     "compileHotReLoad": true,

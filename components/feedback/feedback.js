@@ -3,7 +3,7 @@
 
 // 引入钉钉反馈服务 - 微信小程序专用版本
 const dingtalkModule = require('../../utils/dingtalk-feedback-miniprogram');
-const dingtalkFeedback = dingtalkModule.service;
+const dingtalkFeedback = dingtalkModule.dingtalkFeedback;
 
 Component({
   /**
@@ -312,26 +312,20 @@ Component({
             language: systemInfo.language || '未知'
           }
         };
-        
-        // 伪反馈机制 - 为了通过审核，始终返回成功
-        console.log('🚀 开始提交反馈（伪反馈模式）...');
-        
+
+        // 真正发送反馈到钉钉
+        console.log('🚀 开始提交反馈到钉钉...');
+
         try {
-          // 伪反馈 - 延迟1秒后直接返回成功
-          await new Promise(resolve => setTimeout(resolve, 1000));
-          
-      // 🔴 审核修改：移除伪本地存储，避免收集用户信息
-      // 伪本地存储功能已移除，保护用户隐私
-          
-          const result = { success: true, fallback: false };
-          
+          const result = await dingtalkModule.submit(feedbackData);
+
           wx.hideLoading();
-          
+
           // 清除超时定时器
           if (this.data.submitTimeout) {
             clearTimeout(this.data.submitTimeout);
           }
-          
+
           // 根据结果处理
           if (result.success) {
             if (result.fallback) {
@@ -339,10 +333,10 @@ Component({
               console.log('📦 反馈已降级保存到本地');
               this.setData({ submitStatus: 'fallback' });
               this.updateStats(rating, 'fallback');
-              
+
               setTimeout(() => {
                 wx.showToast({
-                  title: '反馈已保存到本地，稍后自动重试',
+                  title: '反馈已保存到本地,稍后自动重试',
                   icon: 'success',
                   duration: 3000
                 });
@@ -353,36 +347,38 @@ Component({
               console.log('✅ 反馈已成功发送到钉钉');
               this.setData({ submitStatus: 'success' });
               this.updateStats(rating, 'dingtalk');
-              
+
               setTimeout(() => {
                 wx.showToast({
-                  title: '感谢您的反馈！',
+                  title: '感谢您的反馈!',
                   icon: 'success',
                   duration: 2000
                 });
                 this.closeModal();
               }, 500);
             }
-            
+
             // 更新今日反馈次数
             const today = new Date().toDateString();
             const feedbackCount = wx.getStorageSync('feedback_count_' + today) || 0;
             wx.setStorageSync('feedback_count_' + today, feedbackCount + 1);
-            
+
             // 发送统计事件
             this.trackEvent('feedback_submit', {
               rating,
               type: selectedType,
               method: result.fallback ? 'fallback' : 'dingtalk'
             });
-            
+
             // 更新钉钉服务状态
             this.checkDingTalkStatus();
-            
+
           } else {
-            // 提交失败
-            throw new Error(result.message || '提交失败');
-          }
+          // 提交失败
+          const errorMsg = result.error || result.message || '发送失败';
+          console.warn('⚠️ 反馈发送失败:', errorMsg);
+          this.handleSubmitError(errorMsg);
+        }
         } catch (error) {
           wx.hideLoading();
           throw error;

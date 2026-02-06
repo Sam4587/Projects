@@ -17,10 +17,10 @@
         <block wx:if="{{history.length > 0}}">
           <view
             class="history-item {{item.status === 'failed' ? 'item-failed' : ''}}"
-            wx:for="{{item in history}}"
-            wx:key="item.id"
+            wx:for="{{historyItem in history}}"
+            wx:key="historyItem.id"
             bindtap="handleItemClick"
-            data-id="{{item.id}}"
+            data-id="{{historyItem.id}}"
           >
             <!-- 反馈时间和状态 -->
             <view class="item-header">
@@ -56,14 +56,14 @@
                 class="action-btn btn-retry"
                 wx:if="{{item.status === 'failed'}}"
                 bindtap="handleRetry"
-                data-id="{{item.id}}"
+                data-id="{{historyItem.id}}"
               >
                 重新发送
               </button>
               <button
                 class="action-btn btn-delete"
                 bindtap="handleDelete"
-                data-id="{{item.id}}"
+                data-id="{{historyItem.id}}"
               >
                 删除
               </button>

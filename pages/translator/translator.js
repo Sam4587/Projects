@@ -17,11 +17,10 @@ const birthdayData = require('../../config/blessings/birthday.js');
 const openingData = require('../../config/blessings/opening.js');
 
 // 数据加载器
-const loadBlessingData = async (category = '全部') => {
+const loadBlessingData = async (category = '马年专属') => {
   try {
     // 使用对象映射替代冗长的if-else链，提高代码可维护性
     const categoryMap = {
-      '全部': generalData,
       '通用祝福': generalData,
       '健康祝福': healthData,
       '学业祝福': studyData,
@@ -36,9 +35,9 @@ const loadBlessingData = async (category = '全部') => {
       '生日祝福': birthdayData,
       '开业祝福': openingData
     };
-    
-    // 获取对应的模块数据
-    const data = categoryMap[category] || generalData;
+
+    // 获取对应的模块数据,默认使用马年专属
+    const data = categoryMap[category] || horseData;
     return data;
   } catch (error) {
     console.error('加载祝福语数据失败:', error);
@@ -54,8 +53,8 @@ Page({
     userInput: '',
     loading: false,
     loadingText: '',
-    categoryList: ['全部', '马年专属', '通用祝福', '健康祝福', '学业祝福', '事业祝福', '北方豪爽', '江南婉约', '粤语商题', '沿海渔家', '西南安逸', '婚礼祝福', '生日祝福', '开业祝福'],
-    selectedCategory: '全部',
+    categoryList: ['马年专属', '通用祝福', '健康祝福', '学业祝福', '事业祝福', '北方豪爽', '江南婉约', '粤语商题', '沿海渔家', '西南安逸', '婚礼祝福', '生日祝福', '开业祝福'],
+    selectedCategory: '马年专属',
     filteredPhrases: [],
     phrases: [],
     // 🔴 P0: 祝福语搜索索引,加速查找
@@ -87,18 +86,18 @@ Page({
     var that = this;
     (async function() {
       try {
-        // 加载默认分类数据（通用祝福）
-        const generalData = await loadBlessingData('通用祝福');
+        // 加载默认分类数据(马年专属,避免性能问题)
+        const horseData = await loadBlessingData('马年专属');
 
         that.setData({
-          phrases: generalData,
-          filteredPhrases: generalData
+          phrases: horseData,
+          filteredPhrases: horseData
         });
 
         // 🔴 P0: 建立祝福语索引,加速后续搜索
-        that.buildPhraseIndex(generalData);
+        that.buildPhraseIndex(horseData);
 
-        console.log('按需加载祝福语列表:', generalData.length, '条');
+        console.log('加载马年专属祝福语:', horseData.length, '条');
         wx.showToast({
           title: '加载完成',
           icon: 'success',
@@ -667,15 +666,8 @@ Page({
     // 🔴 P0: 移除人为延迟,立即加载分类数据
     (async function() {
       try {
-        let dataToShow;
-
-        if (category === '全部') {
-          // 如果是"全部"，加载通用祝福数据
-          dataToShow = await loadBlessingData('通用祝福');
-        } else {
-          // 加载指定分类数据
-          dataToShow = await loadBlessingData(category);
-        }
+        // 加载指定分类数据
+        const dataToShow = await loadBlessingData(category);
 
         that.setData({
           phrases: dataToShow,
@@ -739,20 +731,19 @@ Page({
       this.saveTranslationHistory(customPhrase);
     }
 
-    // 截取祝福语前4个字符用于提示
-    const displayText = phraseText.length > 4 ? phraseText.substring(0, 4) + '...' : phraseText;
-
-    wx.showToast({
-      title: `已选择: ${displayText}`,
-      icon: 'success',
-      duration: 2000
+      // 使用Modal显示完整祝福语
+    wx.showModal({
+      title: '已选择',
+      content: phraseText,
+      showCancel: false,
+      confirmText: '好的'
     });
   },
 
   onClearInput: function() {
     this.setData({ inputText: '' });
   },
-  
+
   copyPhrase: function(e) {
     const phrase = e.currentTarget.dataset.phrase;
     const foundPhrase = this.data.phrases.find(p => p.traditional === phrase);
@@ -787,11 +778,9 @@ Page({
       this.saveTranslationHistory(customPhrase);
     }
 
-    // 截取祝福语前4个字符用于提示
-    const displayText = phrase.length > 4 ? phrase.substring(0, 4) + '...' : phrase;
-
+    // 显示完整的祝福语文本
     wx.showToast({
-      title: `已选择: ${displayText}`,
+      title: phrase,
       icon: 'success',
       duration: 2000
     });

@@ -1,0 +1,8 @@
+{
+  "name": "redpacket-advisor-miniprogram",
+  "version": "1.0.0",
+  "description": "随礼那点事儿微信小程序",
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  }
+}

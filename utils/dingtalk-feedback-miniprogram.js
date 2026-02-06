@@ -3,7 +3,7 @@
 
 // 加载配置
 var config = require('../config/dingtalk-feedback-miniprogram.js');
-var { hmacSHA256 } = require('./hmac-sha256-weapp-miniprogram.js');
+var { hmacSHA256 } = require('./hmac-sha256-weapp');  // 使用新写的纯JS实现
 var network = require('./network-utils.js');
 
 /**
@@ -32,9 +32,9 @@ class DingTalkFeedbackService {
       console.warn('生成签名失败，使用备用方案');
       return null;
     }
-    
-    // URL编码为钉钉格式
-    return encodeURIComponent(sign);
+
+    // 直接返回签名,不进行URL编码
+    return sign;
   }
 
   /**
