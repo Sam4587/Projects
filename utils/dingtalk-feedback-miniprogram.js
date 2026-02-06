@@ -27,7 +27,14 @@ class DingTalkFeedbackService {
   generateSignature(timestamp) {
     var stringToSign = timestamp + '\n' + this.config.secret;
     var sign = hmacSHA256(this.config.secret, stringToSign);
-    
+
+    console.log('🔐 签名计算调试信息:');
+    console.log('  密钥:', this.config.secret.substring(0, 20) + '...');
+    console.log('  时间戳:', timestamp);
+    console.log('  待签名字符串:', stringToSign);
+    console.log('  原始签名:', sign);
+    console.log('  URL编码签名:', encodeURIComponent(sign));
+
     if (!sign) {
       console.warn('生成签名失败，使用备用方案');
       return null;
