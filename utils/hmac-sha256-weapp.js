@@ -12,24 +12,21 @@ function hmacSHA256(key, message) {
   if (typeof require !== 'undefined') {
     try {
       const crypto = require('crypto');
-      console.log('✅ 使用Node.js crypto.createHmac');
       const hmac = crypto.createHmac('sha256', key);
       hmac.update(message);
       return hmac.digest('base64');
     } catch (e) {
-      console.warn('⚠️ Node.js crypto.createHmac不可用, 尝试crypto-js');
+      // 忽略 Node.js crypto 不可用的情况
     }
   }
 
   // 方法2: 使用 crypto-js 库
   try {
-    // 尝试从 miniprogram_npm 目录加载
     const CryptoJS = require('/miniprogram_npm/crypto-js/crypto-js.js');
-    console.log('✅ 使用crypto-js库');
     const hmac = CryptoJS.HmacSHA256(message, key);
     return CryptoJS.enc.Base64.stringify(hmac);
   } catch (e) {
-    console.warn('⚠️ crypto-js不可用,使用纯JavaScript实现, 错误:', e.message);
+    // 忽略 crypto-js 不可用的情况，使用纯JavaScript实现
   }
 
   // 方法3: 纯JavaScript实现 (备用方案 - 微信小程序真机环境)
