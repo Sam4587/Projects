@@ -83,8 +83,8 @@
       <view class="btn btn-secondary" catch:tap="closeModal">
         {{submitStatus === 'error' ? '关闭' : '取消'}}
       </view>
-      <view wx:if="{{submitStatus !== 'error'}}" 
-            class="btn btn-primary {{submitStatus === 'submitting' ? 'disabled' : ''}}" 
+      <view wx:if="{{submitStatus !== 'error'}}"
+            class="btn btn-primary {{submitStatus === 'submitting' ? 'disabled' : ''}}"
             catch:tap="submitFeedback">
         {{submitStatus === 'submitting' ? '提交中...' : '提交反馈'}}
       </view>
