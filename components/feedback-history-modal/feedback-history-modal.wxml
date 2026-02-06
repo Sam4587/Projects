@@ -1,0 +1,88 @@
+<!-- components/feedback-history-modal/feedback-history-modal.wxml -->
+<view class="feedback-history-modal" wx:if="{{showModal}}">
+  <!-- 遮罩层 -->
+  <view class="modal-mask" bindtap="handleMaskTap"></view>
+
+  <!-- 弹窗内容 -->
+  <view class="modal-content" catchtap="stopPropagation">
+    <!-- 弹窗标题 -->
+    <view class="modal-header">
+      <text class="modal-title">我的反馈记录</text>
+      <text class="modal-close" bindtap="handleClose">✕</text>
+    </view>
+
+    <!-- 反馈列表 -->
+    <scroll-view class="history-scroll" scroll-y="true">
+      <view class="history-list">
+        <block wx:if="{{history.length > 0}}">
+          <view
+            class="history-item {{item.status === 'failed' ? 'item-failed' : ''}}"
+            wx:for="{{item in history}}"
+            wx:key="item.id"
+            bindtap="handleItemClick"
+            data-id="{{item.id}}"
+          >
+            <!-- 反馈时间和状态 -->
+            <view class="item-header">
+              <view class="item-time">
+                <text class="time-text">{{item.submitTime}}</text>
+              </view>
+              <view class="item-status">
+                <text wx:if="{{item.status === 'success'}}" class="status-success">✓ 已发送</text>
+                <text wx:if="{{item.status === 'failed'}}" class="status-failed">✗ 发送失败</text>
+                <text wx:if="{{item.status === 'pending'}}" class="status-pending">⏳ 等待中</text>
+              </view>
+            </view>
+
+            <!-- 反馈内容 -->
+            <view class="item-content">
+              <view class="content-rating">
+                <text class="rating-icon">⭐</text>
+                <text class="rating-text">{{item.rating}}</text>
+              </view>
+              <view class="content-type">
+                <text class="type-label">类型:</text>
+                <text class="type-value">{{item.typeLabel}}</text>
+              </view>
+              <view class="content-text">
+                <text class="text-label">内容:</text>
+                <text class="text-value">{{item.content}}</text>
+              </view>
+            </view>
+
+            <!-- 操作按钮 -->
+            <view class="item-actions">
+              <button
+                class="action-btn btn-retry"
+                wx:if="{{item.status === 'failed'}}"
+                bindtap="handleRetry"
+                data-id="{{item.id}}"
+              >
+                重新发送
+              </button>
+              <button
+                class="action-btn btn-delete"
+                bindtap="handleDelete"
+                data-id="{{item.id}}"
+              >
+                删除
+              </button>
+            </view>
+          </view>
+        </block>
+
+        <!-- 空状态 -->
+        <view wx:if="{{history.length === 0}}" class="empty-state">
+          <text class="empty-icon">📝</text>
+          <text class="empty-text">暂无反馈记录</text>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 底部按钮 -->
+    <view class="modal-footer">
+      <button class="btn btn-secondary" bindtap="handleClearAll">清空记录</button>
+      <button class="btn btn-primary" bindtap="handleClose">关闭</button>
+    </view>
+  </view>
+</view>
