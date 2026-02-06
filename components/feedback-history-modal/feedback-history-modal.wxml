@@ -16,7 +16,7 @@
       <view class="history-list">
         <block wx:if="{{history.length > 0}}">
           <view
-            class="history-item {{item.status === 'failed' ? 'item-failed' : ''}}"
+            class="history-item {{historyItem.status === 'failed' ? 'item-failed' : ''}}"
             wx:for="{{historyItem in history}}"
             wx:key="historyItem.id"
             bindtap="handleItemClick"
@@ -25,12 +25,12 @@
             <!-- 反馈时间和状态 -->
             <view class="item-header">
               <view class="item-time">
-                <text class="time-text">{{item.submitTime}}</text>
+                <text class="time-text">{{historyItem.submitTime}}</text>
               </view>
               <view class="item-status">
-                <text wx:if="{{item.status === 'success'}}" class="status-success">✓ 已发送</text>
-                <text wx:if="{{item.status === 'failed'}}" class="status-failed">✗ 发送失败</text>
-                <text wx:if="{{item.status === 'pending'}}" class="status-pending">⏳ 等待中</text>
+                <text wx:if="{{historyItem.status === 'success'}}" class="status-success">✓ 已发送</text>
+                <text wx:if="{{historyItem.status === 'failed'}}" class="status-failed">✗ 发送失败</text>
+                <text wx:if="{{historyItem.status === 'pending'}}" class="status-pending">⏳ 等待中</text>
               </view>
             </view>
 
@@ -38,15 +38,15 @@
             <view class="item-content">
               <view class="content-rating">
                 <text class="rating-icon">⭐</text>
-                <text class="rating-text">{{item.rating}}</text>
+                <text class="rating-text">{{historyItem.rating}}</text>
               </view>
               <view class="content-type">
                 <text class="type-label">类型:</text>
-                <text class="type-value">{{item.typeLabel}}</text>
+                <text class="type-value">{{historyItem.typeLabel}}</text>
               </view>
               <view class="content-text">
                 <text class="text-label">内容:</text>
-                <text class="text-value">{{item.content}}</text>
+                <text class="text-value">{{historyItem.content}}</text>
               </view>
             </view>
 
@@ -54,7 +54,7 @@
             <view class="item-actions">
               <button
                 class="action-btn btn-retry"
-                wx:if="{{item.status === 'failed'}}"
+                wx:if="{{historyItem.status === 'failed'}}"
                 bindtap="handleRetry"
                 data-id="{{historyItem.id}}"
               >
