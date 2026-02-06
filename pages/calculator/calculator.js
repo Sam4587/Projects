@@ -189,10 +189,28 @@ Page({
     // 构建预算范围
     let budget = null;
     if (budgetMin && budgetMax) {
-      budget = {
-        min: parseInt(budgetMin),
-        max: parseInt(budgetMax)
-      };
+      const min = parseInt(budgetMin);
+      const max = parseInt(budgetMax);
+
+      // 预算合理性验证
+      if (min >= max) {
+        wx.showToast({
+          title: '预算上限必须大于下限',
+          icon: 'none',
+          duration: 2000
+        });
+        return;
+      }
+
+      if (max - min < 200) {
+        wx.showToast({
+          title: '预算范围太窄，建议扩大范围',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+
+      budget = { min, max };
     }
 
     console.log('构建的预算范围:', budget);
