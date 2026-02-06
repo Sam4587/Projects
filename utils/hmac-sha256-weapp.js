@@ -23,7 +23,8 @@ function hmacSHA256(key, message) {
 
   // 方法2: 使用 crypto-js 库
   try {
-    const CryptoJS = require('crypto-js');
+    // 尝试从 miniprogram_npm 目录加载
+    const CryptoJS = require('../miniprogram_npm/crypto-js/crypto-js.js');
     console.log('✅ 使用crypto-js库');
     const hmac = CryptoJS.HmacSHA256(message, key);
     return CryptoJS.enc.Base64.stringify(hmac);
