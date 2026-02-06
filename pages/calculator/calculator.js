@@ -73,12 +73,12 @@ Page({
 
   selectRelationship(e) {
     const relationship = e.currentTarget.dataset.rel;
-    this.setData({ relationship });
+    this.setData({ relationship, result: null });
   },
 
   selectCloseness(e) {
     const closeness = e.currentTarget.dataset.close;
-    this.setData({ closeness });
+    this.setData({ closeness, result: null });
   },
 
   // 选择场合
@@ -86,7 +86,7 @@ Page({
     const occasion = e.currentTarget.dataset.occasion;
     const occasionList = this.data.occasionList;
     const occasionName = occasionList.find(i => i.id === occasion)?.name || '请选择场合';
-    this.setData({ occasion, occasionName, showOccasionPicker: false });
+    this.setData({ occasion, occasionName, showOccasionPicker: false, result: null });
   },
 
   // 显示场合选择器
@@ -104,7 +104,7 @@ Page({
     const region = e.currentTarget.dataset.region;
     const regionList = this.data.regionList;
     const regionName = regionList.find(i => i.id === region)?.name || '请选择地域';
-    this.setData({ region, regionName, showRegionPicker: false });
+    this.setData({ region, regionName, showRegionPicker: false, result: null });
   },
 
   // 显示地域选择器
@@ -130,13 +130,13 @@ Page({
   // 输入最低预算
   onMinBudgetInput(e) {
     const value = e.detail.value;
-    this.setData({ budgetMin: value });
+    this.setData({ budgetMin: value, result: null });
   },
 
   // 输入最高预算
   onMaxBudgetInput(e) {
     const value = e.detail.value;
-    this.setData({ budgetMax: value });
+    this.setData({ budgetMax: value, result: null });
   },
 
   // 阻止事件冒泡
