@@ -58,6 +58,11 @@ Component({
       width: 50,
       height: 50
     },
+    // 窗口信息（缓存，避免频繁调用 wx.getWindowInfo()）
+    windowInfo: {
+      windowWidth: 375,
+      windowHeight: 667
+    },
     // 反馈类型列表
     feedbackTypes: [
       { value: 'bug', label: '🐛 功能异常' },
@@ -81,8 +86,13 @@ Component({
    */
   lifetimes: {
     attached() {
-      // 初始化按钮位置（屏幕右侧中间，增加安全边距）
+      // 初始化窗口信息（缓存到 data 中，避免频繁调用 wx.getWindowInfo()）
       const windowInfo = wx.getWindowInfo();
+      this.setData({
+        windowInfo: windowInfo
+      });
+
+      // 初始化按钮位置（屏幕右侧中间，增加安全边距）
       this.setData({
         'btnPosition.x': windowInfo.windowWidth - 120, // 距离右边距120px，确保不贴边
         'btnPosition.y': windowInfo.windowHeight * 0.6, // 屏幕高度的60%处
@@ -722,7 +732,7 @@ Component({
   // 🔴 P1: 处理拖拽移动的实际逻辑(节流后调用)
   handleTouchMove: function(e) {
     const touch = e.touches[0];
-    const { touchStart, btnPosition } = this.data;
+    const { touchStart, btnPosition, windowInfo } = this.data;
 
     // 计算移动距离
     const moveX = touch.clientX - touchStart.x;
@@ -740,59 +750,40 @@ Component({
     let newX = btnPosition.x + moveX;
     let newY = btnPosition.y + moveY;
 
-    // 获取窗口尺寸和按钮尺寸
-    const windowInfo = wx.getWindowInfo();
     const btnWidth = this.data.btnSize.width || 60;
     const btnHeight = this.data.btnSize.height || 60;
 
-    // 🔴 P1: 更严格的边界限制，确保按钮始终在屏幕内
-    // 水平方向：确保按钮不会移出屏幕
-    const minX = 20; // 距离左边界最小距离
-    const maxX = windowInfo.windowWidth - btnWidth - 20; // 距离右边界最小距离
-    newX = Math.max(minX, Math.min(newX, maxX));
+    // 🔴 P1: 简化边界限制，减少计算开销
+    const minX = 20;
+    const maxX = windowInfo.windowWidth - btnWidth - 20;
+    const minY = 20;
+    const maxY = windowInfo.windowHeight - btnHeight - 20;
 
-    // 垂直方向：确保按钮不会移出屏幕
-    const minY = 20; // 距离上边界最小距离
-    const maxY = windowInfo.windowHeight - btnHeight - 20; // 距离下边界最小距离
+    // 快速边界限制
+    newX = Math.max(minX, Math.min(newX, maxX));
     newY = Math.max(minY, Math.min(newY, maxY));
 
-    // 🔴 P1: 避免按钮停留在屏幕角落，设置安全区域
-    // 如果按钮太接近角落，自动吸附到安全位置
-    const safeMargin = 80; // 距离角落的安全边距
-    const centerX = windowInfo.windowWidth / 2;
-    const centerY = windowInfo.windowHeight / 2;
+    // 🔴 P1: 只在真正需要时才执行角落吸附逻辑
+    const safeMargin = 80;
 
-    // 左上角区域
-    if (newX < minX + safeMargin && newY < minY + safeMargin) {
-      // 吸附到左边，垂直居中
+    // 只在按钮靠近角落时才执行吸附逻辑
+    const nearTopLeft = newX < minX + safeMargin && newY < minY + safeMargin;
+    const nearTopRight = newX > maxX - safeMargin && newY < minY + safeMargin;
+    const nearBottomLeft = newX < minX + safeMargin && newY > maxY - safeMargin;
+    const nearBottomRight = newX > maxX - safeMargin && newY > maxY - safeMargin;
+
+    if (nearTopLeft) {
       newX = minX + safeMargin;
-      if (newY < centerY) {
-        newY = Math.max(minY, minY + safeMargin);
-      }
-    }
-    // 右上角区域
-    else if (newX > maxX - safeMargin && newY < minY + safeMargin) {
-      // 吸附到右边，垂直居中
+      newY = Math.max(minY, newY);
+    } else if (nearTopRight) {
       newX = maxX - safeMargin;
-      if (newY < centerY) {
-        newY = Math.max(minY, minY + safeMargin);
-      }
-    }
-    // 左下角区域
-    else if (newX < minX + safeMargin && newY > maxY - safeMargin) {
-      // 吸附到左边，垂直居中
+      newY = Math.max(minY, newY);
+    } else if (nearBottomLeft) {
       newX = minX + safeMargin;
-      if (newY > centerY) {
-        newY = Math.min(maxY, maxY - safeMargin);
-      }
-    }
-    // 右下角区域
-    else if (newX > maxX - safeMargin && newY > maxY - safeMargin) {
-      // 吸附到右边，垂直居中
+      newY = Math.min(maxY, newY);
+    } else if (nearBottomRight) {
       newX = maxX - safeMargin;
-      if (newY > centerY) {
-        newY = Math.min(maxY, maxY - safeMargin);
-      }
+      newY = Math.min(maxY, newY);
     }
 
     this.setData({
