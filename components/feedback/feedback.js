@@ -756,6 +756,45 @@ Component({
     const maxY = windowInfo.windowHeight - btnHeight - 20; // 距离下边界最小距离
     newY = Math.max(minY, Math.min(newY, maxY));
 
+    // 🔴 P1: 避免按钮停留在屏幕角落，设置安全区域
+    // 如果按钮太接近角落，自动吸附到安全位置
+    const safeMargin = 80; // 距离角落的安全边距
+    const centerX = windowInfo.windowWidth / 2;
+    const centerY = windowInfo.windowHeight / 2;
+
+    // 左上角区域
+    if (newX < minX + safeMargin && newY < minY + safeMargin) {
+      // 吸附到左边，垂直居中
+      newX = minX + safeMargin;
+      if (newY < centerY) {
+        newY = Math.max(minY, minY + safeMargin);
+      }
+    }
+    // 右上角区域
+    else if (newX > maxX - safeMargin && newY < minY + safeMargin) {
+      // 吸附到右边，垂直居中
+      newX = maxX - safeMargin;
+      if (newY < centerY) {
+        newY = Math.max(minY, minY + safeMargin);
+      }
+    }
+    // 左下角区域
+    else if (newX < minX + safeMargin && newY > maxY - safeMargin) {
+      // 吸附到左边，垂直居中
+      newX = minX + safeMargin;
+      if (newY > centerY) {
+        newY = Math.min(maxY, maxY - safeMargin);
+      }
+    }
+    // 右下角区域
+    else if (newX > maxX - safeMargin && newY > maxY - safeMargin) {
+      // 吸附到右边，垂直居中
+      newX = maxX - safeMargin;
+      if (newY > centerY) {
+        newY = Math.min(maxY, maxY - safeMargin);
+      }
+    }
+
     this.setData({
       'btnPosition.x': newX,
       'btnPosition.y': newY

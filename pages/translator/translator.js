@@ -359,6 +359,11 @@ Page({
     if (exists) {
       // 已收藏，执行移除
       this.removeFromFavorites(translation);
+      // 显示提示
+      wx.showToast({
+        title: '已取消收藏',
+        icon: 'success'
+      });
     } else {
       // 未收藏，执行添加
       this.addToFavorites(translation);
@@ -390,6 +395,13 @@ Page({
         favorites: filteredFavorites,
         favoriteIds: new Set(filteredFavorites.map(f => f.id || f.traditional))
       });
+
+      // 如果当前显示的收藏弹窗是打开的，也更新收藏列表显示
+      if (this.data.showFavorites) {
+        this.setData({
+          favorites: filteredFavorites
+        });
+      }
     } catch (error) {
       console.error('取消收藏失败:', error);
     }
