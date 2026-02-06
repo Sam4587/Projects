@@ -8,14 +8,14 @@
 var config = {
   // 钉钉机器人Webhook地址（必填）
   webhook: 'https://oapi.dingtalk.com/robot/send?access_token=88eba63bc98bce33a59169fcd33e64093062f0beea5a65d3830e83dfedeaac7a',
-  
+
   // 钉钉机器人签名密钥（必填）
   secret: 'SEC243a3635982cb428719783a0ac2e8359acea9ced01231fede326bd5b281820fc',
-  
+
   // 项目信息
   projectName: '随礼那点事儿',
   projectVersion: '1.0.0',
-  
+
   // 降级机制配置
   fallback: {
     enabled: true, // 是否启用降级机制
@@ -24,7 +24,7 @@ var config = {
     retryInterval: 5 * 60 * 1000, // 重试间隔（5分钟）
     maxRetries: 3 // 最大重试次数
   },
-  
+
   // 消息模板配置
   messageTemplates: {
     feedback: {
@@ -53,7 +53,7 @@ var config = {
                '**成功率：** {{success_rate}}%'
     }
   },
-  
+
   // 反馈类型配置
   feedbackTypes: [
     { value: 'bug', label: '🐛 问题报告', color: '#f5222d' },
@@ -63,7 +63,7 @@ var config = {
     { value: 'ui', label: '🎨 界面优化', color: '#fa8c16' },
     { value: 'other', label: '💭 其他', color: '#8c8c8c' }
   ],
-  
+
   // 评分配置
   rating: {
     min: 1,
@@ -76,7 +76,7 @@ var config = {
       5: '非常满意'
     }
   },
-  
+
   // 用户限制配置
   userLimits: {
     dailyMaxFeedback: 5, // 每日最多反馈次数
