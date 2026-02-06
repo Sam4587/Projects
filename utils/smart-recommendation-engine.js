@@ -37,28 +37,28 @@ class SmartRecommendationEngine {
     // 1. 基础金额计算
     const baseAmount = this.calculateBaseAmount(relationship, closeness);
 
-    // 2. 地域习俗调整
-    const regionalAdjustedAmount = this.applyRegionalRules(
+    // 2. 场合调整（在预算调整之前）
+    const occasionAdjustedAmount = this.applyOccasionAdjustment(
       baseAmount,
+      occasion
+    );
+
+    // 3. 地域习俗调整
+    const regionalAdjustedAmount = this.applyRegionalRules(
+      occasionAdjustedAmount,
       relationship,
       region
     );
 
-    // 3. 预算调整
-    const budgetAdjustedAmount = this.applyBudgetAdjustment(
+    // 4. 预算调整（最后执行，确保最终金额在预算范围内）
+    const finalAmount = this.applyBudgetAdjustment(
       regionalAdjustedAmount,
       budget
     );
 
-    // 4. 场合调整
-    const occasionAdjustedAmount = this.applyOccasionAdjustment(
-      budgetAdjustedAmount,
-      occasion
-    );
-
     // 5. 生成推荐结果
     return this.generateRecommendation(
-      occasionAdjustedAmount,
+      finalAmount,
       baseAmount,
       params
     );
@@ -190,17 +190,17 @@ class SmartRecommendationEngine {
       recommended: finalAmount
     };
 
-    // 如果用户设置了预算范围，且最终金额在预算范围内，则用预算范围作为显示的参考范围
+    // 如果用户设置了预算范围
     if (budget && budget.min !== undefined && budget.max !== undefined) {
       if (finalAmount >= budget.min && finalAmount <= budget.max) {
         // 最终金额在预算范围内，显示预算范围
         range.low = budget.min;
         range.high = budget.max;
       } else {
-        // 最终金额不在预算范围内（通常被预算调整函数调整过），仍然显示基于金额的范围
-        // 但确保范围不低于预算下限且不高于预算上限
-        range.low = Math.max(budget.min, range.low);
-        range.high = Math.min(budget.max, range.high);
+        // 最终金额不在预算范围内（被预算调整函数调整过）
+        // 基于调整后的金额计算范围，但限制在预算边界内
+        range.low = Math.max(budget.min, Math.max(100, finalAmount - 200));
+        range.high = Math.min(budget.max, finalAmount + 400);
       }
     }
 
