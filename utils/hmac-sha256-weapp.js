@@ -153,9 +153,35 @@ function hmacSHA256(key, message) {
     return bytes;
   }
 
-  // Base64编码
+  // Base64编码 - 微信小程序兼容版本
   function bytesToBase64(bytes) {
-    return btoa(String.fromCharCode(...bytes));
+    const base64Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/';
+    let result = '';
+    let i = 0;
+
+    // 处理每3个字节转换为4个Base64字符
+    while (i < bytes.length) {
+      const byte1 = bytes[i++];
+      const byte2 = bytes[i++];
+      const byte3 = bytes[i++];
+
+      // 取出6位二进制，转换为Base64字符
+      const enc1 = byte1 >> 2;
+      const enc2 = ((byte1 & 3) << 4) | (byte2 >> 4);
+      const enc3 = ((byte2 & 15) << 2) | (byte3 >> 6);
+      const enc4 = byte3 & 63;
+
+      // 处理边界情况
+      if (isNaN(byte2)) {
+        result += base64Chars.charAt(enc1) + base64Chars.charAt(enc2) + '==';
+      } else if (isNaN(byte3)) {
+        result += base64Chars.charAt(enc1) + base64Chars.charAt(enc2) + base64Chars.charAt(enc3) + '=';
+      } else {
+        result += base64Chars.charAt(enc1) + base64Chars.charAt(enc2) + base64Chars.charAt(enc3) + base64Chars.charAt(enc4);
+      }
+    }
+
+    return result;
   }
 
   // HMAC主逻辑
