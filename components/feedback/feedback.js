@@ -43,12 +43,27 @@ Component({
     dragging: false,
     // 是否允许触发点击
     allowClick: true,
+    // 拖拽起始位置（用于绝对定位）
+    dragStart: {
+      x: 0,
+      y: 0
+    },
+    // 按钮起始位置
+    btnStart: {
+      x: 0,
+      y: 0
+    },
     // 节流控制
     lastMoveTime: 0,
     // 按钮位置
     btnPosition: {
       x: 300,
       y: 400
+    },
+    // 拖拽起始位置
+    btnStart: {
+      x: 0,
+      y: 0
     },
     // 触摸起始位置
     touchStart: {
@@ -712,9 +727,13 @@ Component({
     // 触摸开始
     onTouchStart(e) {
       const touch = e.touches[0];
+      const { btnPosition } = this.data;
+
       this.setData({
         dragging: false,
         allowClick: true,
+        dragStart: { x: touch.clientX, y: touch.clientY },
+        btnStart: { x: btnPosition.x, y: btnPosition.y },
         'touchStart.x': touch.clientX,
         'touchStart.y': touch.clientY
       });
@@ -728,16 +747,16 @@ Component({
       }
 
       const touch = e.touches[0];
-      const { touchStart, btnPosition } = this.data;
-      const MOVE_THRESHOLD = 10; // 移动阈值
-      const THROTTLE_DELAY = 16; // 节流延迟约60fps
+      const { dragStart, btnStart, windowInfo } = this.data;
+      const MOVE_THRESHOLD = 5; // 降低阈值，更快响应
+      const THROTTLE_DELAY = 8; // 提高帧率到 120fps
 
-      // 计算移动距离
-      const moveX = touch.clientX - touchStart.x;
-      const moveY = touch.clientY - touchStart.y;
+      // 计算拖拽距离
+      const dragX = touch.clientX - dragStart.x;
+      const dragY = touch.clientY - dragStart.y;
 
       // 如果移动距离超过阈值，标记为拖拽
-      if (Math.abs(moveX) > MOVE_THRESHOLD || Math.abs(moveY) > MOVE_THRESHOLD) {
+      if (Math.abs(dragX) > MOVE_THRESHOLD || Math.abs(dragY) > MOVE_THRESHOLD) {
         if (!this.data.dragging) {
           this.setData({
             dragging: true,
@@ -755,15 +774,13 @@ Component({
       // 更新最后移动时间
       this.setData({ lastMoveTime: now });
 
-      // 计算新位置
-      let newX = btnPosition.x + moveX;
-      let newY = btnPosition.y + moveY;
-
-      const btnWidth = 60;
-      const btnHeight = 60;
-      const { windowInfo } = this.data;
+      // 使用绝对位置计算：按钮起始位置 + 拖拽距离
+      let newX = btnStart.x + dragX;
+      let newY = btnStart.y + dragY;
 
       // 快速边界限制
+      const btnWidth = 60;
+      const btnHeight = 60;
       const minX = 20;
       const maxX = windowInfo.windowWidth - btnWidth - 20;
       const minY = 20;
@@ -793,7 +810,7 @@ Component({
         newY = Math.min(maxY, newY);
       }
 
-      // 更新按钮位置
+      // 只更新按钮位置，减少 setData 调用
       this.setData({
         'btnPosition.x': newX,
         'btnPosition.y': newY
