@@ -134,7 +134,7 @@ class SmartRecommendationEngine {
 
     // 超出预算上限,调整到上限附近
     if (amount > max) {
-      return max - 100; // 留出100元缓冲
+      return (max - 100); // 留出100元缓冲
     }
 
     // 低于预算下限,提升到下限
