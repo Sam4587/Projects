@@ -90,9 +90,11 @@ class RegionalRuleSystem {
   /**
    * 获取地域习俗说明 - 支持34个地区
    * @param {string} regionId - 地域ID
+   * @param {number} recommendedAmount - 推荐金额（用于生成动态吉利数字）
+   * @param {Object} budgetRange - 预算范围 { min, max }
    * @returns {Object} - 地域习俗
    */
-  getRegionCustoms(regionId) {
+  getRegionCustoms(regionId, recommendedAmount = null, budgetRange = null) {
     const customsData = {
       'beijing': {
         preferredNumbers: [66, 88, 168, 188, 200],
@@ -266,11 +268,175 @@ class RegionalRuleSystem {
       }
     };
 
-    return customsData[regionId] || {
-      preferredNumbers: [66, 88, 168, 200],
+    const baseCustoms = customsData[regionId] || {
       traditions: ['注重传统', '讲究礼数'],
       tips: '地域习俗信息'
     };
+
+    // 如果提供了推荐金额和预算范围，动态生成吉利数字
+    if (recommendedAmount) {
+      baseCustoms.preferredNumbers = this.generateLuckyNumbers(
+        recommendedAmount,
+        budgetRange
+      );
+    } else {
+      // 未提供推荐金额时使用默认值
+      baseCustoms.preferredNumbers = baseCustoms.preferredNumbers || [66, 88, 168, 200];
+    }
+
+    return baseCustoms;
+  }
+
+  /**
+   * 根据推荐金额和预算范围生成动态吉利数字
+   * @param {number} recommendedAmount - 推荐金额
+   * @param {Object} budgetRange - 预算范围 { min, max }
+   * @returns {Array} - 吉利数字数组
+   */
+  generateLuckyNumbers(recommendedAmount, budgetRange = null) {
+    // 确定基数范围
+    let baseAmount = recommendedAmount;
+    if (budgetRange && budgetRange.min && budgetRange.max) {
+      // 如果有预算范围，以推荐金额为中心，在预算范围内生成
+      baseAmount = Math.min(Math.max(baseAmount, budgetRange.min), budgetRange.max);
+    }
+
+    // 获取金额的位数，确定生成的吉利数字范围
+    const magnitude = Math.pow(10, Math.floor(Math.log10(baseAmount)));
+
+    // 生成不同位数的吉利数字
+    const candidates = [];
+
+    // 1. 生成包含66、88、168、188、268、288、366、388、566、588、666、688、888等吉利组合的数字
+    const luckyCombinations = [66, 88, 168, 188, 268, 288, 368, 388, 568, 588, 666, 688, 888, 968, 988];
+    luckyCombinations.forEach(base => {
+      // 为每个组合生成不同量级的数字（10倍递增）
+      for (let m = 1; m <= 100; m *= 10) {
+        const amount = base * m;
+        if (amount > 0 && amount <= 100000) {
+          candidates.push(amount);
+        }
+        if (amount > 100000) break;
+      }
+    });
+
+    // 2. 生成经典的吉利数字模式（如600, 800, 1600, 1800等）
+    const classicPatterns = [
+      magnitude * 6,    // 如60, 600, 6000
+      magnitude * 8,    // 如80, 800, 8000
+      magnitude * 16,   // 如160, 1600, 16000
+      magnitude * 18,   // 如180, 1800, 18000
+      magnitude * 20,   // 如200, 2000, 20000
+      magnitude * 28,   // 如280, 2800, 28000
+      magnitude * 38    // 如380, 3800, 38000
+    ];
+
+    classicPatterns.forEach(amount => {
+      if (amount > 0 && amount <= 100000) {
+        candidates.push(amount);
+      }
+    });
+
+    // 3. 生成接近推荐金额的吉利数字（主推荐）
+    const nearPatterns = [
+      baseAmount - 2 * magnitude,  // 低位
+      baseAmount - magnitude,       // 中低位
+      baseAmount,                   // 推荐金额本身
+      baseAmount + magnitude,       // 中高位
+      baseAmount + 2 * magnitude    // 高位
+    ];
+
+    nearPatterns.forEach(amount => {
+      if (amount > 0 && amount <= 100000) {
+        // 将数字转换为字符串，尝试替换为吉利数字
+        const amountStr = Math.floor(amount / 10) * 10;
+        const rounded = this.adjustToLuckyNumber(amountStr);
+        if (rounded) {
+          candidates.push(rounded);
+        }
+        candidates.push(amountStr);
+      }
+    });
+
+    // 4. 根据预算范围过滤候选数字
+    let filteredCandidates = candidates;
+    if (budgetRange && budgetRange.min && budgetRange.max) {
+      filteredCandidates = candidates.filter(
+        amount => amount >= budgetRange.min && amount <= budgetRange.max
+      );
+    }
+
+    // 如果预算范围内没有合适的数字，扩大范围到推荐金额附近的20%
+    if (filteredCandidates.length === 0) {
+      const minRange = Math.max(66, baseAmount * 0.8);
+      const maxRange = Math.min(100000, baseAmount * 1.2);
+      filteredCandidates = candidates.filter(
+        amount => amount >= minRange && amount <= maxRange
+      );
+    }
+
+    // 5. 对候选数字排序并选择最合适的6个
+    // 优先选择接近推荐金额且为吉利数字的值
+    filteredCandidates.sort((a, b) => {
+      const diffA = Math.abs(a - baseAmount);
+      const diffB = Math.abs(b - baseAmount);
+      return diffA - diffB;
+    });
+
+    // 去重并取前6个
+    const uniqueNumbers = [...new Set(filteredCandidates)].slice(0, 6);
+
+    // 确保至少返回一些吉利数字
+    if (uniqueNumbers.length === 0) {
+      uniqueNumbers.push(
+        Math.max(66, Math.floor(baseAmount - 100)),
+        Math.floor(baseAmount),
+        Math.min(9999, Math.floor(baseAmount + 100))
+      );
+    }
+
+    // 最终排序，从小到大
+    uniqueNumbers.sort((a, b) => a - b);
+
+    return uniqueNumbers;
+  }
+
+  /**
+   * 将普通数字调整为吉利数字
+   * @param {number} amount - 原始金额
+   * @returns {number|null} - 调整后的吉利数字，如果无法调整则返回null
+   */
+  adjustToLuckyNumber(amount) {
+    const luckyEndings = ['66', '68', '88', '99'];
+    const amountStr = Math.floor(amount).toString();
+
+    // 尝试替换最后两位为吉利数字
+    if (amountStr.length >= 2) {
+      const prefix = amountStr.substring(0, amountStr.length - 2);
+
+      for (const ending of luckyEndings) {
+        const luckyAmount = parseInt(prefix + ending);
+        // 确保调整后的数字在原始数字附近（±20%范围内）
+        if (Math.abs(luckyAmount - amount) <= amount * 0.2 && luckyAmount > 0 && luckyAmount <= 100000) {
+          return luckyAmount;
+        }
+      }
+    }
+
+    // 尝试替换最后三位为吉利数字（168, 188, 268, 288等）
+    if (amountStr.length >= 3) {
+      const prefix = amountStr.substring(0, amountStr.length - 3);
+      const threeDigitLuckies = ['168', '188', '268', '288', '368', '388', '568', '588', '668', '688', '888'];
+
+      for (const ending of threeDigitLuckies) {
+        const luckyAmount = parseInt(prefix + ending);
+        if (Math.abs(luckyAmount - amount) <= amount * 0.2 && luckyAmount > 0 && luckyAmount <= 100000) {
+          return luckyAmount;
+        }
+      }
+    }
+
+    return null;
   }
 
   /**

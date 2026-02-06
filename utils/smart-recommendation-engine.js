@@ -216,7 +216,7 @@ class SmartRecommendationEngine {
     // 获取地域习俗
     let customs = null;
     if (region && this.config.enableRegionalRules) {
-      customs = this.regionalRules.getRegionCustoms(region);
+      customs = this.regionalRules.getRegionCustoms(region, finalAmount, budget);
     }
 
     // 获取关系类型的中文名称
