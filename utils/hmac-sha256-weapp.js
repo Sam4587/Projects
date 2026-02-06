@@ -8,6 +8,20 @@
  * @returns {string} Base64 编码的签名
  */
 function hmacSHA256(key, message) {
+  // 优先使用 Node.js 的 crypto.createHmac (微信开发者工具环境)
+  if (typeof require !== 'undefined') {
+    try {
+      const crypto = require('crypto');
+      console.log('✅ 使用Node.js crypto.createHmac');
+      const hmac = crypto.createHmac('sha256', key);
+      hmac.update(message);
+      return hmac.digest('base64');
+    } catch (e) {
+      console.warn('⚠️ Node.js crypto.createHmac不可用,使用纯JavaScript实现, 错误:', e.message);
+    }
+  }
+
+  // 纯JavaScript实现 (备用方案 - 微信小程序真机环境)
   const BLOCK_SIZE = 64;
   const OUTPUT_SIZE = 32; // SHA256输出32字节
 
