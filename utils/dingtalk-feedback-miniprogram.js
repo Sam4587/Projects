@@ -33,8 +33,8 @@ class DingTalkFeedbackService {
       return null;
     }
 
-    // 直接返回签名,不进行URL编码
-    return sign;
+    // 钉钉官方文档要求对签名进行 URL 编码
+    return encodeURIComponent(sign);
   }
 
   /**
