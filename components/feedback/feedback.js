@@ -139,11 +139,21 @@ Component({
         return;
       }
 
-      // 🔧 已移除每日反馈次数限制
+      // 检查今日反馈次数
       const today = new Date().toDateString();
+      const feedbackCount = wx.getStorageSync('feedback_count_' + today) || 0;
 
-      // 提交反馈
-      
+      // 今日反馈次数达到5次，禁止提交
+      if (feedbackCount >= 5) {
+        wx.showModal({
+          title: '反馈次数已达上限',
+          content: '您今天已提交5次反馈，请明天再试。',
+          showCancel: false,
+          confirmText: '我知道了'
+        });
+        return;
+      }
+
       // 重置提交状态
       this.setData({ 
         show: true,
