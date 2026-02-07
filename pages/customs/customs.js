@@ -263,6 +263,20 @@ Page({
       selectedRegionIndex: index
     });
 
+    // 🔧 修改地区选择逻辑：选择地区后自动进入对比模式
+    // 自动将选中的地区设为第一个对比地区，第二个对比地区设为第二个可用的不同地区
+    const regionsLength = this.data.regions.length;
+    let compareRegion2Index = (index + 1) % regionsLength;  // 跳过相同地区，选择下一个不同地区
+
+    this.setData({
+      showCompare: true,
+      compareRegion1Index: index,
+      compareRegion2Index: compareRegion2Index
+    });
+
+    // 自动加载对比数据
+    this.loadCompareData();
+
     // 🔴 P0: 移除人为延迟,立即加载地区数据
     const page = this;
     (async function() {

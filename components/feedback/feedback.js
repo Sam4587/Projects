@@ -139,17 +139,10 @@ Component({
         return;
       }
 
-      // 检查今日反馈次数限制
+      // 🔧 已移除每日反馈次数限制
       const today = new Date().toDateString();
-      const feedbackCount = wx.getStorageSync('feedback_count_' + today) || 0;
-      
-      if (feedbackCount >= 5) {
-        wx.showToast({
-          title: '今日反馈次数已达上限',
-          icon: 'none'
-        });
-        return;
-      }
+
+      // 提交反馈
       
       // 重置提交状态
       this.setData({ 
@@ -361,17 +354,18 @@ Component({
               }, 500);
             }
 
-            // 更新今日反馈次数
-            const today = new Date().toDateString();
-            const feedbackCount = wx.getStorageSync('feedback_count_' + today) || 0;
-            wx.setStorageSync('feedback_count_' + today, feedbackCount + 1);
-
+            // 🔧 恢复每日反馈次数计数逻辑
             // 发送统计事件
             this.trackEvent('feedback_submit', {
               rating,
               type: selectedType,
               method: result.fallback ? 'fallback' : 'dingtalk'
             });
+
+            // 更新今日反馈次数
+            const today = new Date().toDateString();
+            const feedbackCount = wx.getStorageSync('feedback_count_' + today) || 0;
+            wx.setStorageSync('feedback_count_' + today, feedbackCount + 1);
 
             // 更新钉钉服务状态
             this.checkDingTalkStatus();
