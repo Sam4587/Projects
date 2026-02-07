@@ -425,12 +425,5 @@ Page({
     }
   },
 
-  /**
-   * 跳转到开发者测试页面
-   */
-  gotoDevTest() {
-    wx.navigateTo({
-      url: '/pages/test-dingtalk/test-dingtalk'
-    });
   }
 });

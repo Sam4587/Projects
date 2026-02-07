@@ -32,7 +32,8 @@
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: 修复calculator.js严重语法错误并清理文档\n\n- 修复calculator.js文件结构混乱问题\n- 清理重复的openFeedbackHistory方法片段\n- 修复括号和逗号匹配问题\n- 删除过时的文档文件和配置\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: UI优化 - 解决标签和按钮换行问题\n\n- 地域习俗页面Tab改为垂直布局（图标在上文字在下）\n- 特殊场合改为紧凑列表布局（点击展开详情）\n- 红包翻译器分类改为自适应网格布局\n- 随礼计算器按钮改为垂直布局\n- 禁用钉钉自动测试功能\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: 地区对比功能优化和文档整理\n\n1. 恢复反馈次数计数逻辑（每日5次限制功能正常）\n2. 优化地区对比功能：选择地区后自动进入对比模式\n3. 重构 docs/INDEX.md 文档索引，按目录结构重新分类\n4. 删除冗余/过时的文档文件\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nchore: 更新 Claude 配置文件\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nchore: 更新 Claude 配置文件\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: 修复每日5次反馈限制和恢复地区对比交互\n\n1. 恢复每日5次反馈限制功能\n   - 在openModal中检查今日反馈次数\n   - 达到5次时弹出提示并禁止提交\n   - 移除冗余的today变量声明\n\n2. 优化地区对比功能交互\n   - 移除选择地区后自动进入对比模式的逻辑\n   - 恢复头部\"地区对比\"按钮\n   - 用户可手动点击按钮进入对比弹窗\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }

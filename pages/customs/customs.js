@@ -139,6 +139,7 @@ Page({
     selectedRegion: 'beijing',
     selectedRegionIndex: 0,
     customsTab: 'gift',
+    showRegionPicker: false,  // 地区选择弹窗显示状态
     loading: false,  // 🔴 P0: 加载状态
     loadingText: '',  // 🔴 P0: 加载文本
     // P0: 添加特殊场合tab支持
@@ -304,6 +305,65 @@ Page({
   switchCustomsTab(e) {
     const tab = e.currentTarget.dataset.tab;
     this.setData({ customsTab: tab });
+  },
+
+  // 显示地区选择弹窗
+  showRegionPicker() {
+    this.setData({ showRegionPicker: true });
+  },
+
+  // 隐藏地区选择弹窗
+  hideRegionPicker() {
+    this.setData({ showRegionPicker: false });
+  },
+
+  // 选择地区
+  selectRegion(e) {
+    const index = e.currentTarget.dataset.index;
+    const region = this.data.regions[index];
+
+    if (!region || !region.id) {
+      console.warn('地区数据无效:', region);
+      return;
+    }
+
+    this.setData({
+      selectedRegion: region.id,
+      selectedRegionIndex: index,
+      showRegionPicker: false
+    });
+
+    // 加载该地区的详细数据
+    const page = this;
+    (async function() {
+      try {
+        const regionData = await loadCustomsData(region.id);
+        const validData = regionData && Object.keys(regionData).length > 0 ? regionData : page.createDefaultRegionData(region.name);
+
+        page.setData({
+          giftMoneyData: validData,
+          giftGivingData: validData
+        });
+
+        wx.showToast({
+          title: `${region.name}数据加载完成`,
+          icon: 'success',
+          duration: 1000
+        });
+      } catch (error) {
+        console.error('加载地域数据失败:', error);
+        const defaultData = page.createDefaultRegionData(region.name);
+        page.setData({
+          giftMoneyData: defaultData,
+          giftGivingData: defaultData
+        });
+        wx.showToast({
+          title: '使用默认数据',
+          icon: 'none',
+          duration: 2000
+        });
+      }
+    })();
   },
 
   // 🔴 高优先级修复：创建默认地域数据

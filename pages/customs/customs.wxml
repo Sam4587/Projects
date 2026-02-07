@@ -131,17 +131,12 @@
       
       <view class="form-group">
         <view class="form-label">选择省份</view>
-        <picker 
-          mode="selector" 
-          range="{{regions}}" 
-          range-key="name"
-          value="{{selectedRegionIndex}}"
-          bindchange="onRegionChange"
-        >
-          <view class="form-input">
+        <view class="region-selector" bindtap="showRegionPicker">
+          <text class="selector-text">
             {{regions[selectedRegionIndex] ? regions[selectedRegionIndex].name : '请选择省份'}}
-          </view>
-        </picker>
+          </text>
+          <text class="selector-arrow">▼</text>
+        </view>
       </view>
 
       <!-- 标签切换 - 优化为垂直布局 -->
@@ -365,6 +360,29 @@
           </view>
         </view>
       </block>
+    </view>
+  </view>
+
+  <!-- 地区选择弹窗 -->
+  <view wx:if="{{showRegionPicker}}" class="modal-overlay" bindtap="hideRegionPicker">
+    <view class="modal-content picker-modal" catchtap="">
+      <view class="modal-header">
+        <text class="modal-title">选择省份</text>
+        <text class="modal-close" bindtap="hideRegionPicker">✕</text>
+      </view>
+
+      <scroll-view class="picker-list" scroll-y="true">
+        <view
+          wx:for="{{regions}}"
+          wx:key="id"
+          class="picker-item {{selectedRegionIndex === index ? 'selected' : ''}}"
+          bindtap="selectRegion"
+          data-index="{{index}}"
+        >
+          <text class="picker-text">{{item.name}}</text>
+          <text wx:if="{{selectedRegionIndex === index}}" class="picker-check">✓</text>
+        </view>
+      </scroll-view>
     </view>
   </view>
 
