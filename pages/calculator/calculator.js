@@ -415,15 +415,5 @@ Page({
     }
 
     console.log('伪反馈已提交（本地存储已移除）');
-  },
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-
   }
 });
