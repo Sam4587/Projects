@@ -25,15 +25,22 @@ class DingTalkFeedbackService {
    * 生成钉钉签名
    */
   generateSignature(timestamp) {
-    var stringToSign = timestamp + '\n' + this.config.secret;
-    var sign = hmacSHA256(this.config.secret, stringToSign);
+    // 方案2: 使用完整secret（含SEC）作为HMAC密钥和stringToSign
+    var secret = this.config.secret;  // 完整secret，含SEC前缀
+    var stringToSign = timestamp + '\n' + secret;
+    
+    console.log('📝 方案2: 使用完整secret（含SEC）');
+    
+    // 使用完整secret作为HMAC密钥
+    var sign = hmacSHA256(secret, stringToSign);
+    console.log("钉钉签名生成成功");
 
     if (!sign) {
       console.warn('生成签名失败，使用备用方案');
       return null;
     }
 
-    // 钉钉官方文档要求对签名进行 URL 编码
+    console.log('✅ 签名生成成功，长度:', sign.length);
     return encodeURIComponent(sign);
   }
 
@@ -52,7 +59,7 @@ class DingTalkFeedbackService {
     var webhookWithSign = this.config.webhook + 
       '&timestamp=' + timestamp + 
       '&sign=' + sign;
-
+    console.log('发送钉钉消息:', webhookWithSign.substring(0, 80) + '...');
     console.log('📤 发送钉钉消息:', webhookWithSign.substring(0, 80) + '...');
 
     // 使用智能网络请求

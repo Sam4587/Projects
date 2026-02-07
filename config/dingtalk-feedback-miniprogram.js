@@ -18,11 +18,11 @@ var config = {
 
   // 降级机制配置
   fallback: {
-    enabled: true, // 是否启用降级机制
-    maxQueueSize: 100, // 本地队列最大容量
-    autoRetry: true, // 是否自动重试
-    retryInterval: 5 * 60 * 1000, // 重试间隔（5分钟）
-    maxRetries: 3 // 最大重试次数
+    enabled: true,
+    maxQueueSize: 100,
+    autoRetry: true,
+    retryInterval: 5 * 60 * 1000,
+    maxRetries: 3
   },
 
   // 消息模板配置
@@ -79,9 +79,9 @@ var config = {
 
   // 用户限制配置
   userLimits: {
-    dailyMaxFeedback: 5, // 每日最多反馈次数
-    minContentLength: 5, // 内容最小长度
-    maxContentLength: 500 // 内容最大长度
+    dailyMaxFeedback: 5,
+    minContentLength: 5,
+    maxContentLength: 500
   }
 };
 

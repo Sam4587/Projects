@@ -253,6 +253,11 @@
             开发者不承担由此产生的任何法律责任。
           </view>
         </view>
+
+        <!-- 开发者测试入口 -->
+        <view class="dev-test-entry" bindtap="gotoDevTest">
+          <text class="dev-test-text">钉钉集成测试</text>
+        </view>
       </view>
     </view>
   </view>

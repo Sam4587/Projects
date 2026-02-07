@@ -33,6 +33,5 @@
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents",
-  "version": "1.0.0"
+  "lazyCodeLoading": "requiredComponents"
 }

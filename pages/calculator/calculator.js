@@ -415,5 +415,14 @@ Page({
     }
 
     console.log('伪反馈已提交（本地存储已移除）');
+  },
+
+  /**
+   * 跳转到开发者测试页面
+   */
+  gotoDevTest() {
+    wx.navigateTo({
+      url: '/pages/test-dingtalk/test-dingtalk'
+    });
   }
 });

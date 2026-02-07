@@ -810,3 +810,21 @@
 .diff-amount.negative {
   color: #dc2626;
 }
+
+/* 新增样式：开发者测试入口 */
+.dev-test-entry {
+  margin-top: 24rpx;
+  padding: 16rpx 24rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #9ca3af;
+  transition: all 0.3s ease;
+}
+
+.dev-test-entry:active {
+  color: #dc2626;
+}
+
+.dev-test-text {
+  opacity: 0.5;
+}

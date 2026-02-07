@@ -48,5 +48,7 @@
     "ignore": [],
     "include": []
   },
-  "editorSetting": {}
+  "editorSetting": {},
+  "packNpmManually": false,
+  "packNpmRelationList": []
 }

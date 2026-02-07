@@ -109,14 +109,12 @@ ${feedbackData.contact || '未留'}
   async sendToDingTalk(feedbackData) {
     const now = Date.now();
     if (now - this.lastSentTime < this.rateLimit) {
-      return { success: false, error: '操作太频繁，请稍候重试' };
+      return { success: false, error: '操作太频繁,请稍候重试' };
     }
 
-    const timestamp = Date.now();
+    const timestamp = now;
     const sign = this.generateSignature(timestamp);
-    // ⚠️ 注意：这里应该从配置中获取URL
-    const DINGTALK_URL = this.config?.webhook || 'https://oapi.dingtalk.com/robot/send?access_token=你的钉钉token';
-    const url = `${DINGTALK_URL}&timestamp=${timestamp}&sign=${sign}`;
+    const url = `${this.webhook}&timestamp=${timestamp}&sign=${sign}`;
 
     try {
       const response = await new Promise((resolve, reject) => {
@@ -130,15 +128,16 @@ ${feedbackData.contact || '未留'}
         });
       });
 
-      if (response.data.errcode === 0) {
+      if (response.statusCode === 200 && response.data.errcode === 0) {
+        this.lastSentTime = now;
         return { success: true, data: response.data };
       }
 
-      console.warn('钉钉反馈发送失败');
-      return { success: false, error: response.data };
+      console.warn('钉钉反馈发送失败:', response.data);
+      return { success: false, error: response.data.errmsg || '发送失败' };
     } catch (error) {
-      console.error('钉钉发送异常');
-      return { success: false, error: error.message };
+      console.error('钉钉发送异常:', error);
+      return { success: false, error: error.message || '网络异常' };
     }
   }
 

@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -c workspace/utils/regional-rule-system.js)",
+      "Bash(node -c /workspace/utils/regional-rule-system.js)",
+      "Bash(node -c /workspace/utils/smart-recommendation-engine.js)",
+      "Bash(node test-lucky-numbers.js)",
+      "Bash(git add utils/regional-rule-system.js utils/smart-recommendation-engine.js)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: 优化吉利数字推荐功能，支持根据推荐金额和预算范围动态生成\n\n- 新增动态吉利数字生成算法，根据推荐金额和预算范围智能推荐\n- 吉利数字现在与预算范围紧密关联，提供更精准的推荐\n- 支持经典吉利数字模式（66、88、168、188等）的自动扩展\n- 优化地域习俗获取接口，传入推荐金额参数\n- 提升用户体验，推荐数字更符合实际使用场景\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git push)",
+      "Bash(node -c /workspace/pages/translator/translator.js)",
+      "Bash(git add pages/translator/translator.js)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: 优化红包翻译页面祝福语选择提示文本显示\n\n- 修复祝福语选择时提示文本被截断的问题\n- 微信wx.showToast的title有字数限制，现在自动截取前4个字符并添加省略号\n- 统一优化selectPhrase和copyPhrase两个方法的提示显示\n- 提升用户体验，确保提示信息完整展示\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(ls -la /workspace/*.md)",
+      "Bash(tree -L 2 -I 'node_modules|.git' /workspace)",
+      "Bash(git add .monkeycode/)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\ndocs: 添加项目文档管理和任务追踪系统\n\n- 创建项目概述文档（PROJECT_OVERVIEW.md）\n- 创建任务追踪文档（TASK_TRACKING.md）\n- 创建文件目录管理说明（FILE_MANAGEMENT.md）\n- 建立清晰的文档结构和任务管理体系\n- 为团队协作和项目管理提供规范\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git mv CHANGELOG.md docs/reference/)",
+      "Bash(git mv CODE_MANAGEMENT.md docs/reference/)",
+      "Bash(git mv DATA_INTEGRITY_ANALYSIS.md docs/reference/)",
+      "Bash(git mv CONTRIBUTING.md docs/reference/)",
+      "Bash(git mv README.md docs/reference/)",
+      "Bash(git mv implementation_priority_evaluation.md docs/planning/)",
+      "Bash(git mv data_integrity_issue_list.md docs/reference/)",
+      "Bash(git mv \"Git推送检查清单.md\" docs/guidelines/)",
+      "Bash(git mv 上线状态检查报告.md docs/archive/)",
+      "Bash(git add docs/)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\ndocs: 统一文档目录结构,创建文档索引\n\n- 将根目录的MD文档分类整理到docs目录\n- 创建reference目录存放参考文档（CHANGELOG、CODE_MANAGEMENT等）\n- 创建planning目录存放规划文档\n- 创建guidelines目录存放操作指南\n- 创建archive目录存放历史文档\n- 创建统一的INDEX.md文档索引\n- 优化文档查找和管理体验\n\n文档分类:\n- reference/: 6个核心参考文档\n- planning/: 1个规划文档\n- guidelines/: 1个操作指南\n- archive/: 待整理历史文档\n- docs/: 50+个技术文档\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git add utils/feedback-storage.js components/feedback-history-modal/ docs/planning/user-feedback-history-implementation.md)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: 添加用户反馈历史功能,解决钉钉集成问题\n\n- 创建反馈历史存储工具类\\(utils/feedback-storage.js\\)\n- 创建反馈历史弹窗组件\\(components/feedback-history-modal/\\)\n- 实现反馈历史查看和管理功能\n- 支持查看、删除、清空、重试操作\n- 添加功能实现说明文档\\(docs/planning/user-feedback-history-implementation.md\\)\n- 解决审核期间钉钉无法接收反馈的问题\n- 用户可以查看自己提交的所有反馈记录\n- 保留伪反馈机制用于通过审核\n\n功能亮点:\n- 本地存储,不依赖网络\n- 最多保存50条记录\n- 支持状态显示\\(已发送、发送失败、等待中\\)\n- 时间格式化显示\\(刚刚、X分钟前等\\)\n- 优化用户体验,操作有明确反馈\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}
