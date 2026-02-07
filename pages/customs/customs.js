@@ -140,18 +140,12 @@ Page({
     selectedRegionIndex: 0,
     customsTab: 'gift',
     showRegionPicker: false,  // 地区选择弹窗显示状态
-    loading: false,  // 🔴 P0: 加载状态
-    loadingText: '',  // 🔴 P0: 加载文本
-    // P0: 添加特殊场合tab支持
+    loading: false,  // 加载状态
+    loadingText: '',  // 加载文本
+    // 特殊场合tab支持
     occasionTabs: ['gift', 'giving', 'special'],
-    // P0: 地区对比功能
-    showCompare: false,
-    compareRegion1Index: 0,
-    compareRegion2Index: 1,
-    compareData: null,
-    // 🔧 新增：展开的特殊场合详情
-    expandedOccasion: null,
-    // unlockedDeepReadings: [],  // 已解锁的深度解读地区（暂时隐藏）
+    // 展开的特殊场合详情
+    expandedOccasion: null
   },
 
   // 生命周期函数
@@ -411,19 +405,7 @@ Page({
     };
   },
 
-  // P0: 打开地区对比弹窗
-  openCompare() {
-    this.setData({ showCompare: true });
-    // 自动加载对比数据
-    this.loadCompareData();
-  },
-
-  // P0: 关闭地区对比弹窗
-  closeCompare() {
-    this.setData({ showCompare: false });
-  },
-
-  // 🔧 新增：切换特殊场合详情展开/收起
+  // 切换特殊场合详情展开/收起
   toggleOccasionDetail(e) {
     const type = e.currentTarget.dataset.type;
     const currentExpanded = this.data.expandedOccasion;
@@ -441,57 +423,6 @@ Page({
     } else {
       // 展开新的
       this.setData({ expandedOccasion: occasionMap[type] });
-    }
-  },
-
-  // P0: 地区1选择变化
-  onCompareRegion1Change(e) {
-    this.setData({ compareRegion1Index: e.detail.value });
-    this.loadCompareData();
-  },
-
-  // P0: 地区2选择变化
-  onCompareRegion2Change(e) {
-    this.setData({ compareRegion2Index: e.detail.value });
-    this.loadCompareData();
-  },
-
-  // P0: 加载对比数据
-  async loadCompareData() {
-    const page = this;
-    const region1Index = page.data.compareRegion1Index;
-    const region2Index = page.data.compareRegion2Index;
-    const regions = page.data.regions;
-
-    if (!regions || region1Index === region2Index) {
-      return;
-    }
-
-    const region1Id = regions[region1Index]?.id;
-    const region2Id = regions[region2Index]?.id;
-
-    if (!region1Id || !region2Id) {
-      return;
-    }
-
-    try {
-      const [data1, data2] = await Promise.all([
-        loadCustomsData(region1Id),
-        loadCustomsData(region2Id)
-      ]);
-
-      // 处理数据格式兼容
-      const region1Data = data1[region1Id] || data1 || page.createDefaultRegionData(regions[region1Index].name);
-      const region2Data = data2[region2Id] || data2 || page.createDefaultRegionData(regions[region2Index].name);
-
-      page.setData({
-        compareData: {
-          region1: region1Data,
-          region2: region2Data
-        }
-      });
-    } catch (error) {
-      console.error('加载对比数据失败:', error);
     }
   }
 });
