@@ -94,21 +94,11 @@ exports.main = async (event, context) => {
         message: result.success ? '发送成功' : '发送失败'
       };
     } else if (action === 'test') {
-      // 测试钉钉连通性
-      const testMessage = {
-        msgtype: 'text',
-        text: {
-          content: '🔧 钉钉云函数测试消息\n测试时间：' + new Date().toLocaleString('zh-CN')
-        }
-      };
-
-      const timestamp = Date.now();
-      const result = await sendToDingTalk(testMessage, timestamp);
-
+      // 🔧 测试功能已禁用 - 反馈服务已正常运行
       return {
-        code: result.success ? 0 : -1,
-        data: result,
-        message: result.success ? '测试成功' : '测试失败'
+        code: 0,
+        disabled: true,
+        message: '测试功能已禁用，反馈功能正常运行中'
       };
     } else {
       return {

@@ -10,33 +10,37 @@
       <view class="form-group">
         <view class="form-label">选择关系类型</view>
         <view class="category-grid">
-          <view 
-            class="category-btn {{relationship === 'family' ? 'active' : ''}}" 
-            bindtap="selectRelationship" 
+          <view
+            class="category-btn {{relationship === 'family' ? 'active' : ''}}"
+            bindtap="selectRelationship"
             data-rel="family"
           >
-            ❤️ 家人亲戚
+            <text class="emoji-icon">❤️</text>
+            <text class="btn-text">家人亲戚</text>
           </view>
-          <view 
-            class="category-btn {{relationship === 'friend' ? 'active' : ''}}" 
-            bindtap="selectRelationship" 
+          <view
+            class="category-btn {{relationship === 'friend' ? 'active' : ''}}"
+            bindtap="selectRelationship"
             data-rel="friend"
           >
-            👥 朋友同学
+            <text class="emoji-icon">👥</text>
+            <text class="btn-text">朋友同学</text>
           </view>
-          <view 
-            class="category-btn {{relationship === 'colleague' ? 'active' : ''}}" 
-            bindtap="selectRelationship" 
+          <view
+            class="category-btn {{relationship === 'colleague' ? 'active' : ''}}"
+            bindtap="selectRelationship"
             data-rel="colleague"
           >
-            💼 同事领导
+            <text class="emoji-icon">💼</text>
+            <text class="btn-text">同事领导</text>
           </view>
-          <view 
-            class="category-btn {{relationship === 'boss' ? 'active' : ''}}" 
-            bindtap="selectRelationship" 
+          <view
+            class="category-btn {{relationship === 'boss' ? 'active' : ''}}"
+            bindtap="selectRelationship"
             data-rel="boss"
           >
-            👑 老板客户
+            <text class="emoji-icon">👑</text>
+            <text class="btn-text">老板客户</text>
           </view>
         </view>
       </view>
@@ -49,28 +53,28 @@
             bindtap="selectCloseness"
             data-close="acquaintance"
           >
-            点头之交
+            <text class="btn-text">点头之交</text>
           </view>
           <view
             class="category-btn {{closeness === 'normal' ? 'active' : ''}}"
             bindtap="selectCloseness"
             data-close="normal"
           >
-            普通关系
+            <text class="btn-text">普通关系</text>
           </view>
           <view
             class="category-btn {{closeness === 'close' ? 'active' : ''}}"
             bindtap="selectCloseness"
             data-close="close"
           >
-            关系密切
+            <text class="btn-text">关系密切</text>
           </view>
           <view
             class="category-btn {{closeness === 'very-close' ? 'active' : ''}}"
             bindtap="selectCloseness"
             data-close="very-close"
           >
-            非常要好
+            <text class="btn-text">非常要好</text>
           </view>
         </view>
       </view>

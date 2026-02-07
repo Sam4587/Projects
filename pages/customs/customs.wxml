@@ -144,28 +144,31 @@
         </picker>
       </view>
 
-      <!-- 标签切换 -->
+      <!-- 标签切换 - 优化为垂直布局 -->
       <view class="tab-list">
         <view
           class="tab-item {{customsTab === 'gift' ? 'active' : ''}}"
           bindtap="switchCustomsTab"
           data-tab="gift"
         >
-          🧧 压岁钱习俗
+          <text class="tab-icon">🧧</text>
+          <text class="tab-text">压岁钱</text>
         </view>
         <view
           class="tab-item {{customsTab === 'giving' ? 'active' : ''}}"
           bindtap="switchCustomsTab"
           data-tab="giving"
         >
-          💕 随份子习俗
+          <text class="tab-icon">💕</text>
+          <text class="tab-text">随份子</text>
         </view>
         <view
           class="tab-item {{customsTab === 'special' ? 'active' : ''}}"
           bindtap="switchCustomsTab"
           data-tab="special"
         >
-          🎉 特殊场合
+          <text class="tab-icon">🎉</text>
+          <text class="tab-text">特殊场合</text>
         </view>
       </view>
 
@@ -281,89 +284,58 @@
         </view>
       </block>
 
-      <!-- 特殊场合内容 -->
+      <!-- 特殊场合内容 - 优化为更紧凑的布局 -->
       <block wx:if="{{customsTab === 'special'}}">
-        <view class="space-y-4">
-          <!-- 婚礼习俗 -->
-          <view class="occasion-card">
-            <view class="occasion-header">
-              <text class="occasion-icon">💒</text>
-              <text class="occasion-title">婚礼</text>
+        <view class="space-y-3">
+          <!-- 简化：紧凑的卡片列表 -->
+          <view class="occasion-compact-list">
+            <!-- 婚礼习俗 -->
+            <view class="occasion-compact-item" bindtap="toggleOccasionDetail" data-type="wedding">
+              <text class="compact-icon">💒</text>
+              <view class="compact-info">
+                <text class="compact-title">婚礼</text>
+                <text class="compact-amount">{{giftMoneyData.specialOccasions.wedding.amount || '暂无数据'}}</text>
+              </view>
+              <text class="compact-arrow">></text>
             </view>
-            <view class="occasion-content">
-              <view class="form-group">
-                <view class="form-label">金额建议</view>
-                <view class="occasion-amount">{{giftMoneyData.specialOccasions.wedding.amount || '暂无数据'}}</view>
+            <!-- 生日习俗 -->
+            <view class="occasion-compact-item" bindtap="toggleOccasionDetail" data-type="birthday">
+              <text class="compact-icon">🎂</text>
+              <view class="compact-info">
+                <text class="compact-title">生日</text>
+                <text class="compact-amount">{{giftMoneyData.specialOccasions.birthday.amount || '暂无数据'}}</text>
               </view>
-              <view class="form-group">
-                <view class="form-label">当地习俗</view>
-                <view class="occasion-customs">
-                  <block wx:for="{{giftMoneyData.specialOccasions.wedding.customs || []}}" wx:key="*this">
-                    <view class="occasion-custom-item">{{item}}</view>
-                  </block>
-                </view>
-              </view>
-              <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
-                <view class="form-label text-yellow-800">贴心提示</view>
-                <text class="text-sm text-yellow-700">
-                  {{giftMoneyData.specialOccasions.wedding.tips || '暂无提示'}}
-                </text>
-              </view>
+              <text class="compact-arrow">></text>
             </view>
-          </view>
-
-          <!-- 生日习俗 -->
-          <view class="occasion-card">
-            <view class="occasion-header">
-              <text class="occasion-icon">🎂</text>
-              <text class="occasion-title">生日</text>
-            </view>
-            <view class="occasion-content">
-              <view class="form-group">
-                <view class="form-label">金额建议</view>
-                <view class="occasion-amount">{{giftMoneyData.specialOccasions.birthday.amount || '暂无数据'}}</view>
+            <!-- 葬礼习俗 -->
+            <view class="occasion-compact-item" bindtap="toggleOccasionDetail" data-type="funeral">
+              <text class="compact-icon">⚰️</text>
+              <view class="compact-info">
+                <text class="compact-title">葬礼</text>
+                <text class="compact-amount">{{giftMoneyData.specialOccasions.funeral.amount || '暂无数据'}}</text>
               </view>
-              <view class="form-group">
-                <view class="form-label">当地习俗</view>
-                <view class="occasion-customs">
-                  <block wx:for="{{giftMoneyData.specialOccasions.birthday.customs || []}}" wx:key="*this">
-                    <view class="occasion-custom-item">{{item}}</view>
-                  </block>
-                </view>
-              </view>
-              <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
-                <view class="form-label text-yellow-800">贴心提示</view>
-                <text class="text-sm text-yellow-700">
-                  {{giftMoneyData.specialOccasions.birthday.tips || '暂无提示'}}
-                </text>
-              </view>
+              <text class="compact-arrow">></text>
             </view>
           </view>
 
-          <!-- 葬礼习俗 -->
-          <view class="occasion-card">
-            <view class="occasion-header">
-              <text class="occasion-icon">⚰️</text>
-              <text class="occasion-title">葬礼</text>
-            </view>
-            <view class="occasion-content">
-              <view class="form-group">
-                <view class="form-label">金额建议</view>
-                <view class="occasion-amount">{{giftMoneyData.specialOccasions.funeral.amount || '暂无数据'}}</view>
+          <!-- 展开式详情（点击后显示） -->
+          <view wx:if="{{expandedOccasion}}" class="occasion-detail-section">
+            <view class="detail-card">
+              <view class="detail-header">
+                <text class="detail-title">{{expandedOccasion.title}}</text>
+                <text class="detail-close" bindtap="toggleOccasionDetail">✕</text>
               </view>
-              <view class="form-group">
-                <view class="form-label">当地习俗</view>
-                <view class="occasion-customs">
-                  <block wx:for="{{giftMoneyData.specialOccasions.funeral.customs || []}}" wx:key="*this">
-                    <view class="occasion-custom-item">{{item}}</view>
+              <view class="detail-content">
+                <view class="detail-section">
+                  <view class="detail-label">当地习俗</view>
+                  <block wx:for="{{expandedOccasion.customs}}" wx:key="*this">
+                    <view class="detail-item">• {{item}}</view>
                   </block>
                 </view>
-              </view>
-              <view class="bg-yellow-50 p-3 rounded-lg border border-yellow-200">
-                <view class="form-label text-yellow-800">贴心提示</view>
-                <text class="text-sm text-yellow-700">
-                  {{giftMoneyData.specialOccasions.funeral.tips || '暂无提示'}}
-                </text>
+                <view class="detail-tip-box">
+                  <view class="detail-tip-label">贴心提示</view>
+                  <text class="detail-tip-text">{{expandedOccasion.tips}}</text>
+                </view>
               </view>
             </view>
           </view>

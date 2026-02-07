@@ -622,10 +622,10 @@ Component({
           dingtalkStatus: serviceStatus
         });
         
-        // 如果服务状态为离线，自动进行连通性测试
-        if (serviceStatus === 'offline') {
-          this.autoTestDingTalkService();
-        }
+        // 🔧 已禁用自动测试功能 - 反馈服务已正常运行，无需持续测试
+        // if (serviceStatus === 'offline') {
+        //   this.autoTestDingTalkService();
+        // }
         
         return status;
       } catch (error) {
@@ -634,8 +634,8 @@ Component({
           dingtalkStatus: 'unknown'
         });
         
-        // 自动进行连通性测试
-        this.autoTestDingTalkService();
+        // 🔧 已禁用自动测试功能 - 反馈服务已正常运行，无需持续测试
+        // this.autoTestDingTalkService();
         return null;
       }
     },

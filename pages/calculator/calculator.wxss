@@ -63,21 +63,34 @@
   color: #1f2937;
 }
 
-/* 分类网格 */
+/* 分类网格 - 优化为自适应布局，避免emoji+文字换行 */
 .category-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16rpx;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12rpx;
 }
 
 .category-btn {
-  padding: 20rpx 16rpx;
+  padding: 16rpx 12rpx;
   text-align: center;
   border: 2rpx solid #e5e7eb;
   border-radius: 12rpx;
-  font-size: 28rpx;
+  font-size: 26rpx;
   background: #fafafa;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6rpx;
+}
+
+.category-btn .emoji-icon {
+  font-size: 28rpx;
+}
+
+.category-btn .btn-text {
+  font-size: 24rpx;
 }
 
 .category-btn.active {

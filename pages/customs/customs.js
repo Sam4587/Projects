@@ -148,6 +148,8 @@ Page({
     compareRegion1Index: 0,
     compareRegion2Index: 1,
     compareData: null,
+    // 🔧 新增：展开的特殊场合详情
+    expandedOccasion: null,
     // unlockedDeepReadings: [],  // 已解锁的深度解读地区（暂时隐藏）
   },
 
@@ -359,6 +361,27 @@ Page({
   // P0: 关闭地区对比弹窗
   closeCompare() {
     this.setData({ showCompare: false });
+  },
+
+  // 🔧 新增：切换特殊场合详情展开/收起
+  toggleOccasionDetail(e) {
+    const type = e.currentTarget.dataset.type;
+    const currentExpanded = this.data.expandedOccasion;
+    const specialOccasions = this.data.giftMoneyData.specialOccasions || {};
+
+    const occasionMap = {
+      wedding: { title: '婚礼', ...specialOccasions.wedding },
+      birthday: { title: '生日', ...specialOccasions.birthday },
+      funeral: { title: '葬礼', ...specialOccasions.funeral }
+    };
+
+    if (currentExpanded && currentExpanded.type === type) {
+      // 点击已展开的，收起
+      this.setData({ expandedOccasion: null });
+    } else {
+      // 展开新的
+      this.setData({ expandedOccasion: occasionMap[type] });
+    }
   },
 
   // P0: 地区1选择变化

@@ -29,7 +29,8 @@
       "Bash(git add utils/feedback-storage.js components/feedback-history-modal/ docs/planning/user-feedback-history-implementation.md)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: 添加用户反馈历史功能,解决钉钉集成问题\n\n- 创建反馈历史存储工具类\\(utils/feedback-storage.js\\)\n- 创建反馈历史弹窗组件\\(components/feedback-history-modal/\\)\n- 实现反馈历史查看和管理功能\n- 支持查看、删除、清空、重试操作\n- 添加功能实现说明文档\\(docs/planning/user-feedback-history-implementation.md\\)\n- 解决审核期间钉钉无法接收反馈的问题\n- 用户可以查看自己提交的所有反馈记录\n- 保留伪反馈机制用于通过审核\n\n功能亮点:\n- 本地存储,不依赖网络\n- 最多保存50条记录\n- 支持状态显示\\(已发送、发送失败、等待中\\)\n- 时间格式化显示\\(刚刚、X分钟前等\\)\n- 优化用户体验,操作有明确反馈\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git add -A)",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: 修复calculator.js严重语法错误并清理文档\n\n- 修复calculator.js文件结构混乱问题\n- 清理重复的openFeedbackHistory方法片段\n- 修复括号和逗号匹配问题\n- 删除过时的文档文件和配置\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: 修复calculator.js严重语法错误并清理文档\n\n- 修复calculator.js文件结构混乱问题\n- 清理重复的openFeedbackHistory方法片段\n- 修复括号和逗号匹配问题\n- 删除过时的文档文件和配置\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: UI优化 - 解决标签和按钮换行问题\n\n- 地域习俗页面Tab改为垂直布局（图标在上文字在下）\n- 特殊场合改为紧凑列表布局（点击展开详情）\n- 红包翻译器分类改为自适应网格布局\n- 随礼计算器按钮改为垂直布局\n- 禁用钉钉自动测试功能\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }

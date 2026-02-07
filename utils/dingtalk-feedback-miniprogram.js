@@ -197,29 +197,27 @@ class DingTalkFeedbackService {
     return this.status;
   }
 
-  /**
-   * 测试钉钉服务连通性
-   */
-  testService() {
-    console.log('开始测试钉钉服务连通性...');
-    
-    var testMessage = {
-      msgtype: 'text',
-      text: {
-        content: '🔧 钉钉反馈服务测试消息 \n来自「' + this.config.projectName + '」微信小程序\n测试时间：' + new Date().toLocaleString('zh-CN')
-      }
-    };
-    
-    return this.sendMessage(testMessage)
-      .then(function(result) {
-        console.log('钉钉服务测试结果:', result);
-        return result;
-      })
-      .catch(function(error) {
-        console.log('钉钉服务测试失败:', error);
-        return { success: false, error: error };
-      });
-  }
+  // 🔧 测试方法已禁用 - 反馈服务已正常运行，无需持续测试
+  // testService() {
+  //   console.log('开始测试钉钉服务连通性...');
+  //
+  //   var testMessage = {
+  //     msgtype: 'text',
+  //     text: {
+  //       content: '🔧 钉钉反馈服务测试消息 \n来自「' + this.config.projectName + '」微信小程序\n测试时间：' + new Date().toLocaleString('zh-CN')
+  //     }
+  //   };
+  //
+  //   return this.sendMessage(testMessage)
+  //     .then(function(result) {
+  //       console.log('钉钉服务测试结果:', result);
+  //       return result;
+  //     })
+  //     .catch(function(error) {
+  //       console.log('钉钉服务测试失败:', error);
+  //       return { success: false, error: error };
+  //     });
+  // }
 }
 
 // 创建服务实例
@@ -236,15 +234,12 @@ var exports = {
     return dingtalkFeedback.getServiceStatus();
   },
   testService: function() {
-    if (typeof dingtalkFeedback.testService === 'function') {
-      return dingtalkFeedback.testService();
-    } else {
-      return Promise.resolve({ 
-        success: false, 
-        error: 'testService not available', 
-        message: '测试服务在当前版本不可用' 
-      });
-    }
+    // 🔧 测试功能已禁用 - 反馈服务已正常运行
+    return Promise.resolve({
+      success: false,
+      disabled: true,
+      message: '测试服务已禁用，反馈功能正常运行中'
+    });
   }
 };
 
