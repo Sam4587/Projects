@@ -50,6 +50,8 @@ Page({
       regionList: this.recommendationEngine.regionalRules.getAllRegions()
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -79,6 +81,8 @@ Page({
       result: null
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -95,6 +99,8 @@ Page({
       this.calculateAmount();
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -110,6 +116,8 @@ Page({
     this.setData({ closeness, result: null }, () => {
       this.calculateAmount();
     
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -130,6 +138,8 @@ Page({
       this.calculateAmount();
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -144,6 +154,8 @@ Page({
   showOccasionSelector() {
     this.setData({ showOccasionPicker: true 
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -157,6 +169,8 @@ Page({
   // 关闭场合选择器
   hideOccasionSelector() {
     this.setData({ showOccasionPicker: false 
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -177,6 +191,8 @@ Page({
       this.calculateAmount();
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -190,6 +206,8 @@ Page({
   // 显示地域选择器
   showRegionSelector() {
     this.setData({ showRegionPicker: true 
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -205,6 +223,8 @@ Page({
   hideRegionSelector() {
     this.setData({ showRegionPicker: false 
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -219,6 +239,8 @@ Page({
   showBudgetSettings() {
     this.setData({ showBudgetSettings: true 
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -232,6 +254,8 @@ Page({
   // 关闭预算设置
   hideBudgetSettings() {
     this.setData({ showBudgetSettings: false 
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -250,6 +274,8 @@ Page({
       this.calculateAmount();
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -266,6 +292,8 @@ Page({
     this.setData({ budgetMax: value, result: null }, () => {
       this.calculateAmount();
     
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -298,6 +326,8 @@ Page({
         duration: 2000
       
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -315,6 +345,8 @@ Page({
         icon: 'none',
         duration: 2000
       
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -341,6 +373,8 @@ Page({
           duration: 2000
         
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -358,6 +392,8 @@ Page({
           icon: 'none',
           duration: 2000
         
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -382,6 +418,8 @@ Page({
         budget
       
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -394,6 +432,8 @@ Page({
       this.setData({
         result: recommendation
       
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -484,6 +524,8 @@ Page({
       }
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -508,6 +550,8 @@ Page({
         duration: 2000
       
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -521,6 +565,8 @@ Page({
     this.setData({
       actualAmount: value
     
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -538,6 +584,8 @@ Page({
   //     const success = adManager.showBannerAd('#calculator-feedback-section');
   //     if (success) {
   //       this.setData({ showBannerAd: true 
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -560,6 +608,8 @@ Page({
   //   try {
   //     adManager.hideBannerAd();
   //     this.setData({ showBannerAd: false 
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -584,6 +634,8 @@ Page({
         icon: 'none'
       
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -601,6 +653,8 @@ Page({
         title: '请先计算推荐金额',
         icon: 'none'
       
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -645,6 +699,8 @@ Page({
           showFeedbackModal: true
         
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -655,6 +711,8 @@ Page({
 });
       }
     
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -673,6 +731,8 @@ Page({
         suggested: `${result.range?.low || 0}-${result.range?.high || 0}`,
         actual: parseInt(actualAmount)
       
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -695,6 +755,8 @@ Page({
       url: '/pages/test-dingtalk/test-dingtalk'
     
 
+,
+
   // 打开反馈历史
   openFeedbackHistory() {
     const feedbackComponent = this.selectComponent('#feedback-component');
@@ -705,6 +767,8 @@ Page({
 });
   }
 
+
+,
 
   // 打开反馈历史
   openFeedbackHistory() {
