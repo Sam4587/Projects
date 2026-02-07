@@ -27,7 +27,9 @@
       "Bash(git add docs/)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\ndocs: 统一文档目录结构,创建文档索引\n\n- 将根目录的MD文档分类整理到docs目录\n- 创建reference目录存放参考文档（CHANGELOG、CODE_MANAGEMENT等）\n- 创建planning目录存放规划文档\n- 创建guidelines目录存放操作指南\n- 创建archive目录存放历史文档\n- 创建统一的INDEX.md文档索引\n- 优化文档查找和管理体验\n\n文档分类:\n- reference/: 6个核心参考文档\n- planning/: 1个规划文档\n- guidelines/: 1个操作指南\n- archive/: 待整理历史文档\n- docs/: 50+个技术文档\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
       "Bash(git add utils/feedback-storage.js components/feedback-history-modal/ docs/planning/user-feedback-history-implementation.md)",
-      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: 添加用户反馈历史功能,解决钉钉集成问题\n\n- 创建反馈历史存储工具类\\(utils/feedback-storage.js\\)\n- 创建反馈历史弹窗组件\\(components/feedback-history-modal/\\)\n- 实现反馈历史查看和管理功能\n- 支持查看、删除、清空、重试操作\n- 添加功能实现说明文档\\(docs/planning/user-feedback-history-implementation.md\\)\n- 解决审核期间钉钉无法接收反馈的问题\n- 用户可以查看自己提交的所有反馈记录\n- 保留伪反馈机制用于通过审核\n\n功能亮点:\n- 本地存储,不依赖网络\n- 最多保存50条记录\n- 支持状态显示\\(已发送、发送失败、等待中\\)\n- 时间格式化显示\\(刚刚、X分钟前等\\)\n- 优化用户体验,操作有明确反馈\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")"
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: 添加用户反馈历史功能,解决钉钉集成问题\n\n- 创建反馈历史存储工具类\\(utils/feedback-storage.js\\)\n- 创建反馈历史弹窗组件\\(components/feedback-history-modal/\\)\n- 实现反馈历史查看和管理功能\n- 支持查看、删除、清空、重试操作\n- 添加功能实现说明文档\\(docs/planning/user-feedback-history-implementation.md\\)\n- 解决审核期间钉钉无法接收反馈的问题\n- 用户可以查看自己提交的所有反馈记录\n- 保留伪反馈机制用于通过审核\n\n功能亮点:\n- 本地存储,不依赖网络\n- 最多保存50条记录\n- 支持状态显示\\(已发送、发送失败、等待中\\)\n- 时间格式化显示\\(刚刚、X分钟前等\\)\n- 优化用户体验,操作有明确反馈\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git add -A)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: 修复calculator.js严重语法错误并清理文档\n\n- 修复calculator.js文件结构混乱问题\n- 清理重复的openFeedbackHistory方法片段\n- 修复括号和逗号匹配问题\n- 删除过时的文档文件和配置\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n\\)\")"
     ]
   }
 }

@@ -19,8 +19,8 @@ Page({
     result: null,
     actualAmount: '', // 用户实际给的金额
     showFeedbackModal: false, // 是否显示反馈成功弹窗
-    loading: false,  // 🔴 P0: 加载状态
-    loadingText: '',  // 🔴 P0: 加载文本
+    loading: false,  // 加载状态
+    loadingText: '',  // 加载文本
     showBannerAd: false,  // Banner广告显示状态
     showBudgetSettings: false,  // 是否显示预算设置
     showOccasionPicker: false,  // 是否显示场合选择
@@ -48,24 +48,10 @@ Page({
     // 获取地域列表
     this.setData({
       regionList: this.recommendationEngine.regionalRules.getAllRegions()
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
 
     // 广告组件 - 临时禁用，过审后恢复
     // adManager.createBannerAd();
-
-    // 🔴 P0: 移除人为延迟,立即显示页面
-    // 页面初始化完成
   },
 
   onShow: function() {
@@ -79,54 +65,23 @@ Page({
     this.setData({
       actualAmount: '',
       result: null
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
+  // 选择关系
   selectRelationship(e) {
     const relationship = e.currentTarget.dataset.rel;
     this.setData({ relationship, result: null }, () => {
       this.calculateAmount();
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
+  // 选择亲疏程度
   selectCloseness(e) {
     const closeness = e.currentTarget.dataset.close;
     this.setData({ closeness, result: null }, () => {
       this.calculateAmount();
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
   // 选择场合
@@ -136,50 +91,17 @@ Page({
     const occasionName = occasionList.find(i => i.id === occasion)?.name || '请选择场合';
     this.setData({ occasion, occasionName, showOccasionPicker: false, result: null }, () => {
       this.calculateAmount();
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
   // 显示场合选择器
   showOccasionSelector() {
-    this.setData({ showOccasionPicker: true 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    this.setData({ showOccasionPicker: true });
   },
 
   // 关闭场合选择器
   hideOccasionSelector() {
-    this.setData({ showOccasionPicker: false 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    this.setData({ showOccasionPicker: false });
   },
 
   // 选择地域
@@ -189,82 +111,27 @@ Page({
     const regionName = regionList.find(i => i.id === region)?.name || '请选择地域';
     this.setData({ region, regionName, showRegionPicker: false, result: null }, () => {
       this.calculateAmount();
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
   // 显示地域选择器
   showRegionSelector() {
-    this.setData({ showRegionPicker: true 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    this.setData({ showRegionPicker: true });
   },
 
   // 关闭地域选择器
   hideRegionSelector() {
-    this.setData({ showRegionPicker: false 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    this.setData({ showRegionPicker: false });
   },
 
   // 显示预算设置
   showBudgetSettings() {
-    this.setData({ showBudgetSettings: true 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    this.setData({ showBudgetSettings: true });
   },
 
   // 关闭预算设置
   hideBudgetSettings() {
-    this.setData({ showBudgetSettings: false 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    this.setData({ showBudgetSettings: false });
   },
 
   // 输入最低预算
@@ -272,18 +139,7 @@ Page({
     const value = e.detail.value;
     this.setData({ budgetMin: value, result: null }, () => {
       this.calculateAmount();
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
   // 输入最高预算
@@ -291,18 +147,7 @@ Page({
     const value = e.detail.value;
     this.setData({ budgetMax: value, result: null }, () => {
       this.calculateAmount();
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
   // 阻止事件冒泡
@@ -310,12 +155,13 @@ Page({
     // 阻止点击事件冒泡到modal-overlay
   },
 
+  // 计算推荐金额
   calculateAmount() {
     const { relationship, closeness, occasion, region, budgetMin, budgetMax } = this.data;
 
     if (!relationship || !closeness) return;
 
-    // 🔴 中优先级修复：添加关系类型和亲疏程度的有效性验证
+    // 添加关系类型和亲疏程度的有效性验证
     const validRelationships = ['family', 'friend', 'colleague', 'boss'];
     const validCloseness = ['acquaintance', 'normal', 'close', 'very-close'];
 
@@ -324,18 +170,7 @@ Page({
         title: '请选择有效的关系类型',
         icon: 'none',
         duration: 2000
-      
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+      });
       return;
     }
 
@@ -344,18 +179,7 @@ Page({
         title: '请选择有效的亲疏程度',
         icon: 'none',
         duration: 2000
-      
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+      });
       return;
     }
 
@@ -371,18 +195,7 @@ Page({
           title: '预算上限必须大于下限',
           icon: 'none',
           duration: 2000
-        
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+        });
         return;
       }
 
@@ -391,18 +204,7 @@ Page({
           title: '预算范围太窄，建议扩大范围',
           icon: 'none',
           duration: 2000
-        
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+        });
       }
 
       budget = { min, max };
@@ -416,33 +218,11 @@ Page({
         occasion,
         region,
         budget
-      
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+      });
 
       this.setData({
         result: recommendation
-      
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+      });
     } catch (error) {
       console.error('智能推荐计算失败:', error);
 
@@ -467,7 +247,7 @@ Page({
       'very-close': 2
     };
 
-    // 🔴 高优先级修复：添加默认值处理，确保计算结果始终为有效数字
+    // 添加默认值处理，确保计算结果始终为有效数字
     const base = baseAmounts[relationship] || 300; // 默认值
     const multiplier = closenessMultipliers[closeness] || 1; // 默认值
     const amount = Math.max(0, Math.round(base * multiplier / 100) * 100); // 确保为正数
@@ -495,7 +275,7 @@ Page({
       }
     };
 
-    // 🔴 中优先级修复：添加计算结果合理性检查
+    // 添加计算结果合理性检查
     const suggestion = suggestions[relationship] || {
       low: Math.max(0, amount - 200),
       high: amount + 200,
@@ -522,25 +302,14 @@ Page({
         customs: null,
         comparison: null
       }
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
   // 输入实际金额
   onInputActualAmount(e) {
     let value = e.detail.value.replace(/[^0-9]/g, ''); // 只允许数字
-    
-    // 🔴 中优先级修复：添加金额范围验证
+
+    // 添加金额范围验证
     const amount = parseInt(value);
     if (amount > 100000) {
       value = '100000'; // 上限
@@ -548,34 +317,12 @@ Page({
         title: '金额不能超过100000元',
         icon: 'none',
         duration: 2000
-      
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
+      });
     }
-  },
-});
-    }
-    
+
     this.setData({
       actualAmount: value
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   },
 
   // 显示计算器页面的Banner广告 - 临时隐藏，过审后将恢复
@@ -583,20 +330,9 @@ Page({
   //   try {
   //     const success = adManager.showBannerAd('#calculator-feedback-section');
   //     if (success) {
-  //       this.setData({ showBannerAd: true 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+  //       this.setData({ showBannerAd: true });
   //     } else {
-  //       console.warn('🎯 计算器Banner广告显示失败');
+  //       console.warn('计算器Banner广告显示失败');
   //     }
   //   } catch (error) {
   //     console.warn('显示计算器Banner广告失败:', error);
@@ -607,18 +343,7 @@ Page({
   // hideCalculatorBannerAd() {
   //   try {
   //     adManager.hideBannerAd();
-  //     this.setData({ showBannerAd: false 
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+  //     this.setData({ showBannerAd: false });
   //   } catch (error) {
   //     console.warn('隐藏CalculatorBanner广告失败:', error);
   //   }
@@ -627,50 +352,28 @@ Page({
   // 提交伪反馈
   submitPseudoFeedback() {
     const { relationship, closeness, result, actualAmount } = this.data;
-    
+
     if (!actualAmount || actualAmount === '') {
       wx.showToast({
         title: '请输入实际金额',
         icon: 'none'
-      
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+      });
       return;
     }
 
-    // 🔴 高优先级修复：添加result不为null的检查
+    // 添加result不为null的检查
     if (!result) {
       wx.showToast({
         title: '请先计算推荐金额',
         icon: 'none'
-      
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+      });
       return;
     }
 
     // 获取关系类型的中文名称
     const relationshipMap = {
       'family': '家人亲戚',
-      'friend': '朋友同学', 
+      'friend': '朋友同学',
       'colleague': '同事领导',
       'boss': '老板客户'
     };
@@ -679,11 +382,11 @@ Page({
     const closenessMap = {
       'acquaintance': '点头之交',
       'normal': '普通关系',
-      'close': '关系密切', 
+      'close': '关系密切',
       'very-close': '非常要好'
     };
 
-    // 🔴 审核修改：移除本地存储功能，避免收集用户信息
+    // 审核修改：移除本地存储功能，避免收集用户信息
     // 本地存储功能已移除，仅显示成功提示
 
     // 显示成功提示
@@ -697,31 +400,9 @@ Page({
         this.setData({
           actualAmount: '',
           showFeedbackModal: true
-        
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+        });
       }
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
 
     // 统计反馈事件
     if (app.trackEvent) {
@@ -730,9 +411,11 @@ Page({
         closeness: closeness,
         suggested: `${result.range?.low || 0}-${result.range?.high || 0}`,
         actual: parseInt(actualAmount)
-      
+      });
+    }
 
-,
+    console.log('伪反馈已提交（本地存储已移除）');
+  },
 
   // 打开反馈历史
   openFeedbackHistory() {
@@ -740,11 +423,6 @@ Page({
     if (feedbackComponent && feedbackComponent.openHistory) {
       feedbackComponent.openHistory();
     }
-  },
-});
-    }
-
-    console.log('伪反馈已提交（本地存储已移除）');
   },
 
   /**
@@ -753,28 +431,6 @@ Page({
   gotoDevTest() {
     wx.navigateTo({
       url: '/pages/test-dingtalk/test-dingtalk'
-    
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
-});
+    });
   }
-
-
-,
-
-  // 打开反馈历史
-  openFeedbackHistory() {
-    const feedbackComponent = this.selectComponent('#feedback-component');
-    if (feedbackComponent && feedbackComponent.openHistory) {
-      feedbackComponent.openHistory();
-    }
-  },
 });
