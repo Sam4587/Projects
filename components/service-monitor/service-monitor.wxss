@@ -1,0 +1,318 @@
+/* components/service-monitor/service-monitor.wxss */
+
+/* 监控面板样式 */
+.service-monitor-panel {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.service-monitor-panel.show {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.monitor-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10rpx);
+}
+
+.monitor-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%;
+  max-width: 600rpx;
+  max-height: 80vh;
+  background: white;
+  border-radius: 16rpx;
+  box-shadow: 0 12rpx 48rpx rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* 头部 */
+.monitor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-bottom: 1rpx solid #e1e8ed;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.status-indicator {
+  width: 24rpx;
+  height: 24rpx;
+  border-radius: 50%;
+  box-shadow: 0 0 0 8rpx currentColor;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-indicator.online {
+  background: #52c41a;
+  color: #52c41a;
+}
+
+.status-indicator.offline {
+  background: #ef4444;
+  color: #ef4444;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.5;
+  }
+}
+
+.header-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: white;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+}
+
+.refresh-btn {
+  padding: 12rpx 24rpx;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50rpx;
+  border: 2rpx solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.refresh-btn:active {
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0.95);
+}
+
+.refresh-btn.checking {
+  animation: rotate 1s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.refresh-icon {
+  font-size: 28rpx;
+  color: white;
+}
+
+/* 服务状态卡片 */
+.status-card {
+  padding: 24rpx;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+  margin: 20rpx;
+  border-radius: 12rpx;
+  border: 2rpx solid #e1e8ed;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.status-label {
+  font-size: 26rpx;
+  color: #6b7280;
+  font-weight: 600;
+}
+
+.status-value {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.status-value.online {
+  color: #52c41a;
+}
+
+.status-value.offline {
+  color: #ef4444;
+}
+
+/* 统计网格 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+  padding: 0 20rpx 20rpx;
+}
+
+.stat-box {
+  background: white;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  border: 2rpx solid #e5e7eb;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 22rpx;
+  color: #8c8c8c;
+  margin-bottom: 8rpx;
+}
+
+.stat-number {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.stat-number.success {
+  color: #52c41a;
+}
+
+.stat-number.failed {
+  color: #ef4444;
+}
+
+.stat-number.rate {
+  color: #667eea;
+}
+
+/* 检查历史 */
+.history-section {
+  padding: 0 20rpx 20rpx;
+}
+
+.history-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #e5e7eb;
+}
+
+.title-text {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.title-count {
+  font-size: 20rpx;
+  color: #8c8c8c;
+  background: #f3f4f6;
+  padding: 4rpx 12rpx;
+  border-radius: 20rpx;
+}
+
+.history-list {
+  max-height: 300rpx;
+  padding: 16rpx 0;
+}
+
+.history-item {
+  display: flex;
+  align-items: center;
+  padding: 12rpx 0;
+  border-bottom: 1rpx solid #f3f4f6;
+  transition: all 0.3s ease;
+}
+
+.history-status {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  margin-right: 12rpx;
+}
+
+.history-status.success {
+  background: #52c41a;
+}
+
+.history-status.failed {
+  background: #ef4444;
+}
+
+.status-dot {
+  width: 8rpx;
+  height: 8rpx;
+  background: white;
+  border-radius: 50%;
+  margin: 4rpx auto;
+}
+
+.history-time {
+  font-size: 22rpx;
+  color: #6b7280;
+  margin-left: 12rpx;
+  flex: 1;
+}
+
+.history-response {
+  font-size: 20rpx;
+  color: #8c8c8c;
+  margin-left: 12rpx;
+}
+
+/* 空状态 */
+.empty-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60rpx 20rpx;
+}
+
+.empty-icon {
+  font-size: 60rpx;
+  margin-bottom: 12rpx;
+  opacity: 0.5;
+}
+
+.empty-text {
+  font-size: 22rpx;
+  color: #8c8c8c;
+}
+
+/* 最后更新 */
+.last-update {
+  padding: 16rpx 20rpx;
+  background: #f9fafb;
+  text-align: center;
+  border-top: 1rpx solid #e5e7eb;
+}
+
+.update-text {
+  font-size: 20rpx;
+  color: #8c8c8c;
+}

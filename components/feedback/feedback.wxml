@@ -1,6 +1,9 @@
 <!-- 用户反馈弹窗组件 -->
 <view class="feedback-modal {{show ? 'show' : ''}}" catch:touchmove="preventTouchMove">
-  <view class="feedback-mask" catch:tap="closeModal"></view>
+  <view class="feedback-mask" catch:tap="closeModal">
+<!-- 反馈历史弹窗 -->
+<include src="../feedback-history/feedback-history" wx:if="{{showHistory}}"/>
+</view>
   <view class="feedback-content">
     <!-- 装饰元素 -->
     <view class="decoration-cloud cloud-left">☁</view>
@@ -103,6 +106,37 @@
       <text class="progress-text">正在处理您的反馈...</text>
     </view>
     
+    
+    <!-- 提交成功动画 -->
+    <view wx:if="{{submitStatus === 'success'}}" class="success-animation">
+      <view class="success-content">
+        <view class="success-icon-wrapper">
+          <view class="success-icon-circle">
+            <view class="success-check">✓</view>
+            <view class="success-sparkles">
+              <view class="sparkle sparkle-1">✨</view>
+              <view class="sparkle sparkle-2">✨</view>
+              <view class="sparkle sparkle-3">✨</view>
+              <view class="sparkle sparkle-4">✨</view>
+              <view class="sparkle sparkle-5">✨</view>
+            </view>
+          </view>
+        </view>
+        <text class="success-title">反馈提交成功！</text>
+        <text class="success-subtitle">感谢您的宝贵意见</text>
+        <view class="success-actions">
+          <view class="success-btn" catch:tap="closeModal">完成</view>
+        </view>
+      </view>
+      <view class="success-confetti">
+        <view class="confetti confetti-1"></view>
+        <view class="confetti confetti-2"></view>
+        <view class="confetti confetti-3"></view>
+        <view class="confetti confetti-4"></view>
+        <view class="confetti confetti-5"></view>
+      </view>
+    </view>
+
     <!-- 关闭按钮 -->
     <view class="close-btn" catch:tap="closeModal">×</view>
   </view>

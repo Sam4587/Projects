@@ -1,0 +1,83 @@
+<!-- 钉钉服务健康监控面板 -->
+<view class="service-monitor-panel {{show ? 'show' : ''}}" catch:touchmove="preventTouchMove">
+  <view class="monitor-mask" catch:tap="closePanel"></view>
+  <view class="monitor-content">
+    <!-- 标题 -->
+    <view class="monitor-header">
+      <view class="header-left">
+        <view class="status-indicator {{serviceStatus.online ? 'online' : 'offline'}}"></view>
+        <text class="header-title">钉钉服务状态</text>
+      </view>
+      <view class="header-right">
+        <view class="refresh-btn {{checking ? 'checking' : ''}}" catch:tap="refresh">
+          <text class="refresh-icon">{{checking ? '⏳' : '↻'}}</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 服务状态卡片 -->
+    <view class="status-card">
+      <view class="status-row">
+        <text class="status-label">服务状态</text>
+        <text class="status-value {{serviceStatus.online ? 'online' : 'offline'}}">
+          {{serviceStatus.online ? '🟢 在线' : '🔴 离线'}}
+        </text>
+      </view>
+    </view>
+    
+    <!-- 统计数据 -->
+    <view class="stats-grid">
+      <view class="stat-box">
+        <text class="stat-label">总检查次数</text>
+        <text class="stat-number">{{serviceStatus.totalChecks}}</text>
+      </view>
+      <view class="stat-box">
+        <text class="stat-label">成功次数</text>
+        <text class="stat-number success">{{serviceStatus.successCount}}</text>
+      </view>
+      <view class="stat-box">
+        <text class="stat-label">失败次数</text>
+        <text class="stat-number failed">{{serviceStatus.failedCount}}</text>
+      </view>
+      <view class="stat-box">
+        <text class="stat-label">成功率</text>
+        <text class="stat-number rate">{{serviceStatus.successRate}}%</text>
+      </view>
+      <view class="stat-box">
+        <text class="stat-label">平均响应</text>
+        <text class="stat-number">{{formatResponseTime(serviceStatus.avgResponseTime)}}</text>
+      </view>
+    </view>
+    
+    <!-- 最近检查历史 -->
+    <view class="history-section">
+      <view class="history-title">
+        <text class="title-text">最近检查</text>
+        <text class="title-count">{{checkHistory.length}}条记录</text>
+      </view>
+      <scroll-view class="history-list" scroll-y>
+        <block wx:if="{{checkHistory.length > 0}}">
+          <view wx:for="{{checkHistory.slice(0, 10)}}" wx:key="timestamp" class="history-item">
+            <view class="history-status {{item.success ? 'success' : 'failed'}}">
+              <text class="status-dot"></text>
+            </view>
+            <text class="history-time">{{formatTime(item.timestamp)}}</text>
+            <text class="history-response">{{formatResponseTime(item.responseTime)}}</text>
+          </view>
+        </block>
+        
+        <block wx:if="{{checkHistory.length === 0}}">
+          <view class="empty-history">
+            <text class="empty-icon">📡</text>
+            <text class="empty-text">暂无检查记录</text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    
+    <!-- 最后更新时间 -->
+    <view class="last-update">
+      <text class="update-text">最后更新: {{formatTime(serviceStatus.lastCheck)}}</text>
+    </view>
+  </view>
+</view>

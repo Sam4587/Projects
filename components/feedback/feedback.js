@@ -89,6 +89,9 @@ Component({
       { value: 'ui', label: '🎨 界面优化' },
       { value: 'other', label: '💭 其他' }
     ],
+    // 反馈历史
+    showHistory: false,
+    
     // 统计信息
     stats: {
       totalFeedback: 0,

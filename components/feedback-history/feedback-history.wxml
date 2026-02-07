@@ -1,0 +1,61 @@
+<!-- 用户反馈历史组件 -->
+<view class="feedback-history-modal {{show ? 'show' : ''}}" catch:touchmove="preventTouchMove">
+  <view class="feedback-history-mask" catch:tap="closeModal"></view>
+  <view class="feedback-history-content">
+    <!-- 标题 -->
+    <view class="history-header">
+      <view class="header-icon">📋</view>
+      <text class="history-title">我的反馈</text>
+      <view class="history-stats">
+        <view class="stat-item">
+          <text class="stat-value">{{totalCount}}</text>
+          <text class="stat-label">总计</text>
+        </view>
+        <view class="stat-divider"></view>
+        <view class="stat-item">
+          <text class="stat-value">{{successCount}}</text>
+          <text class="stat-label">成功</text>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 反馈列表 -->
+    <scroll-view class="feedback-list" scroll-y>
+      <block wx:if="{{feedbackList.length > 0}}">
+        <view wx:for="{{feedbackList}}" wx:key="id" class="feedback-item">
+          <view class="item-header">
+            <view class="item-type-badge {{item.type}}">
+              <text class="badge-icon">{{getTypeIcon(item.type)}}</text>
+              <text class="badge-text">{{getTypeLabel(item.type)}}</text>
+            </view>
+            <view class="item-status {{item.status}}">
+              <text class="status-dot"></text>
+              <text class="status-text">{{getStatusText(item.status)}}</text>
+            </view>
+          </view>
+          <view class="item-content">
+            <text class="item-text">{{item.content}}</text>
+          </view>
+          <view class="item-footer">
+            <view class="item-rating">
+              <text class="rating-stars">{{getStars(item.rating)}}</text>
+            </view>
+            <text class="item-time">{{formatTime(item.createTime)}}</text>
+          </view>
+        </view>
+      </block>
+      
+      <!-- 空状态 -->
+      <block wx:if="{{feedbackList.length === 0}}">
+        <view class="empty-state">
+          <text class="empty-icon">📭</text>
+          <text class="empty-title">还没有反馈记录</text>
+          <text class="empty-desc">您的第一条反馈将出现在这里</text>
+        </view>
+      </block>
+    </scroll-view>
+    
+    <!-- 关闭按钮 -->
+    <view class="history-close" catch:tap="closeModal">✓ 完成</view>
+  </view>
+</view>

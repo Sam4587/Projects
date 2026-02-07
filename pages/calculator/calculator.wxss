@@ -828,3 +828,38 @@
 .dev-test-text {
   opacity: 0.5;
 }
+
+/* 反馈历史按钮样式 */
+.history-btn-wrapper {
+  position: fixed;
+  bottom: 200rpx;
+  right: 20rpx;
+  z-index: 900;
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.history-btn-wrapper:active {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.history-btn {
+  display: flex;
+  align-items: center;
+  padding: 16rpx 24rpx;
+  background: linear-gradient(135deg, #52c41a 0%, #389e0d 100%);
+  color: white;
+  border-radius: 50rpx;
+  box-shadow: 0 6rpx 20rpx rgba(82, 196, 26, 0.3);
+  gap: 8rpx;
+}
+
+.history-icon {
+  font-size: 28rpx;
+}
+
+.history-text {
+  font-size: 24rpx;
+  font-weight: 600;
+}
